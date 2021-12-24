@@ -1,9 +1,9 @@
 <map id="Stream::Security::Digest" name="Stream::Security::Digest">
-<area shape="rect" id="node1" title="Input / Output stream digest observer." alt="" coords="29,469,727,664"/>
-<area shape="rect" id="node2" href="$de/dbf/classStream_1_1Security_1_1DigestInput.html" title="Input stream digest observer." alt="" coords="5,256,361,421"/>
+<area shape="rect" id="node1" title="Stream::Input / Stream::Output Digest observer." alt="" coords="29,469,727,664"/>
+<area shape="rect" id="node2" href="$de/dbf/classStream_1_1Security_1_1DigestInput.html" title="Stream::Input Digest observer." alt="" coords="5,256,361,421"/>
 <area shape="rect" id="node3" href="/home/null/doc/Stream/tag.xml$d3/d2f/classStream_1_1InputFilter.html" title=" " alt="" coords="118,131,249,208"/>
 <area shape="rect" id="node4" href="/home/null/doc/Stream/tag.xml$d7/d83/classStream_1_1Input.html" title=" " alt="" coords="133,5,234,83"/>
-<area shape="rect" id="node5" href="$d8/d44/classStream_1_1Security_1_1DigestOutput.html" title="Output stream digest observer." alt="" coords="386,256,762,421"/>
+<area shape="rect" id="node5" href="$d8/d44/classStream_1_1Security_1_1DigestOutput.html" title="Stream::Output Digest observer." alt="" coords="386,256,762,421"/>
 <area shape="rect" id="node6" href="/home/null/doc/Stream/tag.xml$d0/d57/classStream_1_1OutputFilter.html" title=" " alt="" coords="504,131,644,208"/>
 <area shape="rect" id="node7" href="/home/null/doc/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="519,5,629,83"/>
 </map>

@@ -1,10 +1,10 @@
 <map id="Stream::Security::TLS" name="Stream::Security::TLS">
-<area shape="rect" id="node1" title="Input / Output stream TLS decryptor and encryptor." alt="" coords="288,580,557,701"/>
-<area shape="rect" id="node2" href="$d0/d3a/classStream_1_1Security_1_1TLSDecrypt.html" title="Input stream TLS decryptor." alt="" coords="5,389,403,525"/>
+<area shape="rect" id="node1" title="Stream::Input / Stream::Output TLS decryptor and encryptor." alt="" coords="288,580,557,701"/>
+<area shape="rect" id="node2" href="$d0/d3a/classStream_1_1Security_1_1TLSDecrypt.html" title="Stream::Input TLS decryptor." alt="" coords="5,389,403,525"/>
 <area shape="rect" id="node3" href="/home/null/doc/Stream/tag.xml$d2/dc2/classStream_1_1BufferInput.html" title=" " alt="" coords="137,256,271,333"/>
 <area shape="rect" id="node4" href="/home/null/doc/Stream/tag.xml$d3/d2f/classStream_1_1InputFilter.html" title=" " alt="" coords="139,131,269,208"/>
 <area shape="rect" id="node5" href="/home/null/doc/Stream/tag.xml$d7/d83/classStream_1_1Input.html" title=" " alt="" coords="153,5,255,83"/>
-<area shape="rect" id="node6" href="$dd/d0b/classStream_1_1Security_1_1TLSEncrypt.html" title="Output stream TLS encryptor." alt="" coords="427,381,856,532"/>
+<area shape="rect" id="node6" href="$dd/d0b/classStream_1_1Security_1_1TLSEncrypt.html" title="Stream::Output TLS encryptor." alt="" coords="427,381,856,532"/>
 <area shape="rect" id="node7" href="/home/null/doc/Stream/tag.xml$da/d65/classStream_1_1BufferOutput.html" title=" " alt="" coords="569,256,714,333"/>
 <area shape="rect" id="node8" href="/home/null/doc/Stream/tag.xml$d0/d57/classStream_1_1OutputFilter.html" title=" " alt="" coords="571,131,711,208"/>
 <area shape="rect" id="node9" href="/home/null/doc/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="586,5,697,83"/>

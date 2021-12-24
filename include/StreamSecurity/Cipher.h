@@ -7,7 +7,7 @@
 namespace Stream::Security {
 
 /**
- * @brief	Input stream cipher decryptor
+ * @brief	Stream::Input %Cipher decryptor
  * @class	CipherDecrypt Cipher.h "StreamSecurity/Cipher.h"
  */
 class CipherDecrypt : public BufferInput {
@@ -47,7 +47,7 @@ public:
 };//class CipherDecrypt
 
 /**
- * @brief	Output stream cipher encryptor
+ * @brief	Stream::Output %Cipher encryptor
  * @class	CipherEncrypt Cipher.h "StreamSecurity/Cipher.h"
  */
 class CipherEncrypt : public BufferOutput {
@@ -83,7 +83,7 @@ public:
 };//class CipherEncrypt
 
 /**
- * @brief Input / Output stream cipher decryptor and encryptor
+ * @brief Stream::Input / Stream::Output %Cipher decryptor and encryptor
  * @class Cipher Cipher.h "StreamSecurity/Cipher.h"
  */
 class Cipher : public CipherDecrypt, public CipherEncrypt {

@@ -119,7 +119,7 @@ public:
 };//class Key
 
 /**
- * @brief	PKCS8 formatted private key
+ * @brief	PKCS8 private key
  * @class	PrivateKey Key.h "StreamSecurity/Key.h"
  */
 class PrivateKey {
@@ -139,7 +139,7 @@ public:
 };//class PrivateKey
 
 /**
- * @brief	X509 formatted public key
+ * @brief	X509 public key
  * @class	PublicKey Key.h "StreamSecurity/Key.h"
  */
 class PublicKey {

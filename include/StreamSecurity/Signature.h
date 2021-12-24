@@ -8,7 +8,7 @@
 namespace Stream::Security {
 
 /**
- * @brief	Input stream signature observer
+ * @brief	Stream::Input %Signature observer
  * @class	SignatureInput Signature.h "StreamSecurity/Signature.h"
  */
 class SignatureInput : public InputFilter {
@@ -36,7 +36,7 @@ public:
 };//class SignatureInput
 
 /**
- * @brief	Output stream signature observer
+ * @brief	Stream::Output %Signature observer
  * @class	SignatureOutput Signature.h "StreamSecurity/Signature.h"
  */
 class SignatureOutput : public OutputFilter {
@@ -67,7 +67,7 @@ public:
 };//class SignatureOutput
 
 /**
- * @brief Input / Output stream signature observer
+ * @brief Stream::Input / Stream::Output %Signature observer
  * @class Signature Signature.h "StreamSecurity/Signature.h"
  */
 class Signature : public SignatureInput, public SignatureOutput {

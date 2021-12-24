@@ -9,7 +9,7 @@
 namespace Stream::Security {
 
 /**
- * @brief	Input stream %TLS decryptor
+ * @brief	Stream::Input %TLS decryptor
  * @class	TLSDecrypt TLS.h "StreamSecurity/TLS.h"
  */
 class TLSDecrypt : public BufferInput {
@@ -40,7 +40,7 @@ public:
 };//class TLSDecrypt
 
 /**
- * @brief	Output stream %TLS encryptor
+ * @brief	Stream::Output %TLS encryptor
  * @class	TLSEncrypt TLS.h "StreamSecurity/TLS.h"
  */
 class TLSEncrypt : public BufferOutput {
@@ -74,7 +74,7 @@ public:
 };//class TLSEncrypt
 
 /**
- * @brief Input / Output stream %TLS decryptor and encryptor
+ * @brief Stream::Input / Stream::Output %TLS decryptor and encryptor
  * @class TLS TLS.h "StreamSecurity/TLS.h"
  */
 class TLS : public TLSDecrypt, public TLSEncrypt {

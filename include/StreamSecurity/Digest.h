@@ -8,7 +8,7 @@
 namespace Stream::Security {
 
 /**
- * @brief	Input stream digest observer
+ * @brief	Stream::Input %Digest observer
  * @class	DigestInput Digest.h "StreamSecurity/Digest.h"
  */
 class DigestInput : public InputFilter {
@@ -44,7 +44,7 @@ public:
 };//class DigestInput
 
 /**
- * @brief	Output stream digest observer
+ * @brief	Stream::Output %Digest observer
  * @class	DigestOutput Digest.h "StreamSecurity/Digest.h"
  */
 class DigestOutput : public OutputFilter {
@@ -80,7 +80,7 @@ public:
 };//class DigestOutput
 
 /**
- * @brief Input / Output stream  digest observer
+ * @brief Stream::Input / Stream::Output %Digest observer
  * @class Digest Digest.h "StreamSecurity/Digest.h"
  */
 class Digest : public DigestInput, public DigestOutput {

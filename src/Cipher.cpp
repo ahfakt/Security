@@ -94,7 +94,7 @@ CipherDecrypt::readBytes(std::byte* dest, std::size_t size)
 			size = provideData(size);
 		} catch (Input::Exception& exc) {
 			if (exc.code() == std::make_error_code(static_cast<std::errc>(ENODATA))) {
-				finalize();
+				finalizeDecryption();
 				return 0; // try again to read from mTemp
 			}
 			throw;
@@ -115,7 +115,7 @@ CipherDecrypt::readBytes(std::byte* dest, std::size_t size)
 }
 
 void
-CipherDecrypt::finalize()
+CipherDecrypt::finalizeDecryption()
 {
 	if (EVP_CIPHER_CTX_cipher(mCtx.get())) {
 		if (EVP_CIPHER_CTX_block_size(mCtx.get()) > 1) {
@@ -128,7 +128,7 @@ CipherDecrypt::finalize()
 }
 
 void
-CipherDecrypt::finalizeWhenNoData(bool on)
+CipherDecrypt::finalizeDecryptionWhenNoData(bool on)
 { mFinalizeWhenNoData = on; }
 
 CipherEncrypt::CipherEncrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, std::size_t buffInitialSize)
@@ -197,7 +197,7 @@ CipherEncrypt::writeBytes(std::byte const* src, std::size_t size)
 }
 
 void
-CipherEncrypt::finalize()
+CipherEncrypt::finalizeEncryption()
 {
 	if (EVP_CIPHER_CTX_cipher(mCtx.get())) {
 		if (EVP_CIPHER_CTX_block_size(mCtx.get()) > 1) {
@@ -214,7 +214,7 @@ CipherEncrypt::finalize()
 CipherEncrypt::~CipherEncrypt()
 {
 	try {
-		finalize();
+		finalizeEncryption();
 	} catch (Output::Exception& exc) {
 		::write(STDERR_FILENO, exc.what(), std::strlen(exc.what()));
 	}

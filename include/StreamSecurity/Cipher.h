@@ -40,10 +40,10 @@ public:
 	operator=(CipherDecrypt&& other) noexcept;
 
 	void
-	finalize();
+	finalizeDecryption();
 
 	void
-	finalizeWhenNoData(bool on = true);
+	finalizeDecryptionWhenNoData(bool on = true);
 };//class CipherDecrypt
 
 /**
@@ -79,7 +79,7 @@ public:
 	~CipherEncrypt();
 
 	void
-	finalize();
+	finalizeEncryption();
 };//class CipherEncrypt
 
 /**

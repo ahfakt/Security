@@ -109,8 +109,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1a22406b57697a1eac22415555cf981f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bb5e2485dcd67fe44030b42168dd318"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dcd/classStream_1_1Security_1_1CipherEncrypt.html">CipherEncrypt</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dcd/classStream_1_1Security_1_1CipherEncrypt.html#a0bb5e2485dcd67fe44030b42168dd318">operator=</a> (<a class="el" href="../../db/dcd/classStream_1_1Security_1_1CipherEncrypt.html">CipherEncrypt</a> &amp;&amp;other) noexcept</td></tr>
 <tr class="separator:a0bb5e2485dcd67fe44030b42168dd318"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca7f87d52aa63d72190352c9790dc6a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dcd/classStream_1_1Security_1_1CipherEncrypt.html#aca7f87d52aa63d72190352c9790dc6a2">finalize</a> ()</td></tr>
-<tr class="separator:aca7f87d52aa63d72190352c9790dc6a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09d3a1e133577500276283954856253b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dcd/classStream_1_1Security_1_1CipherEncrypt.html#a09d3a1e133577500276283954856253b">finalizeEncryption</a> ()</td></tr>
+<tr class="separator:a09d3a1e133577500276283954856253b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -271,7 +271,7 @@ Friends</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00214">214</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
 <div class="fragment"><div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>{</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        finalize();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        finalizeEncryption();</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    } <span class="keywordflow">catch</span> (Output::Exception&amp; exc) {</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        ::write(STDERR_FILENO, exc.what(), std::strlen(exc.what()));</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    }</div>
@@ -314,14 +314,14 @@ Friends</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aca7f87d52aa63d72190352c9790dc6a2" name="aca7f87d52aa63d72190352c9790dc6a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca7f87d52aa63d72190352c9790dc6a2">&#9670;&nbsp;</a></span>finalize()</h2>
+<a id="a09d3a1e133577500276283954856253b" name="a09d3a1e133577500276283954856253b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09d3a1e133577500276283954856253b">&#9670;&nbsp;</a></span>finalizeEncryption()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Stream::Security::CipherEncrypt::finalize </td>
+          <td class="memname">void Stream::Security::CipherEncrypt::finalizeEncryption </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

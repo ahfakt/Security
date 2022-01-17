@@ -55,8 +55,10 @@ TLSDecrypt::readBytes(std::byte* dest, std::size_t size)
 	int r = SSL_is_init_finished(mSSL)
 			? SSL_read_ex(mSSL, dest, size, &outl)
 			: SSL_do_handshake(mSSL);
+
 	if (r == 1)
 		return outl;
+
 	r = SSL_get_error(mSSL, r);
 	switch (r) {
 		case SSL_ERROR_WANT_READ: {
@@ -118,11 +120,13 @@ TLSEncrypt::writeBytes(std::byte const* src, std::size_t size)
 	int r = SSL_is_init_finished(mSSL)
 			? SSL_write_ex(mSSL, src, size, &inl)
 			: SSL_do_handshake(mSSL);
+
 	if (r == 1) {
 		if (inl)
 			sendData();
 		return inl;
 	}
+
 	r = SSL_get_error(mSSL, r);
 	switch (r) {
 		case SSL_ERROR_WANT_READ: {
@@ -140,8 +144,10 @@ bool
 TLSEncrypt::shutdown()
 {
 	int r = SSL_shutdown(mSSL);
+
 	if (r == 1)
 		return true;
+
 	if (r == 0) {
 		sendData();
 		flush();
@@ -152,6 +158,7 @@ TLSEncrypt::shutdown()
 		}
 		return shutdown();
 	}
+
 	throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()));
 }
 
@@ -164,11 +171,10 @@ TLS::TLS(SSL* ssl)
 TLS::TLS(Context const& ctx)
 		: TLS(SSL_new(ctx.mCtx.get()))
 {
-	if (SSL_is_server(mSSL.get())) {
+	if (SSL_is_server(mSSL.get()))
 		SSL_set_accept_state(mSSL.get());
-	} else {
+	else
 		SSL_set_connect_state(mSSL.get());
-	}
 }
 
 void

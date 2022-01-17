@@ -83,12 +83,13 @@ int main() {
 
 	IO::Pipe io;
 	Stream::Pipe pipeStream;
-	io << pipeStream
+	io <=> pipeStream;
+
+	pipeStream
 		<< Stream::Security::PrivateKey(Stream::Security::Key::EC::sect571r1)
 		<< Stream::Security::PrivateKey(Stream::Security::Key::DSA::DSA15360)
 		<< Stream::Security::PrivateKey(Stream::Security::Key::RSA::RSA15360);
 
-	io >> pipeStream;
 	Stream::Security::PrivateKey ecPriv(pipeStream);
 	Stream::Security::PrivateKey dsaPriv(pipeStream);
 	Stream::Security::PrivateKey rsaPriv(pipeStream);

@@ -205,19 +205,21 @@ Friends</h2></td></tr>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">int</span> r = SSL_is_init_finished(mSSL)</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            ? SSL_read_ex(mSSL, dest, size, &amp;outl)</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            : SSL_do_handshake(mSSL);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">if</span> (r == 1)</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span> outl;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    r = SSL_get_error(mSSL, r);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">switch</span> (r) {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">case</span> SSL_ERROR_WANT_READ: {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            wantSendData();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            recvData();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">if</span> (r == 1)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">return</span> outl;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    r = SSL_get_error(mSSL, r);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">switch</span> (r) {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">case</span> SSL_ERROR_WANT_READ: {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            wantSendData();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            recvData();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

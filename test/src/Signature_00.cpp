@@ -52,7 +52,7 @@ test(std::string const& fileName, EVP_MD const* md, Stream::Security::Key const&
 		ioPriv << filePriv << privKey;
 	}
 
-	auto signature = testOutput(fileName, md, privKey,  length, maxChunkLength);
+	auto signature = testOutput(fileName, md, privKey, length, maxChunkLength);
 
 	std::vector<std::byte> outputData = StreamTest::Util::GetRandomBytes<std::chrono::hours>(length);
 	auto signature2 = Stream::Security::Signature::Sign(outputData.data(), outputData.size(), md, privKey);

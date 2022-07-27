@@ -1,9 +1,9 @@
 <map id="Stream::Security::Signature" name="Stream::Security::Signature">
 <area shape="rect" id="node1" title="Stream::Input / Stream::Output Signature observer." alt="" coords="21,440,867,561"/>
 <area shape="rect" id="node2" href="$dd/d4b/classStream_1_1Security_1_1SignatureInput.html" title="Stream::Input Signature observer." alt="" coords="5,263,437,385"/>
-<area shape="rect" id="node3" href="/home/null/doc/Stream/tag.xml$d3/d2f/classStream_1_1InputFilter.html" title=" " alt="" coords="156,131,287,208"/>
-<area shape="rect" id="node4" href="/home/null/doc/Stream/tag.xml$d7/d83/classStream_1_1Input.html" title=" " alt="" coords="171,5,272,83"/>
+<area shape="rect" id="node3" href="/home/null/doc/Stream/tag.xml$d3/d2f/classStream_1_1InputFilter" title=" " alt="" coords="156,131,287,208"/>
+<area shape="rect" id="node4" href="/home/null/doc/Stream/tag.xml$d7/d83/classStream_1_1Input" title=" " alt="" coords="171,5,272,83"/>
 <area shape="rect" id="node5" href="$d2/d61/classStream_1_1Security_1_1SignatureOutput.html" title="Stream::Output Signature observer." alt="" coords="461,256,872,392"/>
-<area shape="rect" id="node6" href="/home/null/doc/Stream/tag.xml$d0/d57/classStream_1_1OutputFilter.html" title=" " alt="" coords="597,131,737,208"/>
-<area shape="rect" id="node7" href="/home/null/doc/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="611,5,722,83"/>
+<area shape="rect" id="node6" href="/home/null/doc/Stream/tag.xml$d0/d57/classStream_1_1OutputFilter" title=" " alt="" coords="597,131,737,208"/>
+<area shape="rect" id="node7" href="/home/null/doc/Stream/tag.xml$df/dc2/classStream_1_1Output" title=" " alt="" coords="611,5,722,83"/>
 </map>

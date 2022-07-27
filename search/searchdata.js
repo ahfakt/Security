@@ -4,8 +4,7 @@ var indexSectionsWithContent =
   1: "bcdefikopst",
   2: "s",
   3: "~",
-  4: "der",
-  5: "s"
+  4: "der"
 };
 
 var indexSectionNames =
@@ -14,8 +13,7 @@ var indexSectionNames =
   1: "classes",
   2: "namespaces",
   3: "functions",
-  4: "enums",
-  5: "concepts"
+  4: "enums"
 };
 
 var indexSectionLabels =
@@ -24,7 +22,6 @@ var indexSectionLabels =
   1: "Classes",
   2: "Namespaces",
   3: "Functions",
-  4: "Enumerations",
-  5: "Concepts"
+  4: "Enumerations"
 };
 

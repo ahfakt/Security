@@ -1,19 +1,15 @@
 var searchData=
 [
-  ['constructible_0',['Constructible',['../../Stream/db/d8f/conceptStream_1_1Constructible.html',1,'Stream']]],
-  ['deserializable_1',['Deserializable',['../../Stream/d3/d34/conceptStream_1_1Deserializable.html',1,'Stream']]],
-  ['extractable_2',['Extractable',['../../Stream/d4/d91/conceptStream_1_1Extractable.html',1,'Stream']]],
-  ['fileinput_3',['FileInput',['../../Stream/d6/de1/structStream_1_1FileInput_1_1Exception.html',1,'Stream']]],
-  ['fileoutput_4',['FileOutput',['../../Stream/d3/d8a/structStream_1_1FileOutput_1_1Exception.html',1,'Stream']]],
-  ['input_5',['Input',['../../Stream/d2/d85/structStream_1_1Input_1_1Exception.html',1,'Stream']]],
-  ['output_6',['Output',['../../Stream/d5/d2d/structStream_1_1Output_1_1Exception.html',1,'Stream']]],
-  ['pipeinput_7',['PipeInput',['../../Stream/dd/d2e/structStream_1_1PipeInput_1_1Exception.html',1,'Stream']]],
-  ['pipeoutput_8',['PipeOutput',['../../Stream/d5/d3a/structStream_1_1PipeOutput_1_1Exception.html',1,'Stream']]],
-  ['serializable_9',['Serializable',['../../Stream/de/d51/conceptStream_1_1Serializable.html',1,'Stream']]],
-  ['signature_10',['Signature',['../dc/de4/classStream_1_1Security_1_1Signature.html',1,'Stream::Security']]],
-  ['signatureinput_11',['SignatureInput',['../dd/d4b/classStream_1_1Security_1_1SignatureInput.html',1,'Stream::Security']]],
-  ['signatureoutput_12',['SignatureOutput',['../d2/d61/classStream_1_1Security_1_1SignatureOutput.html',1,'Stream::Security']]],
-  ['socket_13',['Socket',['../../Stream/d1/db1/classStream_1_1Socket.html',1,'Stream']]],
-  ['socketinput_14',['SocketInput',['../../Stream/dc/d10/classStream_1_1SocketInput.html',1,'Stream::SocketInput'],['../../Stream/da/d8a/structStream_1_1SocketInput_1_1Exception.html',1,'Stream::SocketInput']]],
-  ['socketoutput_15',['SocketOutput',['../../Stream/d5/d52/classStream_1_1SocketOutput.html',1,'Stream::SocketOutput'],['../../Stream/dc/def/structStream_1_1SocketOutput_1_1Exception.html',1,'Stream::SocketOutput']]]
+  ['fileinput_0',['FileInput',['../../Stream/d6/de1/structStream_1_1FileInput_1_1Exception.html',1,'Stream']]],
+  ['fileoutput_1',['FileOutput',['../../Stream/d3/d8a/structStream_1_1FileOutput_1_1Exception.html',1,'Stream']]],
+  ['input_2',['Input',['../../Stream/d2/d85/structStream_1_1Input_1_1Exception.html',1,'Stream']]],
+  ['output_3',['Output',['../../Stream/d5/d2d/structStream_1_1Output_1_1Exception.html',1,'Stream']]],
+  ['pipeinput_4',['PipeInput',['../../Stream/dd/d2e/structStream_1_1PipeInput_1_1Exception.html',1,'Stream']]],
+  ['pipeoutput_5',['PipeOutput',['../../Stream/d5/d3a/structStream_1_1PipeOutput_1_1Exception.html',1,'Stream']]],
+  ['signature_6',['Signature',['../dc/de4/classStream_1_1Security_1_1Signature.html',1,'Stream::Security']]],
+  ['signatureinput_7',['SignatureInput',['../dd/d4b/classStream_1_1Security_1_1SignatureInput.html',1,'Stream::Security']]],
+  ['signatureoutput_8',['SignatureOutput',['../d2/d61/classStream_1_1Security_1_1SignatureOutput.html',1,'Stream::Security']]],
+  ['socket_9',['Socket',['../../Stream/d1/db1/classStream_1_1Socket.html',1,'Stream']]],
+  ['socketinput_10',['SocketInput',['../../Stream/dc/d10/classStream_1_1SocketInput.html',1,'Stream::SocketInput'],['../../Stream/da/d8a/structStream_1_1SocketInput_1_1Exception.html',1,'Stream::SocketInput']]],
+  ['socketoutput_11',['SocketOutput',['../../Stream/d5/d52/classStream_1_1SocketOutput.html',1,'Stream::SocketOutput'],['../../Stream/dc/def/structStream_1_1SocketOutput_1_1Exception.html',1,'Stream::SocketOutput']]]
 ];

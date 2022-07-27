@@ -25,12 +25,12 @@ set(SRC_LIST
 		${SRC_ROOT}/TLS.cpp)
 
 
-add_library(${PROJECT_NAME} SHARED)
 add_library(${PROJECT_NAME}OBJ OBJECT)
-target_include_directories(${PROJECT_NAME} PUBLIC include)
+add_library(${PROJECT_NAME} SHARED)
 target_include_directories(${PROJECT_NAME}OBJ PUBLIC include)
-target_sources(${PROJECT_NAME} PUBLIC ${INC_LIST} PRIVATE ${SRC_LIST})
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_sources(${PROJECT_NAME}OBJ PUBLIC ${INC_LIST} PRIVATE ${SRC_LIST})
+target_sources(${PROJECT_NAME} PUBLIC ${INC_LIST} PRIVATE ${SRC_LIST})
 
 foreach(T IN LISTS DEPENDENCIES)
 	if (NOT TARGET ${T})

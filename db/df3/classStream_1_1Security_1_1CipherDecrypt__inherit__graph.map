@@ -1,7 +1,7 @@
 <map id="Stream::Security::CipherDecrypt" name="Stream::Security::CipherDecrypt">
 <area shape="rect" id="node1" title="Stream::Input Cipher decryptor." alt="" coords="5,381,852,532"/>
 <area shape="rect" id="node5" href="$d7/dca/classStream_1_1Security_1_1Cipher.html" title="Stream::Input / Stream::Output Cipher decryptor and encryptor." alt="" coords="27,580,830,907"/>
-<area shape="rect" id="node2" href="/home/null/doc/Stream/tag.xml$d2/dc2/classStream_1_1BufferInput" title=" " alt="" coords="361,256,496,333"/>
-<area shape="rect" id="node3" href="/home/null/doc/Stream/tag.xml$d3/d2f/classStream_1_1InputFilter" title=" " alt="" coords="363,131,494,208"/>
-<area shape="rect" id="node4" href="/home/null/doc/Stream/tag.xml$d7/d83/classStream_1_1Input" title=" " alt="" coords="378,5,479,83"/>
+<area shape="rect" id="node2" href="/home/null/doc/.doxy/Stream.xml$d2/dc2/classStream_1_1BufferInput" title=" " alt="" coords="361,256,496,333"/>
+<area shape="rect" id="node3" href="/home/null/doc/.doxy/Stream.xml$d3/d2f/classStream_1_1InputFilter" title=" " alt="" coords="363,131,494,208"/>
+<area shape="rect" id="node4" href="/home/null/doc/.doxy/Stream.xml$d7/d83/classStream_1_1Input" title=" " alt="" coords="378,5,479,83"/>
 </map>

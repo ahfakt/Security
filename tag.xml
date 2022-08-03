@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<tagfile doxygen_version="1.9.3">
+  <compound kind="class">
+    <name>Stream::Security::Certificate</name>
+    <filename>da/dfb/classStream_1_1Security_1_1Certificate.html</filename>
+    <class kind="struct">Stream::Security::Certificate::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::Cipher</name>
+    <filename>d7/dca/classStream_1_1Security_1_1Cipher.html</filename>
+    <base>Stream::Security::CipherDecrypt</base>
+    <base>Stream::Security::CipherEncrypt</base>
+    <class kind="struct">Stream::Security::Cipher::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::CipherDecrypt</name>
+    <filename>dd/d69/classStream_1_1Security_1_1CipherDecrypt.html</filename>
+    <base>Stream::BufferInput</base>
+    <class kind="struct">Stream::Security::CipherDecrypt::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::CipherEncrypt</name>
+    <filename>db/dcd/classStream_1_1Security_1_1CipherEncrypt.html</filename>
+    <base>Stream::BufferOutput</base>
+    <class kind="struct">Stream::Security::CipherEncrypt::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::CleanDeleter</name>
+    <filename>df/dd2/classStream_1_1Security_1_1CleanDeleter.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::TLS::Context</name>
+    <filename>d5/de5/classStream_1_1Security_1_1TLS_1_1Context.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::DerInfo</name>
+    <filename>dd/dc1/structStream_1_1Security_1_1DerInfo.html</filename>
+    <class kind="struct">Stream::Security::DerInfo::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::Digest</name>
+    <filename>d4/d67/classStream_1_1Security_1_1Digest.html</filename>
+    <base>Stream::Security::DigestInput</base>
+    <base>Stream::Security::DigestOutput</base>
+    <class kind="struct">Stream::Security::Digest::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::DigestInput</name>
+    <filename>de/dbf/classStream_1_1Security_1_1DigestInput.html</filename>
+    <base>Stream::InputFilter</base>
+    <class kind="struct">Stream::Security::DigestInput::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::DigestOutput</name>
+    <filename>d8/d44/classStream_1_1Security_1_1DigestOutput.html</filename>
+    <base>Stream::OutputFilter</base>
+    <class kind="struct">Stream::Security::DigestOutput::Exception</class>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::Certificate::Exception</name>
+    <filename>d9/de5/structStream_1_1Security_1_1Certificate_1_1Exception.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::Cipher::Exception</name>
+    <filename>d4/dcf/structStream_1_1Security_1_1Cipher_1_1Exception.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::CipherDecrypt::Exception</name>
+    <filename>d9/d78/structStream_1_1Security_1_1CipherDecrypt_1_1Exception.html</filename>
+    <base>Stream::Input::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::CipherEncrypt::Exception</name>
+    <filename>d3/d86/structStream_1_1Security_1_1CipherEncrypt_1_1Exception.html</filename>
+    <base>Stream::Output::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::DerInfo::Exception</name>
+    <filename>db/db3/structStream_1_1Security_1_1DerInfo_1_1Exception.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::Digest::Exception</name>
+    <filename>d8/d4e/structStream_1_1Security_1_1Digest_1_1Exception.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::DigestInput::Exception</name>
+    <filename>d1/d7f/structStream_1_1Security_1_1DigestInput_1_1Exception.html</filename>
+    <base>Stream::Input::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::DigestOutput::Exception</name>
+    <filename>d8/d85/structStream_1_1Security_1_1DigestOutput_1_1Exception.html</filename>
+    <base>Stream::Output::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::Key::Exception</name>
+    <filename>d4/d80/structStream_1_1Security_1_1Key_1_1Exception.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::PrivateKey::Exception</name>
+    <filename>d5/d44/structStream_1_1Security_1_1PrivateKey_1_1Exception.html</filename>
+    <base>Stream::Security::Key::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::PublicKey::Exception</name>
+    <filename>d5/d37/structStream_1_1Security_1_1PublicKey_1_1Exception.html</filename>
+    <base>Stream::Security::Key::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::Signature::Exception</name>
+    <filename>d5/df1/structStream_1_1Security_1_1Signature_1_1Exception.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::SignatureInput::Exception</name>
+    <filename>d9/dc8/structStream_1_1Security_1_1SignatureInput_1_1Exception.html</filename>
+    <base>Stream::Input::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::SignatureOutput::Exception</name>
+    <filename>d5/d5d/structStream_1_1Security_1_1SignatureOutput_1_1Exception.html</filename>
+    <base>Stream::Output::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::TLS::Exception</name>
+    <filename>d9/d76/structStream_1_1Security_1_1TLS_1_1Exception.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::TLSDecrypt::Exception</name>
+    <filename>d9/d9c/structStream_1_1Security_1_1TLSDecrypt_1_1Exception.html</filename>
+    <base>Stream::Input::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::TLSEncrypt::Exception</name>
+    <filename>d8/d7e/structStream_1_1Security_1_1TLSEncrypt_1_1Exception.html</filename>
+    <base>Stream::Output::Exception</base>
+  </compound>
+  <compound kind="struct">
+    <name>std::is_error_code_enum&lt; Stream::Security::Certificate::Exception::Code &gt;</name>
+    <filename>d8/d9e/structstd_1_1is__error__code__enum_3_01Stream_1_1Security_1_1Certificate_1_1Exception_1_1Code_01_4.html</filename>
+    <base>true_type</base>
+  </compound>
+  <compound kind="struct">
+    <name>std::is_error_code_enum&lt; Stream::Security::Cipher::Exception::Code &gt;</name>
+    <filename>de/d48/structstd_1_1is__error__code__enum_3_01Stream_1_1Security_1_1Cipher_1_1Exception_1_1Code_01_4.html</filename>
+    <base>true_type</base>
+  </compound>
+  <compound kind="struct">
+    <name>std::is_error_code_enum&lt; Stream::Security::Digest::Exception::Code &gt;</name>
+    <filename>d2/dd2/structstd_1_1is__error__code__enum_3_01Stream_1_1Security_1_1Digest_1_1Exception_1_1Code_01_4.html</filename>
+    <base>true_type</base>
+  </compound>
+  <compound kind="struct">
+    <name>std::is_error_code_enum&lt; Stream::Security::Key::Exception::Code &gt;</name>
+    <filename>d4/d60/structstd_1_1is__error__code__enum_3_01Stream_1_1Security_1_1Key_1_1Exception_1_1Code_01_4.html</filename>
+    <base>true_type</base>
+  </compound>
+  <compound kind="struct">
+    <name>std::is_error_code_enum&lt; Stream::Security::Signature::Exception::Code &gt;</name>
+    <filename>d1/d80/structstd_1_1is__error__code__enum_3_01Stream_1_1Security_1_1Signature_1_1Exception_1_1Code_01_4.html</filename>
+    <base>true_type</base>
+  </compound>
+  <compound kind="struct">
+    <name>std::is_error_code_enum&lt; Stream::Security::TLS::Exception::Code &gt;</name>
+    <filename>d2/d33/structstd_1_1is__error__code__enum_3_01Stream_1_1Security_1_1TLS_1_1Exception_1_1Code_01_4.html</filename>
+    <base>true_type</base>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::Key</name>
+    <filename>d3/dac/classStream_1_1Security_1_1Key.html</filename>
+    <class kind="struct">Stream::Security::Key::Exception</class>
+    <member kind="enumeration">
+      <type></type>
+      <name>DH</name>
+      <anchorfile>d3/dac/classStream_1_1Security_1_1Key.html</anchorfile>
+      <anchor>a6e776837dbe6c94201c04e7c3b7620c3</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a6e776837dbe6c94201c04e7c3b7620c3af25fca92a1d5c0c4d8b7d28f61cef672">DH3072</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a6e776837dbe6c94201c04e7c3b7620c3a1e2eeef1ddfde6ce32c8a073bf335131">DH7680</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a6e776837dbe6c94201c04e7c3b7620c3a7fee08418be084d3ac8cc64b86eb6f09">DH15360</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>DSA</name>
+      <anchorfile>d3/dac/classStream_1_1Security_1_1Key.html</anchorfile>
+      <anchor>a552df5f7e92d6c597c39c572ed8c77c6</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a552df5f7e92d6c597c39c572ed8c77c6a6cddf22c68d0bad620043bf2432fae22">DSA3072</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a552df5f7e92d6c597c39c572ed8c77c6ad42261ac0dfd77a36b1ff9f18d7e964d">DSA7680</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a552df5f7e92d6c597c39c572ed8c77c6a51139cfc26c6f7a9d0ffac29c7992835">DSA15360</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>EC</name>
+      <anchorfile>d3/dac/classStream_1_1Security_1_1Key.html</anchorfile>
+      <anchor>adfbc6f10e4bcb23b8590436c305ff585</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585a82c2b7829b8129e5a2d53665ba4b4757">secp256k1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585a4290385227e25096f17c82873966b2c4">secp384r1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585abb0cf2627e91b7a27c914a30e5964fa0">secp521r1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585afd560c61ded68028e268c6963bad555a">prime256v1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585a377188d49b9097765d7bbd2c32bb63e3">sect283k1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585a5d7827fecd8b586857f25a5522489d78">sect283r1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585af573ca92271968a0d3a206a6fa118c93">sect409k1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585afc714287a7e80c5d77a4c5f6bb8fcc59">sect409r1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585a05a7c4a1b0393b301f964e3b5a148714">sect571k1</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="adfbc6f10e4bcb23b8590436c305ff585a58f0abafd86afb42687f9422df0b2b45">sect571r1</enumvalue>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>RSA</name>
+      <anchorfile>d3/dac/classStream_1_1Security_1_1Key.html</anchorfile>
+      <anchor>a8db54b2e0e38e41cc62aad6a94e0c864</anchor>
+      <arglist></arglist>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a8db54b2e0e38e41cc62aad6a94e0c864acc95d269518324223119ae6848acb5a5">RSA3072</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a8db54b2e0e38e41cc62aad6a94e0c864ad305aa7550e16901411d93e6a9f49817">RSA7680</enumvalue>
+      <enumvalue file="d3/dac/classStream_1_1Security_1_1Key.html" anchor="a8db54b2e0e38e41cc62aad6a94e0c864a3b9251a0f30aa2b792763a8197d2a386">RSA15360</enumvalue>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::PrivateKey</name>
+    <filename>d5/dca/classStream_1_1Security_1_1PrivateKey.html</filename>
+    <class kind="struct">Stream::Security::PrivateKey::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::PublicKey</name>
+    <filename>de/d10/classStream_1_1Security_1_1PublicKey.html</filename>
+    <class kind="struct">Stream::Security::PublicKey::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::Signature</name>
+    <filename>dc/de4/classStream_1_1Security_1_1Signature.html</filename>
+    <base>Stream::Security::SignatureInput</base>
+    <base>Stream::Security::SignatureOutput</base>
+    <class kind="struct">Stream::Security::Signature::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::SignatureInput</name>
+    <filename>dd/d4b/classStream_1_1Security_1_1SignatureInput.html</filename>
+    <base>Stream::InputFilter</base>
+    <class kind="struct">Stream::Security::SignatureInput::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::SignatureOutput</name>
+    <filename>d2/d61/classStream_1_1Security_1_1SignatureOutput.html</filename>
+    <base>Stream::OutputFilter</base>
+    <class kind="struct">Stream::Security::SignatureOutput::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::TLS</name>
+    <filename>d3/dd3/classStream_1_1Security_1_1TLS.html</filename>
+    <base>Stream::Security::TLSDecrypt</base>
+    <base>Stream::Security::TLSEncrypt</base>
+    <class kind="class">Stream::Security::TLS::Context</class>
+    <class kind="struct">Stream::Security::TLS::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::TLSDecrypt</name>
+    <filename>d0/d3a/classStream_1_1Security_1_1TLSDecrypt.html</filename>
+    <base>Stream::BufferInput</base>
+    <class kind="struct">Stream::Security::TLSDecrypt::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>Stream::Security::TLSEncrypt</name>
+    <filename>dd/d0b/classStream_1_1Security_1_1TLSEncrypt.html</filename>
+    <base>Stream::BufferOutput</base>
+    <class kind="struct">Stream::Security::TLSEncrypt::Exception</class>
+  </compound>
+  <compound kind="class">
+    <name>true_type</name>
+    <filename>d6/ddf/classtrue__type.html</filename>
+  </compound>
+</tagfile>

@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 		<meta name="generator" content="Doxygen 1.9.3"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>Stream Security: /run/media/null/Lepton/StreamSecurity/include/StreamSecurity/Key.h Source File</title>
+		<title>StreamSecurity: /run/media/null/Lepton/StreamSecurity/include/StreamSecurity/Key.hpp Source File</title>
 		<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="../../jquery.js"></script>
 		<script type="text/javascript" src="../../dynsections.js"></script>
@@ -23,7 +23,7 @@
 				<tbody>
 					<tr style="height: 56px;">
 						<td id="projectalign" style="padding-left: 0.5em;">
-							<div id="projectname">Stream Security
+							<div id="projectname">StreamSecurity
 							</div>
 							<div id="projectbrief">Security related operations on streams</div>
 						</td>
@@ -68,13 +68,13 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="headertitle"><div class="title">Key.h</div></div>
+  <div class="headertitle"><div class="title">Key.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STREAM_SECURITY_KEY_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STREAM_SECURITY_KEY_H</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STREAM_SECURITY_KEY_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STREAM_SECURITY_KEY_HPP</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Stream/InOut.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Stream/InOut.hpp&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;openssl/evp.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;openssl/x509.h&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
@@ -92,7 +92,7 @@ $(function() {
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    [[nodiscard]] std::size_t</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    getSize() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};<span class="comment">//class Stream::Security::CleanDeleter</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">using</span> SecureMemory = std::unique_ptr&lt;unsigned char, CleanDeleter&gt;;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
@@ -114,13 +114,13 @@ $(function() {
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        DH3072      = 3072,</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        DH7680      = 7680,</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        DH15360     = 15360</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    };<span class="comment">//enum class DH</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    };<span class="comment">//enum class Stream::Security::Key::DH</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../d3/dac/classStream_1_1Security_1_1Key.html#a552df5f7e92d6c597c39c572ed8c77c6">   64</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="../../d3/dac/classStream_1_1Security_1_1Key.html#a552df5f7e92d6c597c39c572ed8c77c6">DSA</a> : <span class="keywordtype">int</span> {</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        DSA3072     = 3072,</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        DSA7680     = 7680,</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        DSA15360    = 15360</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    };<span class="comment">//enum class RSA</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    };<span class="comment">//enum class Stream::Security::Key::RSA</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="../../d3/dac/classStream_1_1Security_1_1Key.html#adfbc6f10e4bcb23b8590436c305ff585">   73</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="../../d3/dac/classStream_1_1Security_1_1Key.html#adfbc6f10e4bcb23b8590436c305ff585">EC</a> : <span class="keywordtype">int</span> {</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        secp256k1   = NID_secp256k1,</div>
@@ -133,18 +133,18 @@ $(function() {
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        sect409r1   = NID_sect409r1,</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        sect571k1   = NID_sect571k1,</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        sect571r1   = NID_sect571r1</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    };<span class="comment">//enum class EC</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    };<span class="comment">//enum class Stream::Security::Key::EC</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="../../d3/dac/classStream_1_1Security_1_1Key.html#a8db54b2e0e38e41cc62aad6a94e0c864">   89</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="../../d3/dac/classStream_1_1Security_1_1Key.html#a8db54b2e0e38e41cc62aad6a94e0c864">RSA</a> : <span class="keywordtype">int</span> {</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        RSA3072     = 3072,</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        RSA7680     = 7680,</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        RSA15360    = 15360</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    };<span class="comment">//enum class RSA</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    };<span class="comment">//enum class Stream::Security::Key::RSA</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="../../d4/d80/structStream_1_1Security_1_1Key_1_1Exception.html">   95</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d4/d80/structStream_1_1Security_1_1Key_1_1Exception.html">Exception</a> : std::system_error {</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keyword">using</span> std::system_error::system_error;</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keyword">enum class</span> Code : <span class="keywordtype">int</span> {};</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    };<span class="comment">//struct Exception</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    };<span class="comment">//struct Stream::Security::Key::Exception</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_class" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a>(<a class="code hl_class" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a> <span class="keyword">const</span>&amp; other);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
@@ -165,7 +165,7 @@ $(function() {
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_class" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a>(SecureMemory <span class="keyword">const</span>&amp; cmacKey, EVP_CIPHER <span class="keyword">const</span>* cipher);</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">explicit</span> <span class="keyword">operator</span> EVP_PKEY*() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>};<span class="comment">//class Key</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>};<span class="comment">//class Stream::Security::Key</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="../../d5/dca/classStream_1_1Security_1_1PrivateKey.html">  125</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d5/dca/classStream_1_1Security_1_1PrivateKey.html">PrivateKey</a> {</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    std::unique_ptr&lt;PKCS8_PRIV_KEY_INFO, <span class="keyword">decltype</span>(&amp;PKCS8_PRIV_KEY_INFO_free)&gt; mVal {<span class="keyword">nullptr</span>, PKCS8_PRIV_KEY_INFO_free};</div>
@@ -181,7 +181,7 @@ $(function() {
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keyword">friend</span> <a class="code hl_classRef" href="../../../Stream/df/dc2/classStream_1_1Output.html">Output</a>&amp;</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    operator&lt;&lt;(<a class="code hl_classRef" href="../../../Stream/df/dc2/classStream_1_1Output.html">Output</a>&amp; output, <a class="code hl_class" href="../../d5/dca/classStream_1_1Security_1_1PrivateKey.html">PrivateKey</a> <span class="keyword">const</span>&amp; privateKey);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>};<span class="comment">//class PrivateKey</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>};<span class="comment">//class Stream::Security::PrivateKey</span></div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="../../de/d10/classStream_1_1Security_1_1PublicKey.html">  145</a></span><span class="keyword">class </span><a class="code hl_class" href="../../de/d10/classStream_1_1Security_1_1PublicKey.html">PublicKey</a> {</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    std::unique_ptr&lt;X509_PUBKEY, <span class="keyword">decltype</span>(&amp;X509_PUBKEY_free)&gt; mVal {<span class="keyword">nullptr</span>, X509_PUBKEY_free};</div>
@@ -197,7 +197,7 @@ $(function() {
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keyword">friend</span> <a class="code hl_classRef" href="../../../Stream/df/dc2/classStream_1_1Output.html">Output</a>&amp;</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    operator&lt;&lt;(<a class="code hl_classRef" href="../../../Stream/df/dc2/classStream_1_1Output.html">Output</a>&amp; output, <a class="code hl_class" href="../../de/d10/classStream_1_1Security_1_1PublicKey.html">PublicKey</a> <span class="keyword">const</span>&amp; publicKey);</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>};<span class="comment">//class PublicKey</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>};<span class="comment">//class Stream::Security::PublicKey</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="../../dd/dc1/structStream_1_1Security_1_1DerInfo.html">  165</a></span><span class="keyword">struct </span><a class="code hl_struct" href="../../dd/dc1/structStream_1_1Security_1_1DerInfo.html">DerInfo</a> {</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordtype">long</span> vLength;</div>
@@ -208,7 +208,7 @@ $(function() {
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    { <span class="keyword">using</span> std::system_error::system_error; };</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keyword">explicit</span> <a class="code hl_struct" href="../../dd/dc1/structStream_1_1Security_1_1DerInfo.html">DerInfo</a>(<a class="code hl_classRef" href="../../../Stream/d7/d83/classStream_1_1Input.html">Input</a>&amp; input);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>};</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>};<span class="comment">//struct Stream::Security::DerInfo</span></div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>std::error_code</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>make_error_code(Key::Exception::Code e) <span class="keyword">noexcept</span>;</div>
@@ -222,23 +222,23 @@ $(function() {
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}<span class="comment">//namespace std</span></div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#endif </span><span class="comment">//STREAM_SECURITY_KEY_H</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#endif </span><span class="comment">//STREAM_SECURITY_KEY_HPP</span></div>
 <div class="ttc" id="aclassStream_1_1Input_html"><div class="ttname"><a href="../../../Stream/d7/d83/classStream_1_1Input.html">Stream::Input</a></div></div>
 <div class="ttc" id="aclassStream_1_1Output_html"><div class="ttname"><a href="../../../Stream/df/dc2/classStream_1_1Output.html">Stream::Output</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1CleanDeleter_html"><div class="ttname"><a href="../../df/dd2/classStream_1_1Security_1_1CleanDeleter.html">Stream::Security::CleanDeleter</a></div><div class="ttdoc">Heap memory clean and delete functor.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00015">Key.h:15</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1Key_html"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html">Stream::Security::Key</a></div><div class="ttdoc">Generic key.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00041">Key.h:41</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1Key_html_a552df5f7e92d6c597c39c572ed8c77c6"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html#a552df5f7e92d6c597c39c572ed8c77c6">Stream::Security::Key::DSA</a></div><div class="ttdeci">DSA</div><div class="ttdoc">DSA key sizes.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00064">Key.h:64</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1Key_html_a6e776837dbe6c94201c04e7c3b7620c3"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html#a6e776837dbe6c94201c04e7c3b7620c3">Stream::Security::Key::DH</a></div><div class="ttdeci">DH</div><div class="ttdoc">Diffie-Hellman key sizes.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00055">Key.h:55</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1Key_html_a8db54b2e0e38e41cc62aad6a94e0c864"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html#a8db54b2e0e38e41cc62aad6a94e0c864">Stream::Security::Key::RSA</a></div><div class="ttdeci">RSA</div><div class="ttdoc">RSA key sizes.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00089">Key.h:89</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1Key_html_adfbc6f10e4bcb23b8590436c305ff585"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html#adfbc6f10e4bcb23b8590436c305ff585">Stream::Security::Key::EC</a></div><div class="ttdeci">EC</div><div class="ttdoc">Named elliptic curves.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00073">Key.h:73</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1PrivateKey_html"><div class="ttname"><a href="../../d5/dca/classStream_1_1Security_1_1PrivateKey.html">Stream::Security::PrivateKey</a></div><div class="ttdoc">PKCS8 private key.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00125">Key.h:125</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1PublicKey_html"><div class="ttname"><a href="../../de/d10/classStream_1_1Security_1_1PublicKey.html">Stream::Security::PublicKey</a></div><div class="ttdoc">X509 public key.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00145">Key.h:145</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1CleanDeleter_html"><div class="ttname"><a href="../../df/dd2/classStream_1_1Security_1_1CleanDeleter.html">Stream::Security::CleanDeleter</a></div><div class="ttdoc">Heap memory clean and delete functor.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00015">Key.hpp:15</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1Key_html"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html">Stream::Security::Key</a></div><div class="ttdoc">Generic key.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00041">Key.hpp:41</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1Key_html_a552df5f7e92d6c597c39c572ed8c77c6"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html#a552df5f7e92d6c597c39c572ed8c77c6">Stream::Security::Key::DSA</a></div><div class="ttdeci">DSA</div><div class="ttdoc">DSA key sizes.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00064">Key.hpp:64</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1Key_html_a6e776837dbe6c94201c04e7c3b7620c3"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html#a6e776837dbe6c94201c04e7c3b7620c3">Stream::Security::Key::DH</a></div><div class="ttdeci">DH</div><div class="ttdoc">Diffie-Hellman key sizes.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00055">Key.hpp:55</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1Key_html_a8db54b2e0e38e41cc62aad6a94e0c864"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html#a8db54b2e0e38e41cc62aad6a94e0c864">Stream::Security::Key::RSA</a></div><div class="ttdeci">RSA</div><div class="ttdoc">RSA key sizes.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00089">Key.hpp:89</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1Key_html_adfbc6f10e4bcb23b8590436c305ff585"><div class="ttname"><a href="../../d3/dac/classStream_1_1Security_1_1Key.html#adfbc6f10e4bcb23b8590436c305ff585">Stream::Security::Key::EC</a></div><div class="ttdeci">EC</div><div class="ttdoc">Named elliptic curves.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00073">Key.hpp:73</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1PrivateKey_html"><div class="ttname"><a href="../../d5/dca/classStream_1_1Security_1_1PrivateKey.html">Stream::Security::PrivateKey</a></div><div class="ttdoc">PKCS8 private key.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00125">Key.hpp:125</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1PublicKey_html"><div class="ttname"><a href="../../de/d10/classStream_1_1Security_1_1PublicKey.html">Stream::Security::PublicKey</a></div><div class="ttdoc">X509 public key.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00145">Key.hpp:145</a></div></div>
 <div class="ttc" id="aclasstrue__type_html"><div class="ttname"><a href="../../d6/ddf/classtrue__type.html">true_type</a></div></div>
-<div class="ttc" id="astructStream_1_1Security_1_1DerInfo_1_1Exception_html"><div class="ttname"><a href="../../db/db3/structStream_1_1Security_1_1DerInfo_1_1Exception.html">Stream::Security::DerInfo::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00170">Key.h:171</a></div></div>
-<div class="ttc" id="astructStream_1_1Security_1_1DerInfo_html"><div class="ttname"><a href="../../dd/dc1/structStream_1_1Security_1_1DerInfo.html">Stream::Security::DerInfo</a></div><div class="ttdoc">DER formatted file info.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00165">Key.h:165</a></div></div>
-<div class="ttc" id="astructStream_1_1Security_1_1Key_1_1Exception_html"><div class="ttname"><a href="../../d4/d80/structStream_1_1Security_1_1Key_1_1Exception.html">Stream::Security::Key::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00095">Key.h:95</a></div></div>
-<div class="ttc" id="astructStream_1_1Security_1_1PrivateKey_1_1Exception_html"><div class="ttname"><a href="../../d5/d44/structStream_1_1Security_1_1PrivateKey_1_1Exception.html">Stream::Security::PrivateKey::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00128">Key.h:129</a></div></div>
-<div class="ttc" id="astructStream_1_1Security_1_1PublicKey_1_1Exception_html"><div class="ttname"><a href="../../d5/d37/structStream_1_1Security_1_1PublicKey_1_1Exception.html">Stream::Security::PublicKey::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d02/Key_8h_source.html#l00148">Key.h:149</a></div></div>
+<div class="ttc" id="astructStream_1_1Security_1_1DerInfo_1_1Exception_html"><div class="ttname"><a href="../../db/db3/structStream_1_1Security_1_1DerInfo_1_1Exception.html">Stream::Security::DerInfo::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00170">Key.hpp:171</a></div></div>
+<div class="ttc" id="astructStream_1_1Security_1_1DerInfo_html"><div class="ttname"><a href="../../dd/dc1/structStream_1_1Security_1_1DerInfo.html">Stream::Security::DerInfo</a></div><div class="ttdoc">DER formatted file info.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00165">Key.hpp:165</a></div></div>
+<div class="ttc" id="astructStream_1_1Security_1_1Key_1_1Exception_html"><div class="ttname"><a href="../../d4/d80/structStream_1_1Security_1_1Key_1_1Exception.html">Stream::Security::Key::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00095">Key.hpp:95</a></div></div>
+<div class="ttc" id="astructStream_1_1Security_1_1PrivateKey_1_1Exception_html"><div class="ttname"><a href="../../d5/d44/structStream_1_1Security_1_1PrivateKey_1_1Exception.html">Stream::Security::PrivateKey::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00128">Key.hpp:129</a></div></div>
+<div class="ttc" id="astructStream_1_1Security_1_1PublicKey_1_1Exception_html"><div class="ttname"><a href="../../d5/d37/structStream_1_1Security_1_1PublicKey_1_1Exception.html">Stream::Security::PublicKey::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dd7/Key_8hpp_source.html#l00148">Key.hpp:149</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 		<script src="../../custom.js"></script>

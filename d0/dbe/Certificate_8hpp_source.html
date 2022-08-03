@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 		<meta name="generator" content="Doxygen 1.9.3"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>Stream Security: /run/media/null/Lepton/StreamSecurity/include/StreamSecurity/Certificate.h Source File</title>
+		<title>StreamSecurity: /run/media/null/Lepton/StreamSecurity/include/StreamSecurity/Certificate.hpp Source File</title>
 		<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="../../jquery.js"></script>
 		<script type="text/javascript" src="../../dynsections.js"></script>
@@ -23,7 +23,7 @@
 				<tbody>
 					<tr style="height: 56px;">
 						<td id="projectalign" style="padding-left: 0.5em;">
-							<div id="projectname">Stream Security
+							<div id="projectname">StreamSecurity
 							</div>
 							<div id="projectbrief">Security related operations on streams</div>
 						</td>
@@ -68,13 +68,13 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="headertitle"><div class="title">Certificate.h</div></div>
+  <div class="headertitle"><div class="title">Certificate.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STREAM_SECURITY_CERTIFICATE_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STREAM_SECURITY_CERTIFICATE_H</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STREAM_SECURITY_CERTIFICATE_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STREAM_SECURITY_CERTIFICATE_HPP</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Key.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Key.hpp&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>Stream::Security {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
@@ -86,7 +86,7 @@ $(function() {
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d9/de5/structStream_1_1Security_1_1Certificate_1_1Exception.html">   17</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d9/de5/structStream_1_1Security_1_1Certificate_1_1Exception.html">Exception</a> : std::system_error {</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keyword">using</span> std::system_error::system_error;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">enum class</span> Code : <span class="keywordtype">int</span> {};</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    };<span class="comment">//struct Exception</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    };<span class="comment">//struct Stream::Security::Certificate::Exception</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="../../da/dfb/classStream_1_1Security_1_1Certificate.html">Certificate</a>(<a class="code hl_class" href="../../da/dfb/classStream_1_1Security_1_1Certificate.html">Certificate</a> <span class="keyword">const</span>&amp; other);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
@@ -96,7 +96,7 @@ $(function() {
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">friend</span> <a class="code hl_classRef" href="../../../Stream/df/dc2/classStream_1_1Output.html">Output</a>&amp;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    operator&lt;&lt;(<a class="code hl_classRef" href="../../../Stream/df/dc2/classStream_1_1Output.html">Output</a>&amp; output, <a class="code hl_class" href="../../da/dfb/classStream_1_1Security_1_1Certificate.html">Certificate</a> <span class="keyword">const</span>&amp; certificate);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};<span class="comment">//class Certificate</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};<span class="comment">//class Stream::Security::Certificate</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>std::error_code</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>make_error_code(Certificate::Exception::Code e) <span class="keyword">noexcept</span>;</div>
@@ -110,12 +110,12 @@ $(function() {
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}<span class="comment">//namespace std</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif </span><span class="comment">//STREAM_SECURITY_CERTIFICATE_H</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif </span><span class="comment">//STREAM_SECURITY_CERTIFICATE_HPP</span></div>
 <div class="ttc" id="aclassStream_1_1Input_html"><div class="ttname"><a href="../../../Stream/d7/d83/classStream_1_1Input.html">Stream::Input</a></div></div>
 <div class="ttc" id="aclassStream_1_1Output_html"><div class="ttname"><a href="../../../Stream/df/dc2/classStream_1_1Output.html">Stream::Output</a></div></div>
-<div class="ttc" id="aclassStream_1_1Security_1_1Certificate_html"><div class="ttname"><a href="../../da/dfb/classStream_1_1Security_1_1Certificate.html">Stream::Security::Certificate</a></div><div class="ttdoc">X509 formatted certificate class.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dff/Certificate_8h_source.html#l00012">Certificate.h:12</a></div></div>
+<div class="ttc" id="aclassStream_1_1Security_1_1Certificate_html"><div class="ttname"><a href="../../da/dfb/classStream_1_1Security_1_1Certificate.html">Stream::Security::Certificate</a></div><div class="ttdoc">X509 formatted certificate class.</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dbe/Certificate_8hpp_source.html#l00012">Certificate.hpp:12</a></div></div>
 <div class="ttc" id="aclasstrue__type_html"><div class="ttname"><a href="../../d6/ddf/classtrue__type.html">true_type</a></div></div>
-<div class="ttc" id="astructStream_1_1Security_1_1Certificate_1_1Exception_html"><div class="ttname"><a href="../../d9/de5/structStream_1_1Security_1_1Certificate_1_1Exception.html">Stream::Security::Certificate::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dff/Certificate_8h_source.html#l00017">Certificate.h:17</a></div></div>
+<div class="ttc" id="astructStream_1_1Security_1_1Certificate_1_1Exception_html"><div class="ttname"><a href="../../d9/de5/structStream_1_1Security_1_1Certificate_1_1Exception.html">Stream::Security::Certificate::Exception</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dbe/Certificate_8hpp_source.html#l00017">Certificate.hpp:17</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 		<script src="../../custom.js"></script>

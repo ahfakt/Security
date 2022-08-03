@@ -1,10 +1,10 @@
 #include <cassert>
-#include <Stream/File.h>
-#include <Stream/Buffer.h>
-#include <StreamSecurity/Signature.h>
-#include <IO/Pipe.h>
-#include <Stream/Pipe.h>
-#include "Util.h"
+#include <Stream/File.hpp>
+#include <Stream/Buffer.hpp>
+#include <StreamSecurity/Signature.hpp>
+#include <IO/Pipe.hpp>
+#include <Stream/Pipe.hpp>
+#include "Util.hpp"
 
 std::vector<std::byte>
 testOutput(std::string const& fileName, EVP_MD const* md, Stream::Security::Key const& signKey, int length, int maxChunkLength)

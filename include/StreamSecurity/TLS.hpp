@@ -1,8 +1,8 @@
-#ifndef STREAM_SECURITY_TLS_H
-#define STREAM_SECURITY_TLS_H
+#ifndef STREAM_SECURITY_TLS_HPP
+#define STREAM_SECURITY_TLS_HPP
 
-#include "Stream/Buffer.h"
-#include "Certificate.h"
+#include "Certificate.hpp"
+#include "Stream/Buffer.hpp"
 #include <openssl/ssl.h>
 #include <memory>
 
@@ -10,7 +10,7 @@ namespace Stream::Security {
 
 /**
  * @brief	Stream::Input %TLS decryptor
- * @class	TLSDecrypt TLS.h "StreamSecurity/TLS.h"
+ * @class	TLSDecrypt TLS.hpp "StreamSecurity/TLS.hpp"
  */
 class TLSDecrypt : public BufferInput {
 	SSL* mSSL;
@@ -37,11 +37,11 @@ public:
 
 	TLSDecrypt&
 	operator=(TLSDecrypt&& other) noexcept;
-};//class TLSDecrypt
+};//class Stream::Security::TLSDecrypt
 
 /**
  * @brief	Stream::Output %TLS encryptor
- * @class	TLSEncrypt TLS.h "StreamSecurity/TLS.h"
+ * @class	TLSEncrypt TLS.hpp "StreamSecurity/TLS.hpp"
  */
 class TLSEncrypt : public BufferOutput {
 	SSL* mSSL;
@@ -71,11 +71,11 @@ public:
 
 	bool
 	shutdown();
-};//class TLSEncrypt
+};//class Stream::Security::TLSEncrypt
 
 /**
  * @brief Stream::Input / Stream::Output %TLS decryptor and encryptor
- * @class TLS TLS.h "StreamSecurity/TLS.h"
+ * @class TLS TLS.hpp "StreamSecurity/TLS.hpp"
  */
 class TLS : public TLSDecrypt, public TLSEncrypt {
 	std::unique_ptr<SSL, decltype(&SSL_free)> mSSL {nullptr, SSL_free};
@@ -93,11 +93,11 @@ public:
 	struct Exception : std::system_error {
 		using std::system_error::system_error;
 		enum class Code : int {};
-	};//struct Exception
+	};//struct Stream::Security::TLS::Exception
 
 	/**
 	 * @brief	%TLS %Context
-	 * @class	Context TLS.h StreamSecurity/TLS.h"
+	 * @class	Context TLS.hppStreamSecurity/TLS.hpp"
 	 */
 	class Context {
 		friend class TLS;
@@ -109,7 +109,7 @@ public:
 
 		void
 		addToStore(Certificate const& caCertificate);
-	};//class Context
+	};//class Stream::Security::TLS::Context
 
 	explicit TLS(Context const& ctx);
 
@@ -118,7 +118,7 @@ public:
 
 	TLS&
 	operator=(TLS&& other) noexcept;
-};//class TLS
+};//class Stream::Security::TLS
 
 std::error_code
 make_error_code(TLS::Exception::Code e) noexcept;
@@ -132,4 +132,4 @@ struct is_error_code_enum<Stream::Security::TLS::Exception::Code> : true_type {}
 
 }//namespace std
 
-#endif //STREAM_SECURITY_TLS_H
+#endif //STREAM_SECURITY_TLS_HPP

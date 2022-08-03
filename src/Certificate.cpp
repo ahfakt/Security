@@ -1,4 +1,4 @@
-#include "StreamSecurity/Certificate.h"
+#include "StreamSecurity/Certificate.hpp"
 #include <openssl/err.h>
 #include <cstring>
 

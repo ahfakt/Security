@@ -1,5 +1,5 @@
-#include "StreamSecurity/Signature.h"
-#include "Stream/Buffer.h"
+#include "StreamSecurity/Signature.hpp"
+#include "Stream/Buffer.hpp"
 #include <cstring>
 #include <openssl/err.h>
 

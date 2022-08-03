@@ -1,15 +1,14 @@
-#ifndef STREAM_SECURITY_SIGNATURE_H
-#define STREAM_SECURITY_SIGNATURE_H
+#ifndef STREAM_SECURITY_SIGNATURE_HPP
+#define STREAM_SECURITY_SIGNATURE_HPP
 
-#include "Stream/InOut.h"
-#include "Key.h"
+#include "Key.hpp"
 #include <vector>
 
 namespace Stream::Security {
 
 /**
  * @brief	Stream::Input %Signature observer
- * @class	SignatureInput Signature.h "StreamSecurity/Signature.h"
+ * @class	SignatureInput Signature.hpp "StreamSecurity/Signature.hpp"
  */
 class SignatureInput : public InputFilter {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
@@ -33,11 +32,11 @@ public:
 
 	[[nodiscard]] bool
 	verifySignature(std::vector<std::byte> const& signature) const;
-};//class SignatureInput
+};//class Stream::Security::SignatureInput
 
 /**
  * @brief	Stream::Output %Signature observer
- * @class	SignatureOutput Signature.h "StreamSecurity/Signature.h"
+ * @class	SignatureOutput Signature.hpp "StreamSecurity/Signature.hpp"
  */
 class SignatureOutput : public OutputFilter {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
@@ -64,11 +63,11 @@ public:
 
 	[[nodiscard]] std::vector<std::byte>
 	getSignature() const;
-};//class SignatureOutput
+};//class Stream::Security::SignatureOutput
 
 /**
  * @brief Stream::Input / Stream::Output %Signature observer
- * @class Signature Signature.h "StreamSecurity/Signature.h"
+ * @class Signature Signature.hpp "StreamSecurity/Signature.hpp"
  */
 class Signature : public SignatureInput, public SignatureOutput {
 	friend class SignatureInput;
@@ -92,13 +91,13 @@ public:
 	struct Exception : std::system_error {
 		using std::system_error::system_error;
 		enum class Code : int {};
-	};//struct Exception
+	};//struct Stream::Security::Signature::Exception
 
 	Signature(EVP_MD const* mdIn, Key const& verifyKey, EVP_MD const* mdOut, Key const& signKey);
 
 	Signature(EVP_MD const* md, Key const& key);
 };
-//class Signature
+//class Stream::Security::Signature
 
 std::error_code
 make_error_code(Signature::Exception::Code e) noexcept;
@@ -112,4 +111,4 @@ struct is_error_code_enum<Stream::Security::Signature::Exception::Code> : true_t
 
 }//namespace std
 
-#endif //STREAM_SECURITY_SIGNATURE_H
+#endif //STREAM_SECURITY_SIGNATURE_HPP

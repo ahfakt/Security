@@ -1,7 +1,7 @@
-#ifndef STREAM_SECURITY_KEY_H
-#define STREAM_SECURITY_KEY_H
+#ifndef STREAM_SECURITY_KEY_HPP
+#define STREAM_SECURITY_KEY_HPP
 
-#include "Stream/InOut.h"
+#include "Stream/InOut.hpp"
 #include <openssl/evp.h>
 #include <openssl/x509.h>
 #include <memory>
@@ -10,7 +10,7 @@ namespace Stream::Security {
 
 /**
  * @brief	Heap memory clean and delete functor
- * @class	CleanDeleter Key.h "StreamSecurity/Key.h"
+ * @class	CleanDeleter Key.hpp "StreamSecurity/Key.hpp"
  */
 class CleanDeleter {
 	std::size_t mSize = 0;
@@ -23,11 +23,11 @@ public:
 
 	[[nodiscard]] std::size_t
 	getSize() const noexcept;
-};
+};//class Stream::Security::CleanDeleter
 
 /**
  * @brief	unsigned char unique pointer with secure CleanDeleter
- * @typedef	SecureMemory Key.h "StreamSecurity/Key.h"
+ * @typedef	SecureMemory Key.hpp "StreamSecurity/Key.hpp"
  */
 using SecureMemory = std::unique_ptr<unsigned char, CleanDeleter>;
 
@@ -36,7 +36,7 @@ class PublicKey;
 
 /**
  * @brief	Generic key
- * @class	Key Key.h "StreamSecurity/Key.h"
+ * @class	Key Key.hpp "StreamSecurity/Key.hpp"
  */
 class Key {
 	friend class PrivateKey;
@@ -56,7 +56,7 @@ public:
 		DH3072 		= 3072,
 		DH7680 		= 7680,
 		DH15360		= 15360
-	};//enum class DH
+	};//enum class Stream::Security::Key::DH
 
 	/**
 	 * @brief	DSA key sizes
@@ -65,7 +65,7 @@ public:
 		DSA3072 	= 3072,
 		DSA7680 	= 7680,
 		DSA15360	= 15360
-	};//enum class RSA
+	};//enum class Stream::Security::Key::RSA
 
 	/**
 	 * @brief	Named elliptic curves
@@ -81,7 +81,7 @@ public:
 		sect409r1 	= NID_sect409r1,
 		sect571k1 	= NID_sect571k1,
 		sect571r1 	= NID_sect571r1
-	};//enum class EC
+	};//enum class Stream::Security::Key::EC
 
 	/**
 	 * @brief	RSA key sizes
@@ -90,12 +90,12 @@ public:
 		RSA3072 	= 3072,
 		RSA7680 	= 7680,
 		RSA15360	= 15360
-	};//enum class RSA
+	};//enum class Stream::Security::Key::RSA
 
 	struct Exception : std::system_error {
 		using std::system_error::system_error;
 		enum class Code : int {};
-	};//struct Exception
+	};//struct Stream::Security::Key::Exception
 
 	Key(Key const& other);
 
@@ -116,11 +116,11 @@ public:
 	Key(SecureMemory const& cmacKey, EVP_CIPHER const* cipher);
 
 	explicit operator EVP_PKEY*() const noexcept;
-};//class Key
+};//class Stream::Security::Key
 
 /**
  * @brief	PKCS8 private key
- * @class	PrivateKey Key.h "StreamSecurity/Key.h"
+ * @class	PrivateKey Key.hpp "StreamSecurity/Key.hpp"
  */
 class PrivateKey {
 	std::unique_ptr<PKCS8_PRIV_KEY_INFO, decltype(&PKCS8_PRIV_KEY_INFO_free)> mVal {nullptr, PKCS8_PRIV_KEY_INFO_free};
@@ -136,11 +136,11 @@ public:
 
 	friend Output&
 	operator<<(Output& output, PrivateKey const& privateKey);
-};//class PrivateKey
+};//class Stream::Security::PrivateKey
 
 /**
  * @brief	X509 public key
- * @class	PublicKey Key.h "StreamSecurity/Key.h"
+ * @class	PublicKey Key.hpp "StreamSecurity/Key.hpp"
  */
 class PublicKey {
 	std::unique_ptr<X509_PUBKEY, decltype(&X509_PUBKEY_free)> mVal {nullptr, X509_PUBKEY_free};
@@ -156,11 +156,11 @@ public:
 
 	friend Output&
 	operator<<(Output& output, PublicKey const& publicKey);
-};//class PublicKey
+};//class Stream::Security::PublicKey
 
 /**
  * @brief	DER formatted file info
- * @struct	DerInfo Key.h "StreamSecurity/Key.h"
+ * @struct	DerInfo Key.hpp "StreamSecurity/Key.hpp"
  */
 struct DerInfo {
 	long vLength;
@@ -171,7 +171,7 @@ struct DerInfo {
 	{ using std::system_error::system_error; };
 
 	explicit DerInfo(Input& input);
-};
+};//struct Stream::Security::DerInfo
 
 std::error_code
 make_error_code(Key::Exception::Code e) noexcept;
@@ -185,4 +185,4 @@ struct is_error_code_enum<Stream::Security::Key::Exception::Code> : true_type {}
 
 }//namespace std
 
-#endif //STREAM_SECURITY_KEY_H
+#endif //STREAM_SECURITY_KEY_HPP

@@ -1,4 +1,4 @@
-#include "StreamSecurity/TLS.h"
+#include "StreamSecurity/TLS.hpp"
 #include <openssl/err.h>
 
 #define ExpectInitialized(x) if (!x) throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()))

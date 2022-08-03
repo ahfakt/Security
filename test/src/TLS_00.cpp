@@ -1,10 +1,10 @@
-#include <Stream/Socket.h>
-#include <StreamSecurity/TLS.h>
+#include <Stream/Socket.hpp>
+#include <StreamSecurity/TLS.hpp>
 #include <cstring>
 #include <iostream>
-#include <Stream/File.h>
+#include <Stream/File.hpp>
 #include <thread>
-#include "Util.h"
+#include "Util.hpp"
 
 #define MAX_HTTP_BUFFER_SIZE 64*1024
 

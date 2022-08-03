@@ -1,9 +1,9 @@
 #include <openssl/rand.h>
 #include <cassert>
 #include <openssl/err.h>
-#include "StreamSecurity/Cipher.h"
-#include "Stream/File.h"
-#include "Util.h"
+#include "StreamSecurity/Cipher.hpp"
+#include "Stream/File.hpp"
+#include "Util.hpp"
 
 #define Expect1(x) if (1 != x) throw std::runtime_error(ERR_error_string(ERR_peek_last_error(), nullptr))
 

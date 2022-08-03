@@ -1,15 +1,14 @@
-#ifndef STREAM_SECURITY_DIGEST_H
-#define STREAM_SECURITY_DIGEST_H
+#ifndef STREAM_SECURITY_DIGEST_HPP
+#define STREAM_SECURITY_DIGEST_HPP
 
-#include "Stream/InOut.h"
-#include "Key.h"
+#include "Key.hpp"
 #include <vector>
 
 namespace Stream::Security {
 
 /**
  * @brief	Stream::Input %Digest observer
- * @class	DigestInput Digest.h "StreamSecurity/Digest.h"
+ * @class	DigestInput Digest.hpp "StreamSecurity/Digest.hpp"
  */
 class DigestInput : public InputFilter {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
@@ -41,11 +40,11 @@ public:
 
 	[[nodiscard]] std::vector<std::byte>
 	getInputDigest() const;
-};//class DigestInput
+};//class Stream::Security::DigestInput
 
 /**
  * @brief	Stream::Output %Digest observer
- * @class	DigestOutput Digest.h "StreamSecurity/Digest.h"
+ * @class	DigestOutput Digest.hpp "StreamSecurity/Digest.hpp"
  */
 class DigestOutput : public OutputFilter {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
@@ -77,11 +76,11 @@ public:
 
 	[[nodiscard]] std::vector<std::byte>
 	getOutputDigest() const;
-};//class DigestOutput
+};//class Stream::Security::DigestOutput
 
 /**
  * @brief Stream::Input / Stream::Output %Digest observer
- * @class Digest Digest.h "StreamSecurity/Digest.h"
+ * @class Digest Digest.hpp "StreamSecurity/Digest.hpp"
  */
 class Digest : public DigestInput, public DigestOutput {
 	friend class DigestInput;
@@ -105,7 +104,7 @@ public:
 	struct Exception : std::system_error {
 		using std::system_error::system_error;
 		enum class Code : int {};
-	};//struct Exception
+	};//struct Stream::Security::Digest::Exception
 
 	Digest(EVP_MD const* mdIn, EVP_MD const* mdOut);
 
@@ -118,7 +117,7 @@ public:
 	explicit Digest(EVP_MD const* md);
 
 	explicit Digest(EVP_MD const* md, Key const& key);
-};//class Digest
+};//class Stream::Security::Digest
 
 std::error_code
 make_error_code(Digest::Exception::Code e) noexcept;
@@ -132,4 +131,4 @@ struct is_error_code_enum<Stream::Security::Digest::Exception::Code> : true_type
 
 }//namespace std
 
-#endif //STREAM_SECURITY_DIGEST_H
+#endif //STREAM_SECURITY_DIGEST_HPP

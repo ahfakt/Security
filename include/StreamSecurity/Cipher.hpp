@@ -1,14 +1,14 @@
-#ifndef STREAM_SECURITY_CIPHER_H
-#define STREAM_SECURITY_CIPHER_H
+#ifndef STREAM_SECURITY_CIPHER_HPP
+#define STREAM_SECURITY_CIPHER_HPP
 
-#include "Stream/Buffer.h"
-#include "Key.h"
+#include "Key.hpp"
+#include "Stream/Buffer.hpp"
 
 namespace Stream::Security {
 
 /**
  * @brief	Stream::Input %Cipher decryptor
- * @class	CipherDecrypt Cipher.h "StreamSecurity/Cipher.h"
+ * @class	CipherDecrypt Cipher.hpp "StreamSecurity/Cipher.hpp"
  */
 class CipherDecrypt : public BufferInput {
 	std::unique_ptr<EVP_CIPHER_CTX, decltype(&EVP_CIPHER_CTX_free)> mCtx{nullptr, EVP_CIPHER_CTX_free};
@@ -44,11 +44,11 @@ public:
 
 	void
 	finalizeDecryptionWhenNoData(bool on = true);
-};//class CipherDecrypt
+};//class Stream::Security::CipherDecrypt
 
 /**
  * @brief	Stream::Output %Cipher encryptor
- * @class	CipherEncrypt Cipher.h "StreamSecurity/Cipher.h"
+ * @class	CipherEncrypt Cipher.hpp "StreamSecurity/Cipher.hpp"
  */
 class CipherEncrypt : public BufferOutput {
 	std::unique_ptr<EVP_CIPHER_CTX, decltype(&EVP_CIPHER_CTX_free)> mCtx{nullptr, EVP_CIPHER_CTX_free};
@@ -80,17 +80,17 @@ public:
 
 	void
 	finalizeEncryption();
-};//class CipherEncrypt
+};//class Stream::Security::CipherEncrypt
 
 /**
  * @brief Stream::Input / Stream::Output %Cipher decryptor and encryptor
- * @class Cipher Cipher.h "StreamSecurity/Cipher.h"
+ * @class Cipher Cipher.hpp "StreamSecurity/Cipher.hpp"
  */
 class Cipher : public CipherDecrypt, public CipherEncrypt {
 public:
 	struct Exception {
 		enum class Code : int {};
-	};//struct Exception
+	};//struct Stream::Security::Cipher::Exception
 
 	Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
 			EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
@@ -119,7 +119,7 @@ public:
 
 	Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
 			void const* sourceBuff, std::size_t sourceSize, void* sinkBuff, std::size_t sinkSize);
-};//class Cipher
+};//class Stream::Security::Cipher
 
 void
 swap(Cipher& a, Cipher& b) noexcept;
@@ -136,4 +136,4 @@ struct is_error_code_enum<Stream::Security::Cipher::Exception::Code> : true_type
 
 }//namespace std
 
-#endif //STREAM_SECURITY_CIPHER_H
+#endif //STREAM_SECURITY_CIPHER_HPP

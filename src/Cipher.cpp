@@ -1,4 +1,4 @@
-#include "StreamSecurity/Cipher.h"
+#include "StreamSecurity/Cipher.hpp"
 #include <cstring>
 #include <openssl/err.h>
 #include <openssl/rand.h>

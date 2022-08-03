@@ -1,5 +1,5 @@
-#include "StreamSecurity/Digest.h"
-#include "Stream/Buffer.h"
+#include "StreamSecurity/Digest.hpp"
+#include "Stream/Buffer.hpp"
 #include <cstring>
 #include <openssl/err.h>
 

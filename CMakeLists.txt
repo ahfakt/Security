@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14.0)
-project(StreamSecurity VERSION 0.7 DESCRIPTION "")
+project(StreamSecurity VERSION 0.7 DESCRIPTION "Security related operations on streams")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib/${CMAKE_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE})
@@ -10,12 +10,12 @@ set(DEPENDENCIES Stream)
 set(INC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(SRC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(INC_LIST
-		${INC_ROOT}/${PROJECT_NAME}/Certificate.h
-		${INC_ROOT}/${PROJECT_NAME}/Cipher.h
-		${INC_ROOT}/${PROJECT_NAME}/Digest.h
-		${INC_ROOT}/${PROJECT_NAME}/Key.h
-		${INC_ROOT}/${PROJECT_NAME}/Signature.h
-		${INC_ROOT}/${PROJECT_NAME}/TLS.h)
+		${INC_ROOT}/${PROJECT_NAME}/Certificate.hpp
+		${INC_ROOT}/${PROJECT_NAME}/Cipher.hpp
+		${INC_ROOT}/${PROJECT_NAME}/Digest.hpp
+		${INC_ROOT}/${PROJECT_NAME}/Key.hpp
+		${INC_ROOT}/${PROJECT_NAME}/Signature.hpp
+		${INC_ROOT}/${PROJECT_NAME}/TLS.hpp)
 set(SRC_LIST
 		${SRC_ROOT}/Certificate.cpp
 		${SRC_ROOT}/Cipher.cpp
@@ -51,9 +51,9 @@ endif()
 if ((DEFINED DOC_ROOT) AND (NOT ${DOC_ROOT} STREQUAL ""))
 	find_package(Doxygen)
 	if (DOXYGEN_FOUND)
-		set(DOXYGEN_IN_CFG ${CMAKE_CURRENT_SOURCE_DIR}/doxygen.in.cfg)
+		set(DOXYGEN_IN_CFG ${CMAKE_CURRENT_SOURCE_DIR}/doxygen.cfg)
 		set(DOXYGEN_OUTPUT_DIR ${DOC_ROOT}/${PROJECT_NAME})
-		set(DOXYGEN_CFG ${DOXYGEN_OUTPUT_DIR}/doxygen.cfg)
+		set(DOXYGEN_CFG ${DOC_ROOT}/.doxy/${PROJECT_NAME}.cfg)
 
 		configure_file(${DOXYGEN_IN_CFG} ${DOXYGEN_CFG} @ONLY)
 		message("Doxygen configuration ${DOXYGEN_CFG} generated.")

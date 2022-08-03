@@ -1,10 +1,10 @@
 #include <cassert>
-#include <Stream/File.h>
-#include <Stream/Buffer.h>
-#include <StreamSecurity/Digest.h>
+#include <Stream/File.hpp>
+#include <Stream/Buffer.hpp>
+#include <StreamSecurity/Digest.hpp>
 #include <openssl/rand.h>
 #include <openssl/err.h>
-#include "Util.h"
+#include "Util.hpp"
 
 #define Expect1(x) if (1 != x) throw std::runtime_error(ERR_error_string(ERR_peek_last_error(), nullptr))
 

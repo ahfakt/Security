@@ -3,8 +3,6 @@
 
 #define ExpectInitialized(x) if (!x) throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()))
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Exception::Code>(ERR_peek_last_error()))
-#define ExpectPos(x) if (0 >= x) throw Exception(static_cast<Exception::Code>(ERR_peek_last_error()))
-#define ExpectNNeg(x) if (0 > x) throw Exception(static_cast<Exception::Code>(ERR_peek_last_error()))
 #define MAX_TLS_RECORD_SIZE 16*1024
 
 namespace Stream::Security {
@@ -13,6 +11,7 @@ TLSDecrypt::TLSDecrypt(SSL* ssl)
 		: mSSL(ssl)
 {
 	if (ssl) {
+		// will be freed by SSL_free
 		mInBio = BIO_new(BIO_s_mem());
 		ExpectInitialized(mInBio);
 		BIO_set_mem_eof_return(mInBio, -1);
@@ -23,7 +22,7 @@ TLSDecrypt::TLSDecrypt(SSL* ssl)
 void
 swap(TLSDecrypt& a, TLSDecrypt& b) noexcept
 {
-	swap(static_cast<BufferInput&>(a), static_cast<BufferInput&>(b));
+	swap(static_cast<TransformInput&>(a), static_cast<TransformInput&>(b));
 	std::swap(a.mSSL, b.mSSL);
 	std::swap(a.mInBio, b.mInBio);
 }
@@ -31,19 +30,17 @@ swap(TLSDecrypt& a, TLSDecrypt& b) noexcept
 TLSDecrypt&
 TLSDecrypt::operator=(TLSDecrypt&& other) noexcept
 {
-	static_cast<BufferInput&>(*this) = static_cast<BufferInput&&>(other);
-	std::swap(mSSL, other.mSSL);
-	std::swap(mInBio, other.mInBio);
+	swap(*this, other);
 	return *this;
 }
 
 void
 TLSDecrypt::recvData()
 {
-	std::size_t received = provideData(MAX_TLS_RECORD_SIZE);
-	int r = BIO_write_ex(mInBio, mGet, received, &received);
+	std::size_t received = provideSomeData(MAX_TLS_RECORD_SIZE);
+	int r = BIO_write_ex(mInBio, getData(), received, &received);
 	if (r == 1)
-		mGet += received;
+		advanceData(received);
 	else
 		throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()));
 }
@@ -75,6 +72,7 @@ TLSEncrypt::TLSEncrypt(SSL* ssl)
 		: mSSL(ssl)
 {
 	if (ssl) {
+		// will be freed by SSL_free
 		mOutBio = BIO_new(BIO_s_mem());
 		ExpectInitialized(mOutBio);
 		BIO_set_mem_eof_return(mOutBio, -1);
@@ -85,7 +83,7 @@ TLSEncrypt::TLSEncrypt(SSL* ssl)
 void
 swap(TLSEncrypt& a, TLSEncrypt& b) noexcept
 {
-	swap(static_cast<BufferOutput&>(a), static_cast<BufferOutput&>(b));
+	swap(static_cast<TransformOutput&>(a), static_cast<TransformOutput&>(b));
 	std::swap(a.mSSL, b.mSSL);
 	std::swap(a.mOutBio, b.mOutBio);
 }
@@ -93,9 +91,7 @@ swap(TLSEncrypt& a, TLSEncrypt& b) noexcept
 TLSEncrypt&
 TLSEncrypt::operator=(TLSEncrypt&& other) noexcept
 {
-	static_cast<BufferOutput&>(*this) = static_cast<BufferOutput&&>(other);
-	std::swap(mSSL, other.mSSL);
-	std::swap(mOutBio, other.mOutBio);
+	swap(*this, other);
 	return *this;
 }
 
@@ -105,9 +101,9 @@ TLSEncrypt::sendData()
 	std::size_t pending = BIO_ctrl_pending(mOutBio);
 	if (pending > 0) {
 		provideSpace(pending);
-		int r = BIO_read_ex(mOutBio, mPut, pending, &pending);
+		int r = BIO_read_ex(mOutBio, getSpace(), pending, &pending);
 		if (r == 1)
-			mPut += pending;
+			advanceSpace(pending);
 		else
 			throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()));
 	}
@@ -131,7 +127,7 @@ TLSEncrypt::writeBytes(std::byte const* src, std::size_t size)
 	switch (r) {
 		case SSL_ERROR_WANT_READ: {
 			sendData();
-			flush();
+			TransformOutput::flush();
 			wantRecvData();
 			return 0;
 		}
@@ -143,23 +139,22 @@ TLSEncrypt::writeBytes(std::byte const* src, std::size_t size)
 bool
 TLSEncrypt::shutdown()
 {
-	int r = SSL_shutdown(mSSL);
+	while (true) {
+		int r = SSL_shutdown(mSSL);
+		if (r == 1)
+			return true;
 
-	if (r == 1)
-		return true;
-
-	if (r == 0) {
-		sendData();
-		flush();
-		try {
-			wantRecvData();
-		} catch (Input::Exception& exc) {
-			return false;
-		}
-		return shutdown();
+		if (r == 0) {
+			sendData();
+			TransformOutput::flush();
+			try {
+				wantRecvData();
+			} catch (Input::Exception& exc) {
+				return false;
+			}
+		} else
+			throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()));
 	}
-
-	throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()));
 }
 
 TLS::TLS(SSL* ssl)
@@ -188,9 +183,7 @@ swap(TLS& a, TLS& b) noexcept
 TLS&
 TLS::operator=(TLS&& other) noexcept
 {
-	static_cast<TLSDecrypt&>(*this) = static_cast<TLSDecrypt&&>(other);
-	static_cast<TLSEncrypt&>(*this) = static_cast<TLSEncrypt&&>(other);
-	std::swap(mSSL, other.mSSL);
+	swap(*this, other);
 	return *this;
 }
 
@@ -198,7 +191,7 @@ void
 TLS::wantSendData()
 {
 	sendData();
-	flush();
+	TransformOutput::flush();
 }
 
 void

@@ -2,7 +2,6 @@
 #include <Stream/File.hpp>
 #include <Stream/Buffer.hpp>
 #include <StreamSecurity/Signature.hpp>
-#include <IO/Pipe.hpp>
 #include <Stream/Pipe.hpp>
 #include "Util.hpp"
 
@@ -11,11 +10,10 @@ testOutput(std::string const& fileName, EVP_MD const* md, Stream::Security::Key 
 {
 	std::vector<std::byte> outputData = StreamTest::Util::GetRandomBytes<std::chrono::hours>(length);
 
-	IO::File io(fileName, IO::File::Mode::W);
-	Stream::FileOutput file;
-	Stream::BufferOutput buffer(io.getBlockSize());
+	Stream::File file(fileName, Stream::File::Mode::W);
+	Stream::BufferOutput buffer(file.getBlockSize());
 	Stream::Security::SignatureOutput signatureOutput(md, signKey);
-	io << file << buffer << signatureOutput;
+	file < buffer < signatureOutput;
 
 	StreamTest::Util::WriteRandomChunks(signatureOutput, outputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
@@ -29,11 +27,10 @@ testInput(std::string const& fileName, EVP_MD const* md, Stream::Security::Key c
 	std::vector<std::byte> inputData;
 	inputData.resize(length);
 
-	IO::File io(fileName, IO::File::Mode::R);
-	Stream::FileInput file;
-	Stream::BufferInput buffer(io.getBlockSize());
+	Stream::File file(fileName, Stream::File::Mode::R);
+	Stream::BufferInput buffer(file.getBlockSize());
 	Stream::Security::SignatureInput signatureInput(md, verifyKey);
-	io >> file >> buffer >> signatureInput;
+	file > buffer > signatureInput;
 
 	StreamTest::Util::ReadRandomChunks(signatureInput, inputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
@@ -46,10 +43,10 @@ void
 test(std::string const& fileName, EVP_MD const* md, Stream::Security::Key const& key, int length, int maxChunkLength)
 {
 	Stream::Security::PrivateKey privKey(key);
+
 	{
-		IO::File ioPriv(fileName + ".priv.der", IO::File::Mode::W);
-		Stream::FileOutput filePriv;
-		ioPriv << filePriv << privKey;
+		Stream::File filePriv(fileName + ".priv.der", Stream::File::Mode::W);
+		filePriv << privKey;
 	}
 
 	auto signature = testOutput(fileName, md, privKey, length, maxChunkLength);
@@ -60,9 +57,8 @@ test(std::string const& fileName, EVP_MD const* md, Stream::Security::Key const&
 
 	Stream::Security::PublicKey pubkey(key);
 	{
-		IO::File ioPub(fileName + "pub.der", IO::File::Mode::W);
-		Stream::FileOutput filePub;
-		ioPub << filePub << pubkey;
+		Stream::File filePub(fileName + "pub.der", Stream::File::Mode::W);
+		filePub << pubkey;
 	}
 
 	testInput(fileName, md, pubkey, signature, length, maxChunkLength);
@@ -81,18 +77,17 @@ int main() {
 	Stream::Security::Key dsaKey(Stream::Security::Key::DSA::DSA3072);
 	Stream::Security::Key rsaKey(Stream::Security::Key::RSA::RSA3072);
 
-	IO::Pipe io;
-	Stream::Pipe pipeStream;
-	io <=> pipeStream;
-
-	pipeStream
+	/*Due to the random seedings, this takes some time
+	Stream::Pipe pipe;
+	pipe
 		<< Stream::Security::PrivateKey(Stream::Security::Key::EC::sect571r1)
 		<< Stream::Security::PrivateKey(Stream::Security::Key::DSA::DSA15360)
 		<< Stream::Security::PrivateKey(Stream::Security::Key::RSA::RSA15360);
 
-	Stream::Security::PrivateKey ecPriv(pipeStream);
-	Stream::Security::PrivateKey dsaPriv(pipeStream);
-	Stream::Security::PrivateKey rsaPriv(pipeStream);
+	Stream::Security::PrivateKey ecPriv(pipe);
+	Stream::Security::PrivateKey dsaPriv(pipe);
+	Stream::Security::PrivateKey rsaPriv(pipe);
+	*/
 
 	test("sha256ec", EVP_sha256(), ecKey, length, maxChunkLength);
 	test("sha256dsa", EVP_sha256(), dsaKey, length, maxChunkLength);

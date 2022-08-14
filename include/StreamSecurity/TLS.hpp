@@ -2,7 +2,7 @@
 #define STREAM_SECURITY_TLS_HPP
 
 #include "Certificate.hpp"
-#include "Stream/Buffer.hpp"
+#include <Stream/Transform.hpp>
 #include <openssl/ssl.h>
 #include <memory>
 
@@ -12,7 +12,7 @@ namespace Stream::Security {
  * @brief	Stream::Input %TLS decryptor
  * @class	TLSDecrypt TLS.hpp "StreamSecurity/TLS.hpp"
  */
-class TLSDecrypt : public BufferInput {
+class TLSDecrypt : public TransformInput {
 	SSL* mSSL;
 	BIO* mInBio;
 
@@ -43,7 +43,7 @@ public:
  * @brief	Stream::Output %TLS encryptor
  * @class	TLSEncrypt TLS.hpp "StreamSecurity/TLS.hpp"
  */
-class TLSEncrypt : public BufferOutput {
+class TLSEncrypt : public TransformOutput {
 	SSL* mSSL;
 	BIO* mOutBio;
 

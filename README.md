@@ -32,9 +32,9 @@ cmake \
     -G "${GENERATOR}"
 
 # Build
-# IO | IOOBJ | IODoc
 # Stream | StreamOBJ | StreamDoc
 # StreamSecurity | StreamSecurityOBJ | StreamSecurityDoc
+# Test targets are avaiable only when BUILD_TYPE=Debug
 # StreamSecurityTest_Cipher_00 | StreamSecurityTest_Digest_00 |
 # StreamSecurityTest_Signature_00 | StreamSecurityTest_TLS_00
 cmake \

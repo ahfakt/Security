@@ -2,6 +2,7 @@
 #define STREAM_SECURITY_DIGEST_HPP
 
 #include "Key.hpp"
+#include <Stream/Transparent.hpp>
 #include <vector>
 
 namespace Stream::Security {
@@ -10,7 +11,7 @@ namespace Stream::Security {
  * @brief	Stream::Input %Digest observer
  * @class	DigestInput Digest.hpp "StreamSecurity/Digest.hpp"
  */
-class DigestInput : public InputFilter {
+class DigestInput : public TransparentInput {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
 
 	std::size_t
@@ -46,7 +47,7 @@ public:
  * @brief	Stream::Output %Digest observer
  * @class	DigestOutput Digest.hpp "StreamSecurity/Digest.hpp"
  */
-class DigestOutput : public OutputFilter {
+class DigestOutput : public TransparentOutput {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
 
 	std::size_t
@@ -106,6 +107,10 @@ public:
 		enum class Code : int {};
 	};//struct Stream::Security::Digest::Exception
 
+	explicit Digest(EVP_MD const* md);
+
+	Digest(EVP_MD const* md, Key const& key);
+
 	Digest(EVP_MD const* mdIn, EVP_MD const* mdOut);
 
 	Digest(EVP_MD const* mdIn, EVP_MD const* mdOut, Key const& outKey);
@@ -113,10 +118,6 @@ public:
 	Digest(EVP_MD const* mdIn, Key const& inKey, EVP_MD const* mdOut);
 
 	Digest(EVP_MD const* mdIn, Key const& inKey, EVP_MD const* mdOut, Key const& outKey);
-
-	explicit Digest(EVP_MD const* md);
-
-	explicit Digest(EVP_MD const* md, Key const& key);
 };//class Stream::Security::Digest
 
 std::error_code

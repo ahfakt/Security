@@ -1,9 +1,8 @@
 #include "StreamSecurity/Signature.hpp"
-#include "Stream/Buffer.hpp"
-#include <cstring>
+#include <new>
 #include <openssl/err.h>
 
-#define ExpectAllocated(x) if (!x) throw Exception(Buffer::Exception::Code::BadAllocation)
+#define ExpectAllocated(x) if (!x) throw std::bad_alloc()
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Signature::Exception::Code>(ERR_peek_last_error()))
 
 namespace Stream::Security {
@@ -21,21 +20,21 @@ SignatureInput::SignatureInput(SignatureInput&& other) noexcept
 void
 swap(SignatureInput& a, SignatureInput& b) noexcept
 {
-	swap(static_cast<InputFilter&>(a), static_cast<InputFilter&>(b));
+	swap(static_cast<TransparentInput&>(a), static_cast<TransparentInput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 }
 
 SignatureInput&
 SignatureInput::operator=(SignatureInput&& other) noexcept
 {
-	std::swap(mCtx, other.mCtx);
+	swap(*this, other);
 	return *this;
 }
 
 std::size_t
 SignatureInput::readBytes(std::byte* dest, std::size_t size)
 {
-	size = mSource->readSome(dest, size);
+	size = getSome(dest, size);
 
 	Expect1(EVP_DigestVerifyUpdate(mCtx.get(), dest, size));
 	return size;
@@ -58,21 +57,21 @@ SignatureOutput::SignatureOutput(SignatureOutput&& other) noexcept
 void
 swap(SignatureOutput& a, SignatureOutput& b) noexcept
 {
-	swap(static_cast<OutputFilter&>(a), static_cast<OutputFilter&>(b));
+	swap(static_cast<TransparentOutput&>(a), static_cast<TransparentOutput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 }
 
 SignatureOutput&
 SignatureOutput::operator=(SignatureOutput&& other) noexcept
 {
-	std::swap(mCtx, other.mCtx);
+	swap(*this, other);
 	return *this;
 }
 
 std::size_t
 SignatureOutput::writeBytes(std::byte const* src, std::size_t size)
 {
-	size = mSink->writeSome(src, size);
+	size = putSome(src, size);
 
 	Expect1(EVP_DigestSignUpdate(mCtx.get(), src, size));
 	return size;
@@ -136,13 +135,13 @@ Signature::Verify(void const* data, std::size_t count, EVP_MD const* md, Key con
 	return Signature::Verify(ctx.get(), signature);
 }
 
+Signature::Signature(EVP_MD const* md, Key const& key)
+		: Signature(md, key, md, key)
+{}
+
 Signature::Signature(EVP_MD const* mdIn, Key const& verifyKey, EVP_MD const* mdOut, Key const& signKey)
 		: SignatureInput(mdIn, verifyKey)
 		, SignatureOutput(mdOut, signKey)
-{}
-
-Signature::Signature(EVP_MD const* md, Key const& key)
-		: Signature(md, key, md, key)
 {}
 
 void

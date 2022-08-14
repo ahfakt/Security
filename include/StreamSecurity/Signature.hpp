@@ -2,6 +2,7 @@
 #define STREAM_SECURITY_SIGNATURE_HPP
 
 #include "Key.hpp"
+#include <Stream/Transparent.hpp>
 #include <vector>
 
 namespace Stream::Security {
@@ -10,7 +11,7 @@ namespace Stream::Security {
  * @brief	Stream::Input %Signature observer
  * @class	SignatureInput Signature.hpp "StreamSecurity/Signature.hpp"
  */
-class SignatureInput : public InputFilter {
+class SignatureInput : public TransparentInput {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
 
 	std::size_t
@@ -38,7 +39,7 @@ public:
  * @brief	Stream::Output %Signature observer
  * @class	SignatureOutput Signature.hpp "StreamSecurity/Signature.hpp"
  */
-class SignatureOutput : public OutputFilter {
+class SignatureOutput : public TransparentOutput {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
 
 	std::size_t
@@ -93,9 +94,9 @@ public:
 		enum class Code : int {};
 	};//struct Stream::Security::Signature::Exception
 
-	Signature(EVP_MD const* mdIn, Key const& verifyKey, EVP_MD const* mdOut, Key const& signKey);
-
 	Signature(EVP_MD const* md, Key const& key);
+
+	Signature(EVP_MD const* mdIn, Key const& verifyKey, EVP_MD const* mdOut, Key const& signKey);
 };
 //class Stream::Security::Signature
 

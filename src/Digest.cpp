@@ -1,9 +1,8 @@
 #include "StreamSecurity/Digest.hpp"
-#include "Stream/Buffer.hpp"
-#include <cstring>
+#include <new>
 #include <openssl/err.h>
 
-#define ExpectAllocated(x) if (!x) throw Exception(Buffer::Exception::Code::BadAllocation)
+#define ExpectAllocated(x) if (!x) throw std::bad_alloc()
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Digest::Exception::Code>(ERR_peek_last_error()))
 
 namespace Stream::Security {
@@ -33,21 +32,21 @@ DigestInput::DigestInput(DigestInput&& other) noexcept
 void
 swap(DigestInput& a, DigestInput& b) noexcept
 {
-	swap(static_cast<InputFilter&>(a), static_cast<InputFilter&>(b));
+	swap(static_cast<TransparentInput&>(a), static_cast<TransparentInput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 }
 
 DigestInput&
 DigestInput::operator=(DigestInput&& other) noexcept
 {
-	std::swap(mCtx, other.mCtx);
+	swap(*this, other);
 	return *this;
 }
 
 std::size_t
 DigestInput::readBytes(std::byte* dest, std::size_t size)
 {
-	size = mSource->readSome(dest, size);
+	size = getSome(dest, size);
 
 	if (EVP_MD_CTX_pkey_ctx(mCtx.get())) {
 		Expect1(EVP_DigestSignUpdate(mCtx.get(), dest, size));
@@ -90,21 +89,21 @@ DigestOutput::DigestOutput(DigestOutput&& other) noexcept
 void
 swap(DigestOutput& a, DigestOutput& b) noexcept
 {
-	swap(static_cast<OutputFilter&>(a), static_cast<OutputFilter&>(b));
+	swap(static_cast<TransparentOutput&>(a), static_cast<TransparentOutput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 }
 
 DigestOutput&
 DigestOutput::operator=(DigestOutput&& other) noexcept
 {
-	std::swap(mCtx, other.mCtx);
+	swap(*this, other);
 	return *this;
 }
 
 std::size_t
 DigestOutput::writeBytes(std::byte const* src, std::size_t size)
 {
-	size = mSink->writeSome(src, size);
+	size = putSome(src, size);
 
 	if (EVP_MD_CTX_pkey_ctx(mCtx.get())) {
 		Expect1(EVP_DigestSignUpdate(mCtx.get(), src, size));
@@ -186,6 +185,14 @@ bool
 Digest::Matches(std::vector<std::byte> const& digest1, std::vector<std::byte> const& digest2) noexcept
 { return digest1.size() == digest2.size() && 0 == CRYPTO_memcmp(digest1.data(), digest2.data(), digest1.size()); }
 
+Digest::Digest(EVP_MD const* md)
+		: Digest(md, md)
+{}
+
+Digest::Digest(EVP_MD const* md, Key const& key)
+		: Digest(md, key, md, key)
+{}
+
 Digest::Digest(EVP_MD const* mdIn, EVP_MD const* mdOut)
 		: DigestInput(mdIn)
 		, DigestOutput(mdOut)
@@ -204,14 +211,6 @@ Digest::Digest(EVP_MD const* mdIn, Key const& inKey, EVP_MD const* mdOut)
 Digest::Digest(EVP_MD const* mdIn, Key const& inKey, EVP_MD const* mdOut, Key const& outKey)
 		: DigestInput(mdIn, inKey)
 		, DigestOutput(mdOut, outKey)
-{}
-
-Digest::Digest(EVP_MD const* md)
-		: Digest(md, md)
-{}
-
-Digest::Digest(EVP_MD const* md, Key const& key)
-		: Digest(md, key, md, key)
 {}
 
 void

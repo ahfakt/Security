@@ -2,7 +2,7 @@
 #define STREAM_SECURITY_CIPHER_HPP
 
 #include "Key.hpp"
-#include "Stream/Buffer.hpp"
+#include <Stream/Transform.hpp>
 
 namespace Stream::Security {
 
@@ -10,7 +10,7 @@ namespace Stream::Security {
  * @brief	Stream::Input %Cipher decryptor
  * @class	CipherDecrypt Cipher.hpp "StreamSecurity/Cipher.hpp"
  */
-class CipherDecrypt : public BufferInput {
+class CipherDecrypt : public TransformInput {
 	std::unique_ptr<EVP_CIPHER_CTX, decltype(&EVP_CIPHER_CTX_free)> mCtx{nullptr, EVP_CIPHER_CTX_free};
 	std::unique_ptr<unsigned char> mTempBeg;
 	unsigned char* mTempCurr = nullptr;
@@ -21,15 +21,13 @@ class CipherDecrypt : public BufferInput {
 	readBytes(std::byte* dest, std::size_t size) override;
 
 	void
-	init(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv);
+	init(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 
 public:
 	struct Exception : Input::Exception
 	{ using Input::Exception::Exception; };
 
-	CipherDecrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, std::size_t buffInitialSize = 0);
-
-	CipherDecrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, void const* sourceBuff, std::size_t sourceSize);
+	CipherDecrypt(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 	
 	CipherDecrypt(CipherDecrypt&& other) noexcept;
 
@@ -50,7 +48,7 @@ public:
  * @brief	Stream::Output %Cipher encryptor
  * @class	CipherEncrypt Cipher.hpp "StreamSecurity/Cipher.hpp"
  */
-class CipherEncrypt : public BufferOutput {
+class CipherEncrypt : public TransformOutput {
 	std::unique_ptr<EVP_CIPHER_CTX, decltype(&EVP_CIPHER_CTX_free)> mCtx{nullptr, EVP_CIPHER_CTX_free};
 	int mExtSize = 0;
 
@@ -58,15 +56,13 @@ class CipherEncrypt : public BufferOutput {
 	writeBytes(std::byte const* src, std::size_t size) override;
 
 	void
-	init(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv);
+	init(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 
 public:
 	struct Exception : Output::Exception
 	{ using Output::Exception::Exception; };
 
-	CipherEncrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, std::size_t buffInitialSize = 0);
-
-	CipherEncrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, void* sinkBuff, std::size_t sinkSize);
+	CipherEncrypt(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 
 	CipherEncrypt(CipherEncrypt&& other) noexcept;
 
@@ -92,33 +88,10 @@ public:
 		enum class Code : int {};
 	};//struct Stream::Security::Cipher::Exception
 
-	Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
-			EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
-			std::size_t decBuffInitialSize = 0, std::size_t encBuffInitialSize = 0);
+	Cipher(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 
-	Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
-			EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
-			std::size_t decBuffInitialSize, void* sinkBuff, std::size_t sinkSize);
-
-	Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
-			EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
-			void const* sourceBuff, std::size_t sourceSize, std::size_t encBuffInitialSize = 0);
-
-	Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
-			EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
-			void const* sourceBuff, std::size_t sourceSize, void* sinkBuff, std::size_t sinkSize);
-
-	Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
-			std::size_t decBuffInitialSize = 0, std::size_t encBuffInitialSize = 0);
-
-	Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
-			std::size_t decBuffInitialSize, void* sinkBuff, std::size_t sinkSize);
-
-	Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
-			void const* sourceBuff, std::size_t sourceSize, std::size_t encBuffInitialSize = 0);
-
-	Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
-			void const* sourceBuff, std::size_t sourceSize, void* sinkBuff, std::size_t sinkSize);
+	Cipher(EVP_CIPHER const* decCipher, Secret<> const& decKey, std::byte const* decIv,
+			EVP_CIPHER const* encCipher, Secret<> const& encKey, std::byte const* encIv);
 };//class Stream::Security::Cipher
 
 void

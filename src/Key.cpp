@@ -84,24 +84,24 @@ Key::Key(RSA rsa)
 	mVal.reset(k);
 }
 
-Key::Key(SecureMemory const& hmacKey)
+Key::Key(Secret<> const& hmacKey)
 {
 	std::unique_ptr<EVP_PKEY_CTX, decltype(&EVP_PKEY_CTX_free)> kctx{EVP_PKEY_CTX_new_id(EVP_PKEY_HMAC, nullptr), EVP_PKEY_CTX_free};
 	ExpectInitialized(kctx);
 	Expect1(EVP_PKEY_keygen_init(kctx.get()));
-	ExpectPos(EVP_PKEY_CTX_ctrl(kctx.get(), -1, EVP_PKEY_OP_KEYGEN, EVP_PKEY_CTRL_SET_MAC_KEY, hmacKey.get_deleter().getSize(), hmacKey.get()));
+	ExpectPos(EVP_PKEY_CTX_ctrl(kctx.get(), -1, EVP_PKEY_OP_KEYGEN, EVP_PKEY_CTRL_SET_MAC_KEY, hmacKey.size(), hmacKey.get()));
 	EVP_PKEY* k = nullptr;
 	Expect1(EVP_PKEY_keygen(kctx.get(), &k));
 	mVal.reset(k);
 }
 
-Key::Key(SecureMemory const& cmacKey, EVP_CIPHER const* cipher)
+Key::Key(Secret<> const& cmacKey, EVP_CIPHER const* cipher)
 {
 	std::unique_ptr<EVP_PKEY_CTX, decltype(&EVP_PKEY_CTX_free)> kctx{EVP_PKEY_CTX_new_id(EVP_PKEY_CMAC, nullptr), EVP_PKEY_CTX_free};
 	ExpectInitialized(kctx);
 	Expect1(EVP_PKEY_keygen_init(kctx.get()));
 	ExpectPos(EVP_PKEY_CTX_ctrl(kctx.get(), -1, EVP_PKEY_OP_KEYGEN, EVP_PKEY_CTRL_CIPHER, 0, (void*)cipher));
-	ExpectPos(EVP_PKEY_CTX_ctrl(kctx.get(), -1, EVP_PKEY_OP_KEYGEN, EVP_PKEY_CTRL_SET_MAC_KEY, cmacKey.get_deleter().getSize(), cmacKey.get()));
+	ExpectPos(EVP_PKEY_CTX_ctrl(kctx.get(), -1, EVP_PKEY_OP_KEYGEN, EVP_PKEY_CTRL_SET_MAC_KEY, cmacKey.size(), cmacKey.get()));
 	EVP_PKEY* k = nullptr;
 	Expect1(EVP_PKEY_keygen(kctx.get(), &k));
 	mVal.reset(k);
@@ -148,15 +148,13 @@ PrivateKey::PrivateKey(Key const& key)
 
 PrivateKey::PrivateKey(Input& input)
 {
-	std::unique_ptr<DerInfo, CleanDeleter> i(new DerInfo(input), sizeof(DerInfo));
-
-	long privKeyLength = i->tlLength + i->vLength;
-	SecureMemory privKey(new unsigned char[privKeyLength], privKeyLength);
+	Secret<DerInfo> i{input};
+	Secret<> privKey(i->tlLength + i->vLength);
 	std::memcpy(privKey.get(), i->tl, i->tlLength);
 	input.read(privKey.get() + i->tlLength, i->vLength);
 
 	auto const* in = privKey.get();
-	mVal.reset(d2i_PKCS8_PRIV_KEY_INFO(nullptr, &in, privKeyLength));
+	mVal.reset(d2i_PKCS8_PRIV_KEY_INFO(nullptr, &in, static_cast<long>(privKey.size())));
 	ExpectInitialized(mVal);
 }
 
@@ -168,7 +166,7 @@ operator<<(Output& output, PrivateKey const& privateKey)
 {
 	int length = i2d_PKCS8_PRIV_KEY_INFO(static_cast<PKCS8_PRIV_KEY_INFO*>(privateKey), nullptr);
 	ExpectPos(length);
-	SecureMemory privKey(new unsigned char[length], length);
+	Secret<> privKey(length);
 
 	auto* p = privKey.get();
 	length = i2d_PKCS8_PRIV_KEY_INFO(static_cast<PKCS8_PRIV_KEY_INFO*>(privateKey), &p);
@@ -211,21 +209,6 @@ operator<<(Output& output, PublicKey const& publicKey)
 	ExpectPos(length);
 	return output.write(pubKey.get(), length);
 }
-
-CleanDeleter::CleanDeleter(std::size_t size) noexcept
-		: mSize(size)
-{}
-
-void
-CleanDeleter::operator()(void* ptr) const
-{
-	OPENSSL_cleanse(ptr, mSize);
-	::operator delete(ptr);
-}
-
-std::size_t
-CleanDeleter::getSize() const noexcept
-{ return mSize; }
 
 std::error_code
 make_error_code(Key::Exception::Code e) noexcept

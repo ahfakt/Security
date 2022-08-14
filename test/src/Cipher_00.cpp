@@ -10,21 +10,17 @@
 void
 writeNewSecretKey(std::string const& fileName, EVP_CIPHER const* cipher)
 {
-	int keyLength = EVP_CIPHER_key_length(cipher);
-	Stream::Security::SecureMemory secretKey(new unsigned char[keyLength], keyLength);
-	Expect1(RAND_priv_bytes(secretKey.get(), keyLength));
-	StreamTest::Util::WriteFile(fileName + ".sec", secretKey.get(), keyLength);
+	Stream::Security::Secret<> secretKey(EVP_CIPHER_key_length(cipher));
+	Expect1(RAND_priv_bytes(secretKey.get(), secretKey.size()));
+	Stream::File{fileName + ".sec", Stream::File::Mode::W}.write(secretKey.get(), secretKey.size());
 }
 
-Stream::Security::SecureMemory
+Stream::Security::Secret<>
 readSecretKey(std::string const& fileName)
 {
-	IO::File keyFile(fileName + ".sec", IO::File::Mode::R);
-	auto keyLength = keyFile.getFileSize();
-	Stream::Security::SecureMemory secretKey(new unsigned char[keyLength], keyLength);
-	Stream::FileInput keyFileInput;
-	keyFile >> keyFileInput;
-	keyFileInput.read(secretKey.get(), keyLength);
+	Stream::File file(fileName + ".sec", Stream::File::Mode::R);
+	Stream::Security::Secret<> secretKey(file.getFileSize());
+	file.read(secretKey.get(), secretKey.size());
 	return secretKey;
 }
 
@@ -35,20 +31,20 @@ testEncrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 	std::unique_ptr<std::byte[]> iv;
 	std::vector<std::byte> toEncrypt = StreamTest::Util::GetRandomBytes<std::chrono::minutes>(length);
 
-	IO::File dataFile(fileName, IO::File::Mode::W);
-	Stream::FileOutput dataFileOutput;
-	dataFile << dataFileOutput;
+	Stream::File file(fileName, Stream::File::Mode::W);
+	Stream::BufferOutput buffer(file.getBlockSize());
+	file < buffer;
 
 	if (int ivLength = EVP_CIPHER_iv_length(cipher)) {
 		iv.reset(new std::byte[ivLength]);
 		RAND_bytes(reinterpret_cast<unsigned char*>(iv.get()), ivLength);
-		dataFileOutput.write(iv.get(), ivLength);
+		buffer.write(iv.get(), ivLength);
 	}
 
-	Stream::Security::CipherEncrypt encrypt(cipher, secretKey, iv.get(), dataFile.getBlockSize());
-	dataFileOutput << encrypt;
+	Stream::Security::CipherEncrypt encryptor(cipher, secretKey, iv.get());
+	buffer < encryptor;
 
-	StreamTest::Util::WriteRandomChunks(encrypt, toEncrypt,
+	StreamTest::Util::WriteRandomChunks(encryptor, toEncrypt,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 	return toEncrypt;
 }
@@ -61,19 +57,19 @@ testDecrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 	std::vector<std::byte> decrypted;
 	decrypted.resize(length);
 
-	IO::File dataFile(fileName, IO::File::Mode::R);
-	Stream::FileInput dataFileInput;
-	dataFile >> dataFileInput;
+	Stream::File file(fileName, Stream::File::Mode::R);
+	Stream::BufferInput buffer(file.getBlockSize());
+	file > buffer;
 
 	if (int ivLength = EVP_CIPHER_iv_length(cipher)) {
 		iv.reset(new std::byte[ivLength]);
-		dataFileInput.read(iv.get(), ivLength);
+		buffer.read(iv.get(), ivLength);
 	}
 
-	Stream::Security::CipherDecrypt decrypt(cipher, secretKey, iv.get(), dataFile.getBlockSize());
-	dataFileInput >> decrypt;
+	Stream::Security::CipherDecrypt decryptor(cipher, secretKey, iv.get());
+	buffer > decryptor;
 
-	StreamTest::Util::ReadRandomChunks(decrypt, decrypted,
+	StreamTest::Util::ReadRandomChunks(decryptor, decrypted,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 	return decrypted;
 }
@@ -96,16 +92,16 @@ int main()
 	int maxChunkLength = 256;
 
 	length += std::uniform_int_distribution<int>{1, EVP_CIPHER_block_size(EVP_rc4()) > 1 ? EVP_CIPHER_block_size(EVP_rc4()) : EVP_MAX_BLOCK_LENGTH}(gen);
-	test("rc4.enc", EVP_rc4(),  length, maxChunkLength);
+	test("rc4.enc", EVP_rc4(), length, maxChunkLength);
 
 	length += std::uniform_int_distribution<int>{1, EVP_CIPHER_block_size(EVP_aes_256_cbc()) > 1 ? EVP_CIPHER_block_size(EVP_aes_256_cbc()) : EVP_MAX_BLOCK_LENGTH}(gen);
-	test("cbc.enc", EVP_aes_256_cbc(),  length, maxChunkLength);
+	test("cbc.enc", EVP_aes_256_cbc(), length, maxChunkLength);
 
 	length += std::uniform_int_distribution<int>{1, EVP_CIPHER_block_size(EVP_aes_128_ctr()) > 1 ? EVP_CIPHER_block_size(EVP_aes_128_ctr()) : EVP_MAX_BLOCK_LENGTH}(gen);
-	test("ctr.enc", EVP_aes_128_ctr(),  length, maxChunkLength);
+	test("ctr.enc", EVP_aes_128_ctr(), length, maxChunkLength);
 
 	length += std::uniform_int_distribution<int>{1, EVP_CIPHER_block_size(EVP_aes_128_ofb()) > 1 ? EVP_CIPHER_block_size(EVP_aes_128_ofb()) : EVP_MAX_BLOCK_LENGTH}(gen);
-	test("ofb.enc", EVP_aes_128_ofb(),  length, maxChunkLength);
+	test("ofb.enc", EVP_aes_128_ofb(), length, maxChunkLength);
 
 	//	length += std::uniform_int_distribution<int>{1, EVP_CIPHER_block_size(EVP_aes_maxChunkLength_wrap()) > 1 ? EVP_CIPHER_block_size(EVP_aes_maxChunkLength_wrap()) : EVP_MAX_BLOCK_LENGTH}(gen);
 	//test("wrap.enc", EVP_aes_maxChunkLength_wrap(), length, maxChunkLength);

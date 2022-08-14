@@ -1,24 +1,16 @@
 #include "StreamSecurity/Cipher.hpp"
 #include <cstring>
+#include <new>
 #include <openssl/err.h>
 #include <openssl/rand.h>
 
-#define ExpectAllocated(x) if (!x) throw Exception(Buffer::Exception::Code::BadAllocation)
+#define ExpectAllocated(x) if (!x) throw std::bad_alloc()
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Cipher::Exception::Code>(ERR_peek_last_error()))
 
 namespace Stream::Security {
 
-CipherDecrypt::CipherDecrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, std::size_t buffInitialSize)
-		: BufferInput(buffInitialSize)
-		, mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)
-{
-	ExpectAllocated(mCtx);
-	init(cipher, key, iv);
-}
-
-CipherDecrypt::CipherDecrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, void const* sourceBuff, std::size_t sourceSize)
-		: BufferInput(sourceBuff, sourceSize)
-		, mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)
+CipherDecrypt::CipherDecrypt(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv)
+		: mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)
 {
 	ExpectAllocated(mCtx);
 	init(cipher, key, iv);
@@ -30,7 +22,7 @@ CipherDecrypt::CipherDecrypt(CipherDecrypt&& other) noexcept
 void
 swap(CipherDecrypt& a, CipherDecrypt& b) noexcept
 {
-	swap(static_cast<BufferInput&>(a), static_cast<BufferInput&>(b));
+	swap(static_cast<TransformInput&>(a), static_cast<TransformInput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 	std::swap(a.mTempBeg, b.mTempBeg);
 	std::swap(a.mTempCurr, b.mTempCurr);
@@ -41,17 +33,12 @@ swap(CipherDecrypt& a, CipherDecrypt& b) noexcept
 CipherDecrypt&
 CipherDecrypt::operator=(CipherDecrypt&& other) noexcept
 {
-	static_cast<BufferInput&>(*this) = static_cast<BufferInput&&>(other);
-	std::swap(mCtx, other.mCtx);
-	std::swap(mTempBeg, other.mTempBeg);
-	std::swap(mTempCurr, other.mTempCurr);
-	std::swap(mTempEnd, other.mTempEnd);
-	std::swap(mFinalizeWhenNoData, other.mFinalizeWhenNoData);
+	swap(*this, other);
 	return *this;
 }
 
 void
-CipherDecrypt::init(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv)
+CipherDecrypt::init(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv)
 {
 	if (EVP_CIPHER_block_size(cipher) > 1)
 		mTempBeg.reset(new unsigned char[2*EVP_CIPHER_block_size(cipher)]);
@@ -91,7 +78,7 @@ CipherDecrypt::readBytes(std::byte* dest, std::size_t size)
 
 	if (mFinalizeWhenNoData) {
 		try {
-			size = provideData(size);
+			size = provideSomeData(size);
 		} catch (Input::Exception& exc) {
 			if (exc.code() == std::make_error_code(static_cast<std::errc>(ENODATA))) {
 				finalizeDecryption();
@@ -100,13 +87,13 @@ CipherDecrypt::readBytes(std::byte* dest, std::size_t size)
 			throw;
 		}
 	} else
-		size = provideData(size);
+		size = provideSomeData(size);
 
 	int outl;
 	Expect1(EVP_DecryptUpdate(mCtx.get(), reinterpret_cast<unsigned char*>(dest), &outl,
-			reinterpret_cast<unsigned char const*>(mGet), static_cast<int>(size)));
+			reinterpret_cast<unsigned char const*>(getData()), static_cast<int>(size)));
 
-	mGet += size;
+	advanceData(size);
 	if (dest == reinterpret_cast<std::byte*>(mTempBeg.get())) {
 		mTempEnd = (mTempCurr = mTempBeg.get()) + outl;
 		return 0; // try again to read from mTemp
@@ -131,17 +118,8 @@ void
 CipherDecrypt::finalizeDecryptionWhenNoData(bool on)
 { mFinalizeWhenNoData = on; }
 
-CipherEncrypt::CipherEncrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, std::size_t buffInitialSize)
-		: BufferOutput(buffInitialSize)
-		, mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)
-{
-	ExpectAllocated(mCtx);
-	init(cipher, key, iv);
-}
-
-CipherEncrypt::CipherEncrypt(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv, void* sinkBuff, std::size_t sinkSize)
-		: BufferOutput(sinkBuff, sinkSize)
-		, mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)
+CipherEncrypt::CipherEncrypt(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv)
+		: mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)
 {
 	ExpectAllocated(mCtx);
 	init(cipher, key, iv);
@@ -153,7 +131,7 @@ CipherEncrypt::CipherEncrypt(CipherEncrypt&& other) noexcept
 void
 swap(CipherEncrypt& a, CipherEncrypt& b) noexcept
 {
-	swap(static_cast<BufferOutput&>(a), static_cast<BufferOutput&>(b));
+	swap(static_cast<TransformOutput&>(a), static_cast<TransformOutput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 	std::swap(a.mExtSize, b.mExtSize);
 }
@@ -161,14 +139,12 @@ swap(CipherEncrypt& a, CipherEncrypt& b) noexcept
 CipherEncrypt&
 CipherEncrypt::operator=(CipherEncrypt&& other) noexcept
 {
-	static_cast<BufferOutput&>(*this) = static_cast<BufferOutput&&>(other);
-	std::swap(mCtx, other.mCtx);
-	std::swap(mExtSize, other.mExtSize);
+	swap(*this, other);
 	return *this;
 }
 
 void
-CipherEncrypt::init(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv)
+CipherEncrypt::init(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv)
 {
 	mExtSize = EVP_CIPHER_block_size(cipher) - 1;
 	/*
@@ -190,9 +166,9 @@ CipherEncrypt::writeBytes(std::byte const* src, std::size_t size)
 	provideSpace(size + mExtSize);
 
 	int outl;
-	Expect1(EVP_EncryptUpdate(mCtx.get(), reinterpret_cast<unsigned char*>(mPut), &outl,
+	Expect1(EVP_EncryptUpdate(mCtx.get(), reinterpret_cast<unsigned char*>(getSpace()), &outl,
 			reinterpret_cast<unsigned char const*>(src), static_cast<int>(size)));
-	mPut += outl;
+	advanceSpace(outl);
 	return size;
 }
 
@@ -203,8 +179,8 @@ CipherEncrypt::finalizeEncryption()
 		if (EVP_CIPHER_CTX_block_size(mCtx.get()) > 1) {
 			provideSpace(EVP_CIPHER_CTX_block_size(mCtx.get()));
 			int outl;
-			Expect1(EVP_EncryptFinal_ex(mCtx.get(), reinterpret_cast<unsigned char*>(mPut), &outl));
-			mPut += outl;
+			Expect1(EVP_EncryptFinal_ex(mCtx.get(), reinterpret_cast<unsigned char*>(getSpace()), &outl));
+			advanceSpace(outl);
 			mExtSize = 0;
 		}
 		Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));
@@ -220,52 +196,14 @@ CipherEncrypt::~CipherEncrypt()
 	}
 }
 
-Cipher::Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
-		EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
-		std::size_t decBuffInitialSize, std::size_t encBuffInitialSize)
-		: CipherDecrypt(decCipher, decKey, decIv, decBuffInitialSize)
-		, CipherEncrypt(encCipher, encKey, encIv, encBuffInitialSize)
+Cipher::Cipher(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv)
+		: Cipher(cipher, key, iv, cipher, key, iv)
 {}
 
-Cipher::Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
-		EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
-		std::size_t decBuffInitialSize, void* sinkBuff, std::size_t sinkSize)
-		: CipherDecrypt(decCipher, decKey, decIv, decBuffInitialSize)
-		, CipherEncrypt(encCipher, encKey, encIv, sinkBuff, sinkSize)
-{}
-
-Cipher::Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
-		EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
-		void const* sourceBuff, std::size_t sourceSize, std::size_t encBuffInitialSize)
-		: CipherDecrypt(decCipher, decKey, decIv, sourceBuff, sourceSize)
-		, CipherEncrypt(encCipher, encKey, encIv, encBuffInitialSize)
-{}
-
-Cipher::Cipher(EVP_CIPHER const* decCipher, SecureMemory const& decKey, std::byte const* decIv,
-		EVP_CIPHER const* encCipher, SecureMemory const& encKey, std::byte const* encIv,
-		void const* sourceBuff, std::size_t sourceSize, void* sinkBuff, std::size_t sinkSize)
-		: CipherDecrypt(decCipher, decKey, decIv, sourceBuff, sourceSize)
-		, CipherEncrypt(encCipher, encKey, encIv, sinkBuff, sinkSize)
-{}
-
-Cipher::Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
-		std::size_t decBuffInitialSize, std::size_t encBuffInitialSize)
-		: Cipher(cipher, key, iv, cipher, key, iv, decBuffInitialSize, encBuffInitialSize)
-{}
-
-Cipher::Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
-		std::size_t decBuffInitialSize, void* sinkBuff, std::size_t sinkSize)
-		: Cipher(cipher, key, iv, cipher, key, iv, decBuffInitialSize, sinkBuff, sinkSize)
-{}
-
-Cipher::Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
-		void const* sourceBuff, std::size_t sourceSize, std::size_t encBuffInitialSize)
-		: Cipher(cipher, key, iv, cipher, key, iv, sourceBuff, sourceSize, encBuffInitialSize)
-{}
-
-Cipher::Cipher(EVP_CIPHER const* cipher, SecureMemory const& key, std::byte const* iv,
-		void const* sourceBuff, std::size_t sourceSize, void* sinkBuff, std::size_t sinkSize)
-		: Cipher(cipher, key, iv, cipher, key, iv, sourceBuff, sourceSize, sinkBuff, sinkSize)
+Cipher::Cipher(EVP_CIPHER const* decCipher, Secret<> const& decKey, std::byte const* decIv,
+		EVP_CIPHER const* encCipher, Secret<> const& encKey, std::byte const* encIv)
+		: CipherDecrypt(decCipher, decKey, decIv)
+		, CipherEncrypt(encCipher, encKey, encIv)
 {}
 
 void

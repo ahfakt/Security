@@ -1,35 +1,59 @@
 #ifndef STREAM_SECURITY_KEY_HPP
 #define STREAM_SECURITY_KEY_HPP
 
-#include "Stream/InOut.hpp"
+#include <Stream/InOut.hpp>
 #include <openssl/evp.h>
 #include <openssl/x509.h>
 #include <memory>
 
 namespace Stream::Security {
 
-/**
- * @brief	Heap memory clean and delete functor
- * @class	CleanDeleter Key.hpp "StreamSecurity/Key.hpp"
- */
-class CleanDeleter {
-	std::size_t mSize = 0;
-public:
-	CleanDeleter() noexcept = default;
+template <typename T>
+struct SecretImpl : std::unique_ptr<T> {
+	SecretImpl(SecretImpl&&) noexcept = default;
 
-	CleanDeleter(std::size_t size) noexcept;
+	explicit SecretImpl(auto&& ... args)
+			: std::unique_ptr<T>(::new T{std::forward<decltype(args)>(args) ...})
+	{}
 
-	void operator()(void* ptr) const;
+	~SecretImpl()
+	{
+		auto* t = this->release();
+		t->~T();
+		OPENSSL_cleanse(t, sizeof(T));
+		::operator delete(t);
+	}
 
 	[[nodiscard]] std::size_t
-	getSize() const noexcept;
-};//class Stream::Security::CleanDeleter
+	size() const noexcept
+	{ return sizeof(T); }
+};//struct Stream::Security::SecretImpl<T>
+
+template <>
+struct SecretImpl<unsigned char[]> : std::unique_ptr<unsigned char[]> {
+	SecretImpl(SecretImpl&&) noexcept = default;
+
+	explicit SecretImpl(std::size_t size)
+			: std::unique_ptr<unsigned char[]>(::new unsigned char[size])
+			, mSize(size)
+	{}
+
+	~SecretImpl()
+	{ OPENSSL_cleanse(get(), mSize); }
+
+	[[nodiscard]] std::size_t
+	size() const noexcept
+	{ return mSize; }
+private:
+	std::size_t mSize = 0;
+};//class Stream::Security::SecretImpl<>
 
 /**
- * @brief	unsigned char unique pointer with secure CleanDeleter
- * @typedef	SecureMemory Key.hpp "StreamSecurity/Key.hpp"
+ * @brief	Secure memory buffer
+ * @class	Secret Key.hpp "StreamSecurity/Key.hpp"
  */
-using SecureMemory = std::unique_ptr<unsigned char, CleanDeleter>;
+template <typename T = unsigned char[]>
+using Secret = SecretImpl<T>;
 
 class PrivateKey;
 class PublicKey;
@@ -111,9 +135,9 @@ public:
 
 	Key(RSA rsa);
 
-	Key(SecureMemory const& hmacKey);
+	Key(Secret<> const& hmacKey);
 
-	Key(SecureMemory const& cmacKey, EVP_CIPHER const* cipher);
+	Key(Secret<> const& cmacKey, EVP_CIPHER const* cipher);
 
 	explicit operator EVP_PKEY*() const noexcept;
 };//class Stream::Security::Key

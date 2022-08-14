@@ -1,7 +1,7 @@
-#include <cassert>
 #include <Stream/File.hpp>
 #include <Stream/Buffer.hpp>
 #include <StreamSecurity/Digest.hpp>
+#include <cassert>
 #include <openssl/rand.h>
 #include <openssl/err.h>
 #include "Util.hpp"
@@ -13,11 +13,10 @@ testOutputHash(std::string const& fileName, EVP_MD const* md, int length, int ma
 {
 	std::vector<std::byte> outputData = StreamTest::Util::GetRandomBytes<std::chrono::minutes>(length);
 
-	IO::File io(fileName, IO::File::Mode::W);
-	Stream::FileOutput file;
-	Stream::BufferOutput buffer(io.getBlockSize());
+	Stream::File file(fileName, Stream::File::Mode::W);
+	Stream::BufferOutput buffer(file.getBlockSize());
 	Stream::Security::DigestOutput digestOutput(md);
-	io << file << buffer << digestOutput;
+	file < buffer < digestOutput;
 
 	StreamTest::Util::WriteRandomChunks(digestOutput, outputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
@@ -33,11 +32,10 @@ testOutputHMAC(std::string const& fileName, EVP_MD const* md, Stream::Security::
 {
 	std::vector<std::byte> outputData = StreamTest::Util::GetRandomBytes<std::chrono::minutes>(length);
 
-	IO::File io(fileName, IO::File::Mode::W);
-	Stream::FileOutput file;
-	Stream::BufferOutput buffer(io.getBlockSize());
+	Stream::File file(fileName, Stream::File::Mode::W);
+	Stream::BufferOutput buffer(file.getBlockSize());
 	Stream::Security::DigestOutput digestOutput(md, key);
-	io << file << buffer << digestOutput;
+	file < buffer < digestOutput;
 
 	StreamTest::Util::WriteRandomChunks(digestOutput, outputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
@@ -54,11 +52,10 @@ testInputHash(std::string const& fileName, EVP_MD const* md, int length, int max
 	std::vector<std::byte> inputData;
 	inputData.resize(length);
 
-	IO::File io(fileName, IO::File::Mode::R);
-	Stream::FileInput file;
-	Stream::BufferInput buffer(io.getBlockSize());
+	Stream::File file(fileName, Stream::File::Mode::R);
+	Stream::BufferInput buffer(file.getBlockSize());
 	Stream::Security::DigestInput digestInput(md);
-	io >> file >> buffer >> digestInput;
+	file > buffer > digestInput;
 
 	StreamTest::Util::ReadRandomChunks(digestInput, inputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
@@ -75,11 +72,10 @@ testInputHMAC(std::string const& fileName, EVP_MD const* md, Stream::Security::K
 	std::vector<std::byte> inputData;
 	inputData.resize(length);
 
-	IO::File io(fileName, IO::File::Mode::R);
-	Stream::FileInput file;
-	Stream::BufferInput buffer(io.getBlockSize());
+	Stream::File file(fileName, Stream::File::Mode::R);
+	Stream::BufferInput buffer(file.getBlockSize());
 	Stream::Security::DigestInput digestInput(md, key);
-	io >> file >> buffer >> digestInput;
+	file > buffer > digestInput;
 
 	StreamTest::Util::ReadRandomChunks(digestInput, inputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
@@ -124,15 +120,13 @@ int main() {
 	length += std::uniform_int_distribution<int>{1, 5}(gen);
 	testHash("sha256.hash", EVP_sha256(), length, maxChunkLength);
 
-	int hKeyLength = EVP_MD_size(EVP_sha256());
-	Stream::Security::SecureMemory hKeyRaw(new unsigned char[hKeyLength], hKeyLength);
-	Expect1(RAND_priv_bytes(hKeyRaw.get(), hKeyLength));
+	Stream::Security::Secret<> hKeyRaw(EVP_MD_size(EVP_sha256()));
+	Expect1(RAND_priv_bytes(hKeyRaw.get(), hKeyRaw.size()));
 	Stream::Security::Key const hkey(hKeyRaw);
 	testHMAC("sha256.hmac", EVP_sha256(), hkey, length, maxChunkLength);
 
-	int cKeyLength = EVP_CIPHER_key_length(EVP_aes_256_cbc());
-	Stream::Security::SecureMemory cKeyRaw(new unsigned char[cKeyLength], cKeyLength);
-	Expect1(RAND_priv_bytes(hKeyRaw.get(), cKeyLength));
+	Stream::Security::Secret<> cKeyRaw(EVP_CIPHER_key_length(EVP_aes_256_cbc()));
+	Expect1(RAND_priv_bytes(cKeyRaw.get(), cKeyRaw.size()));
 	Stream::Security::Key const ckey(cKeyRaw, EVP_aes_256_cbc());
 	testCMAC("sha256.cmac", ckey, length, maxChunkLength);
 

@@ -104,7 +104,7 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >X509 public key. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/dd7/Key_8hpp_source.html#l00145">145</a> of file <a class="el" href="../../d8/dd7/Key_8hpp_source.html">Key.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/dd7/Key_8hpp_source.html#l00169">169</a> of file <a class="el" href="../../d8/dd7/Key_8hpp_source.html">Key.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3c254a3dc830d18ffaba099def53e532" name="a3c254a3dc830d18ffaba099def53e532"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c254a3dc830d18ffaba099def53e532">&#9670;&nbsp;</a></span>PublicKey() <span class="overload">[1/2]</span></h2>
@@ -130,12 +130,12 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00179">179</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  180</span>{</div>
-<div class="line"><span class="lineno">  181</span>    X509_PUBKEY* p = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  182</span>    Expect1(X509_PUBKEY_set(&amp;p, <span class="keyword">static_cast&lt;</span>EVP_PKEY*<span class="keyword">&gt;</span>(key)));</div>
-<div class="line"><span class="lineno">  183</span>    mVal.reset(p);</div>
-<div class="line"><span class="lineno">  184</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00177">177</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  178</span>{</div>
+<div class="line"><span class="lineno">  179</span>    X509_PUBKEY* p = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  180</span>    Expect1(X509_PUBKEY_set(&amp;p, <span class="keyword">static_cast&lt;</span>EVP_PKEY*<span class="keyword">&gt;</span>(key)));</div>
+<div class="line"><span class="lineno">  181</span>    mVal.reset(p);</div>
+<div class="line"><span class="lineno">  182</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -163,18 +163,18 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00186">186</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  187</span>{</div>
-<div class="line"><span class="lineno">  188</span>    DerInfo i(input);</div>
-<div class="line"><span class="lineno">  189</span> </div>
-<div class="line"><span class="lineno">  190</span>    std::unique_ptr&lt;unsigned char&gt; pubKey(<span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>[i.tlLength + i.vLength]);</div>
-<div class="line"><span class="lineno">  191</span>    std::memcpy(pubKey.get(), i.tl, i.tlLength);</div>
-<div class="line"><span class="lineno">  192</span>    input.read(pubKey.get() + i.tlLength, i.vLength);</div>
-<div class="line"><span class="lineno">  193</span> </div>
-<div class="line"><span class="lineno">  194</span>    <span class="keyword">auto</span> <span class="keyword">const</span>* in = pubKey.get();</div>
-<div class="line"><span class="lineno">  195</span>    mVal.reset(d2i_X509_PUBKEY(<span class="keyword">nullptr</span>, &amp;in, i.tlLength + i.vLength));</div>
-<div class="line"><span class="lineno">  196</span>    ExpectInitialized(mVal);</div>
-<div class="line"><span class="lineno">  197</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00184">184</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  185</span>{</div>
+<div class="line"><span class="lineno">  186</span>    DerInfo i(input);</div>
+<div class="line"><span class="lineno">  187</span> </div>
+<div class="line"><span class="lineno">  188</span>    std::unique_ptr&lt;unsigned char&gt; pubKey(<span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>[i.tlLength + i.vLength]);</div>
+<div class="line"><span class="lineno">  189</span>    std::memcpy(pubKey.get(), i.tl, i.tlLength);</div>
+<div class="line"><span class="lineno">  190</span>    input.read(pubKey.get() + i.tlLength, i.vLength);</div>
+<div class="line"><span class="lineno">  191</span> </div>
+<div class="line"><span class="lineno">  192</span>    <span class="keyword">auto</span> <span class="keyword">const</span>* in = pubKey.get();</div>
+<div class="line"><span class="lineno">  193</span>    mVal.reset(d2i_X509_PUBKEY(<span class="keyword">nullptr</span>, &amp;in, i.tlLength + i.vLength));</div>
+<div class="line"><span class="lineno">  194</span>    ExpectInitialized(mVal);</div>
+<div class="line"><span class="lineno">  195</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -202,8 +202,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00199">199</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  200</span>{ <span class="keywordflow">return</span> mVal.get(); }</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00197">197</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  198</span>{ <span class="keywordflow">return</span> mVal.get(); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -242,17 +242,17 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00202">202</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  204</span>{</div>
-<div class="line"><span class="lineno">  205</span>    <span class="keywordtype">int</span> length = i2d_X509_PUBKEY(<span class="keyword">static_cast&lt;</span>X509_PUBKEY*<span class="keyword">&gt;</span>(publicKey), <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  206</span>    ExpectPos(length);</div>
-<div class="line"><span class="lineno">  207</span>    std::unique_ptr&lt;unsigned char&gt; pubKey(<span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>[length]);</div>
-<div class="line"><span class="lineno">  208</span> </div>
-<div class="line"><span class="lineno">  209</span>    <span class="keyword">auto</span>* p = pubKey.get();</div>
-<div class="line"><span class="lineno">  210</span>    length = i2d_X509_PUBKEY(<span class="keyword">static_cast&lt;</span>X509_PUBKEY*<span class="keyword">&gt;</span>(publicKey), &amp;p);</div>
-<div class="line"><span class="lineno">  211</span>    ExpectPos(length);</div>
-<div class="line"><span class="lineno">  212</span>    <span class="keywordflow">return</span> output.write(pubKey.get(), length);</div>
-<div class="line"><span class="lineno">  213</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00200">200</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  202</span>{</div>
+<div class="line"><span class="lineno">  203</span>    <span class="keywordtype">int</span> length = i2d_X509_PUBKEY(<span class="keyword">static_cast&lt;</span>X509_PUBKEY*<span class="keyword">&gt;</span>(publicKey), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  204</span>    ExpectPos(length);</div>
+<div class="line"><span class="lineno">  205</span>    std::unique_ptr&lt;unsigned char&gt; pubKey(<span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>[length]);</div>
+<div class="line"><span class="lineno">  206</span> </div>
+<div class="line"><span class="lineno">  207</span>    <span class="keyword">auto</span>* p = pubKey.get();</div>
+<div class="line"><span class="lineno">  208</span>    length = i2d_X509_PUBKEY(<span class="keyword">static_cast&lt;</span>X509_PUBKEY*<span class="keyword">&gt;</span>(publicKey), &amp;p);</div>
+<div class="line"><span class="lineno">  209</span>    ExpectPos(length);</div>
+<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">return</span> output.write(pubKey.get(), length);</div>
+<div class="line"><span class="lineno">  211</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

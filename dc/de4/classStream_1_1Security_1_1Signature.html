@@ -89,10 +89,10 @@ Inheritance diagram for Stream::Security::Signature:</div>
 <map name="aStream_1_1Security_1_1Signature_inherit__map" id="aStream_1_1Security_1_1Signature_inherit__map">
 <area shape="rect" title="Stream::Input / Stream::Output Signature observer." alt="" coords="21,440,867,561"/>
 <area shape="rect" href="../../dd/d4b/classStream_1_1Security_1_1SignatureInput.html" title="Stream::Input Signature observer." alt="" coords="5,263,437,385"/>
-<area shape="rect" target="_parent" href="../../../Stream/d3/d2f/classStream_1_1InputFilter" title=" " alt="" coords="156,131,287,208"/>
+<area shape="rect" target="_parent" href="../../../Stream/d1/dcd/classStream_1_1TransparentInput" title=" " alt="" coords="136,131,307,208"/>
 <area shape="rect" target="_parent" href="../../../Stream/d7/d83/classStream_1_1Input" title=" " alt="" coords="171,5,272,83"/>
 <area shape="rect" href="../../d2/d61/classStream_1_1Security_1_1SignatureOutput.html" title="Stream::Output Signature observer." alt="" coords="461,256,872,392"/>
-<area shape="rect" target="_parent" href="../../../Stream/d0/d57/classStream_1_1OutputFilter" title=" " alt="" coords="597,131,737,208"/>
+<area shape="rect" target="_parent" href="../../../Stream/d1/d52/classStream_1_1TransparentOutput" title=" " alt="" coords="577,131,757,208"/>
 <area shape="rect" target="_parent" href="../../../Stream/df/dc2/classStream_1_1Output" title=" " alt="" coords="611,5,722,83"/>
 </map>
 </div>
@@ -104,10 +104,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac451c4f04d797542d3bc18e1b0b4df18"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de4/classStream_1_1Security_1_1Signature.html#ac451c4f04d797542d3bc18e1b0b4df18">Signature</a> (EVP_MD const *mdIn, <a class="el" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a> const &amp;verifyKey, EVP_MD const *mdOut, <a class="el" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a> const &amp;signKey)</td></tr>
-<tr class="separator:ac451c4f04d797542d3bc18e1b0b4df18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a785a152e1a502badca97c2658646f94d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de4/classStream_1_1Security_1_1Signature.html#a785a152e1a502badca97c2658646f94d">Signature</a> (EVP_MD const *md, <a class="el" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a> const &amp;key)</td></tr>
 <tr class="separator:a785a152e1a502badca97c2658646f94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac451c4f04d797542d3bc18e1b0b4df18"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de4/classStream_1_1Security_1_1Signature.html#ac451c4f04d797542d3bc18e1b0b4df18">Signature</a> (EVP_MD const *mdIn, <a class="el" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a> const &amp;verifyKey, EVP_MD const *mdOut, <a class="el" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a> const &amp;signKey)</td></tr>
+<tr class="separator:ac451c4f04d797542d3bc18e1b0b4df18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a935ebf7627d6d237483aab00072f29c2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d4b/classStream_1_1Security_1_1SignatureInput.html#a935ebf7627d6d237483aab00072f29c2">verifySignature</a> (std::vector&lt; std::byte &gt; const &amp;signature) const</td></tr>
 <tr class="separator:a935ebf7627d6d237483aab00072f29c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2ba1bdd8c1019684e9f15978f862ae1"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d61/classStream_1_1Security_1_1SignatureOutput.html#af2ba1bdd8c1019684e9f15978f862ae1">getSignatureSize</a> () const</td></tr>
@@ -132,10 +132,42 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="elRef" href="../../../Stream/d7/d83/classStream_1_1Input.html">Stream::Input</a> / <a class="elRef" href="../../../Stream/df/dc2/classStream_1_1Output.html">Stream::Output</a> Signature observer. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../db/db2/Signature_8hpp_source.html#l00072">72</a> of file <a class="el" href="../../db/db2/Signature_8hpp_source.html">Signature.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/db2/Signature_8hpp_source.html#l00073">73</a> of file <a class="el" href="../../db/db2/Signature_8hpp_source.html">Signature.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a785a152e1a502badca97c2658646f94d" name="a785a152e1a502badca97c2658646f94d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a785a152e1a502badca97c2658646f94d">&#9670;&nbsp;</a></span>Signature() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Stream::Security::Signature::Signature </td>
+          <td>(</td>
+          <td class="paramtype">EVP_MD const *&#160;</td>
+          <td class="paramname"><em>md</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a> const &amp;&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00138">138</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  139</span>        : Signature(md, key, md, key)</div>
+<div class="line"><span class="lineno">  140</span>{}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="ac451c4f04d797542d3bc18e1b0b4df18" name="ac451c4f04d797542d3bc18e1b0b4df18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac451c4f04d797542d3bc18e1b0b4df18">&#9670;&nbsp;</a></span>Signature() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac451c4f04d797542d3bc18e1b0b4df18">&#9670;&nbsp;</a></span>Signature() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,42 +204,10 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00139">139</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  140</span>        : SignatureInput(mdIn, verifyKey)</div>
-<div class="line"><span class="lineno">  141</span>        , SignatureOutput(mdOut, signKey)</div>
-<div class="line"><span class="lineno">  142</span>{}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a785a152e1a502badca97c2658646f94d" name="a785a152e1a502badca97c2658646f94d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a785a152e1a502badca97c2658646f94d">&#9670;&nbsp;</a></span>Signature() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::Signature::Signature </td>
-          <td>(</td>
-          <td class="paramtype">EVP_MD const *&#160;</td>
-          <td class="paramname"><em>md</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d3/dac/classStream_1_1Security_1_1Key.html">Key</a> const &amp;&#160;</td>
-          <td class="paramname"><em>key</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  145</span>        : Signature(md, key, md, key)</div>
-<div class="line"><span class="lineno">  146</span>{}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00142">142</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  143</span>        : SignatureInput(mdIn, verifyKey)</div>
+<div class="line"><span class="lineno">  144</span>        , SignatureOutput(mdOut, signKey)</div>
+<div class="line"><span class="lineno">  145</span>{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -258,14 +258,14 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00110">110</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  111</span>{</div>
-<div class="line"><span class="lineno">  112</span>    std::unique_ptr&lt;EVP_MD_CTX, <span class="keyword">decltype</span>(&amp;EVP_MD_CTX_free)&gt; ctx{EVP_MD_CTX_new(), EVP_MD_CTX_free};</div>
-<div class="line"><span class="lineno">  113</span>    ExpectAllocated(ctx);</div>
-<div class="line"><span class="lineno">  114</span>    Expect1(EVP_DigestSignInit(ctx.get(), <span class="keyword">nullptr</span>, md, <span class="keyword">nullptr</span>, <span class="keyword">static_cast&lt;</span>EVP_PKEY*<span class="keyword">&gt;</span>(signKey)));</div>
-<div class="line"><span class="lineno">  115</span>    Expect1(EVP_DigestSignUpdate(ctx.get(), data, count));</div>
-<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">return</span> Signature::Sign(ctx.get());</div>
-<div class="line"><span class="lineno">  117</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00109">109</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  110</span>{</div>
+<div class="line"><span class="lineno">  111</span>    std::unique_ptr&lt;EVP_MD_CTX, <span class="keyword">decltype</span>(&amp;EVP_MD_CTX_free)&gt; ctx{EVP_MD_CTX_new(), EVP_MD_CTX_free};</div>
+<div class="line"><span class="lineno">  112</span>    ExpectAllocated(ctx);</div>
+<div class="line"><span class="lineno">  113</span>    Expect1(EVP_DigestSignInit(ctx.get(), <span class="keyword">nullptr</span>, md, <span class="keyword">nullptr</span>, <span class="keyword">static_cast&lt;</span>EVP_PKEY*<span class="keyword">&gt;</span>(signKey)));</div>
+<div class="line"><span class="lineno">  114</span>    Expect1(EVP_DigestSignUpdate(ctx.get(), data, count));</div>
+<div class="line"><span class="lineno">  115</span>    <span class="keywordflow">return</span> Signature::Sign(ctx.get());</div>
+<div class="line"><span class="lineno">  116</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -321,15 +321,15 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00129">129</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  130</span>{</div>
-<div class="line"><span class="lineno">  131</span>    std::unique_ptr&lt;EVP_MD_CTX, <span class="keyword">decltype</span>(&amp;EVP_MD_CTX_free)&gt; ctx{EVP_MD_CTX_new(), EVP_MD_CTX_free};</div>
-<div class="line"><span class="lineno">  132</span>    ExpectAllocated(ctx);</div>
-<div class="line"><span class="lineno">  133</span>    EVP_MD_CTX_set_flags(ctx.get(), EVP_MD_CTX_FLAG_ONESHOT);</div>
-<div class="line"><span class="lineno">  134</span>    Expect1(EVP_DigestVerifyInit(ctx.get(), <span class="keyword">nullptr</span>, md, <span class="keyword">nullptr</span>, <span class="keyword">static_cast&lt;</span>EVP_PKEY*<span class="keyword">&gt;</span>(verifyKey)));</div>
-<div class="line"><span class="lineno">  135</span>    Expect1(EVP_DigestVerifyUpdate(ctx.get(), data, count));</div>
-<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">return</span> Signature::Verify(ctx.get(), signature);</div>
-<div class="line"><span class="lineno">  137</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00128">128</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  129</span>{</div>
+<div class="line"><span class="lineno">  130</span>    std::unique_ptr&lt;EVP_MD_CTX, <span class="keyword">decltype</span>(&amp;EVP_MD_CTX_free)&gt; ctx{EVP_MD_CTX_new(), EVP_MD_CTX_free};</div>
+<div class="line"><span class="lineno">  131</span>    ExpectAllocated(ctx);</div>
+<div class="line"><span class="lineno">  132</span>    EVP_MD_CTX_set_flags(ctx.get(), EVP_MD_CTX_FLAG_ONESHOT);</div>
+<div class="line"><span class="lineno">  133</span>    Expect1(EVP_DigestVerifyInit(ctx.get(), <span class="keyword">nullptr</span>, md, <span class="keyword">nullptr</span>, <span class="keyword">static_cast&lt;</span>EVP_PKEY*<span class="keyword">&gt;</span>(verifyKey)));</div>
+<div class="line"><span class="lineno">  134</span>    Expect1(EVP_DigestVerifyUpdate(ctx.get(), data, count));</div>
+<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">return</span> Signature::Verify(ctx.get(), signature);</div>
+<div class="line"><span class="lineno">  136</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -357,8 +357,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00045">45</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   46</span>{ <span class="keywordflow">return</span> Signature::Verify(mCtx.get(), signature); }</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00044">44</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   45</span>{ <span class="keywordflow">return</span> Signature::Verify(mCtx.get(), signature); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -385,8 +385,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   83</span>{ <span class="keywordflow">return</span> Signature::Size(mCtx.get()); }</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00081">81</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   82</span>{ <span class="keywordflow">return</span> Signature::Size(mCtx.get()); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -413,8 +413,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00086">86</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   87</span>{ <span class="keywordflow">return</span> Signature::Sign(mCtx.get()); }</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d16/Signature_8cpp_source.html#l00085">85</a> of file <a class="el" href="../../d7/d16/Signature_8cpp_source.html">Signature.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   86</span>{ <span class="keywordflow">return</span> Signature::Sign(mCtx.get()); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -439,7 +439,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/db2/Signature_8hpp_source.html#l00073">73</a> of file <a class="el" href="../../db/db2/Signature_8hpp_source.html">Signature.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/db2/Signature_8hpp_source.html#l00074">74</a> of file <a class="el" href="../../db/db2/Signature_8hpp_source.html">Signature.hpp</a>.</p>
 
 </div>
 </div>
@@ -463,7 +463,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../db/db2/Signature_8hpp_source.html#l00074">74</a> of file <a class="el" href="../../db/db2/Signature_8hpp_source.html">Signature.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../db/db2/Signature_8hpp_source.html#l00075">75</a> of file <a class="el" href="../../db/db2/Signature_8hpp_source.html">Signature.hpp</a>.</p>
 
 </div>
 </div>

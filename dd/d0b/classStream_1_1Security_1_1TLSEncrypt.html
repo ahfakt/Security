@@ -87,10 +87,9 @@ Inheritance diagram for Stream::Security::TLSEncrypt:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d7/db3/classStream_1_1Security_1_1TLSEncrypt__inherit__graph.png" border="0" usemap="#aStream_1_1Security_1_1TLSEncrypt_inherit__map" alt="Inheritance graph"/></div>
 <map name="aStream_1_1Security_1_1TLSEncrypt_inherit__map" id="aStream_1_1Security_1_1TLSEncrypt_inherit__map">
-<area shape="rect" title="Stream::Output TLS encryptor." alt="" coords="5,381,435,532"/>
-<area shape="rect" href="../../d3/dd3/classStream_1_1Security_1_1TLS.html" title="Stream::Input / Stream::Output TLS decryptor and encryptor." alt="" coords="85,580,355,701"/>
-<area shape="rect" target="_parent" href="../../../Stream/da/d65/classStream_1_1BufferOutput" title=" " alt="" coords="147,256,293,333"/>
-<area shape="rect" target="_parent" href="../../../Stream/d0/d57/classStream_1_1OutputFilter" title=" " alt="" coords="150,131,290,208"/>
+<area shape="rect" title="Stream::Output TLS encryptor." alt="" coords="5,256,435,407"/>
+<area shape="rect" href="../../d3/dd3/classStream_1_1Security_1_1TLS.html" title="Stream::Input / Stream::Output TLS decryptor and encryptor." alt="" coords="85,455,355,576"/>
+<area shape="rect" target="_parent" href="../../../Stream/d1/dff/classStream_1_1TransformOutput" title=" " alt="" coords="135,131,305,208"/>
 <area shape="rect" target="_parent" href="../../../Stream/df/dc2/classStream_1_1Output" title=" " alt="" coords="165,5,275,83"/>
 </map>
 </div>
@@ -153,16 +152,17 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   75</span>        : mSSL(ssl)</div>
-<div class="line"><span class="lineno">   76</span>{</div>
-<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">if</span> (ssl) {</div>
-<div class="line"><span class="lineno">   78</span>        mOutBio = BIO_new(BIO_s_mem());</div>
-<div class="line"><span class="lineno">   79</span>        ExpectInitialized(mOutBio);</div>
-<div class="line"><span class="lineno">   80</span>        BIO_set_mem_eof_return(mOutBio, -1);</div>
-<div class="line"><span class="lineno">   81</span>        SSL_set0_wbio(ssl, mOutBio);</div>
-<div class="line"><span class="lineno">   82</span>    }</div>
-<div class="line"><span class="lineno">   83</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>        : mSSL(ssl)</div>
+<div class="line"><span class="lineno">   73</span>{</div>
+<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">if</span> (ssl) {</div>
+<div class="line"><span class="lineno">   75</span>        <span class="comment">// will be freed by SSL_free</span></div>
+<div class="line"><span class="lineno">   76</span>        mOutBio = BIO_new(BIO_s_mem());</div>
+<div class="line"><span class="lineno">   77</span>        ExpectInitialized(mOutBio);</div>
+<div class="line"><span class="lineno">   78</span>        BIO_set_mem_eof_return(mOutBio, -1);</div>
+<div class="line"><span class="lineno">   79</span>        SSL_set0_wbio(ssl, mOutBio);</div>
+<div class="line"><span class="lineno">   80</span>    }</div>
+<div class="line"><span class="lineno">   81</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -201,31 +201,31 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00117">117</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  118</span>{</div>
-<div class="line"><span class="lineno">  119</span>    std::size_t inl = 0;</div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordtype">int</span> r = SSL_is_init_finished(mSSL)</div>
-<div class="line"><span class="lineno">  121</span>            ? SSL_write_ex(mSSL, src, size, &amp;inl)</div>
-<div class="line"><span class="lineno">  122</span>            : SSL_do_handshake(mSSL);</div>
-<div class="line"><span class="lineno">  123</span> </div>
-<div class="line"><span class="lineno">  124</span>    <span class="keywordflow">if</span> (r == 1) {</div>
-<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">if</span> (inl)</div>
-<div class="line"><span class="lineno">  126</span>            sendData();</div>
-<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">return</span> inl;</div>
-<div class="line"><span class="lineno">  128</span>    }</div>
-<div class="line"><span class="lineno">  129</span> </div>
-<div class="line"><span class="lineno">  130</span>    r = SSL_get_error(mSSL, r);</div>
-<div class="line"><span class="lineno">  131</span>    <span class="keywordflow">switch</span> (r) {</div>
-<div class="line"><span class="lineno">  132</span>        <span class="keywordflow">case</span> SSL_ERROR_WANT_READ: {</div>
-<div class="line"><span class="lineno">  133</span>            sendData();</div>
-<div class="line"><span class="lineno">  134</span>            flush();</div>
-<div class="line"><span class="lineno">  135</span>            wantRecvData();</div>
-<div class="line"><span class="lineno">  136</span>            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  137</span>        }</div>
-<div class="line"><span class="lineno">  138</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  139</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
-<div class="line"><span class="lineno">  140</span>    }</div>
-<div class="line"><span class="lineno">  141</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00113">113</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  114</span>{</div>
+<div class="line"><span class="lineno">  115</span>    std::size_t inl = 0;</div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordtype">int</span> r = SSL_is_init_finished(mSSL)</div>
+<div class="line"><span class="lineno">  117</span>            ? SSL_write_ex(mSSL, src, size, &amp;inl)</div>
+<div class="line"><span class="lineno">  118</span>            : SSL_do_handshake(mSSL);</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">if</span> (r == 1) {</div>
+<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">if</span> (inl)</div>
+<div class="line"><span class="lineno">  122</span>            sendData();</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">return</span> inl;</div>
+<div class="line"><span class="lineno">  124</span>    }</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>    r = SSL_get_error(mSSL, r);</div>
+<div class="line"><span class="lineno">  127</span>    <span class="keywordflow">switch</span> (r) {</div>
+<div class="line"><span class="lineno">  128</span>        <span class="keywordflow">case</span> SSL_ERROR_WANT_READ: {</div>
+<div class="line"><span class="lineno">  129</span>            sendData();</div>
+<div class="line"><span class="lineno">  130</span>            TransformOutput::flush();</div>
+<div class="line"><span class="lineno">  131</span>            wantRecvData();</div>
+<div class="line"><span class="lineno">  132</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  133</span>        }</div>
+<div class="line"><span class="lineno">  134</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  135</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
+<div class="line"><span class="lineno">  136</span>    }</div>
+<div class="line"><span class="lineno">  137</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -252,18 +252,18 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00103">103</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  104</span>{</div>
-<div class="line"><span class="lineno">  105</span>    std::size_t pending = BIO_ctrl_pending(mOutBio);</div>
-<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">if</span> (pending &gt; 0) {</div>
-<div class="line"><span class="lineno">  107</span>        provideSpace(pending);</div>
-<div class="line"><span class="lineno">  108</span>        <span class="keywordtype">int</span> r = BIO_read_ex(mOutBio, mPut, pending, &amp;pending);</div>
-<div class="line"><span class="lineno">  109</span>        <span class="keywordflow">if</span> (r == 1)</div>
-<div class="line"><span class="lineno">  110</span>            mPut += pending;</div>
-<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  112</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
-<div class="line"><span class="lineno">  113</span>    }</div>
-<div class="line"><span class="lineno">  114</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00099">99</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>{</div>
+<div class="line"><span class="lineno">  101</span>    std::size_t pending = BIO_ctrl_pending(mOutBio);</div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span> (pending &gt; 0) {</div>
+<div class="line"><span class="lineno">  103</span>        provideSpace(pending);</div>
+<div class="line"><span class="lineno">  104</span>        <span class="keywordtype">int</span> r = BIO_read_ex(mOutBio, getSpace(), pending, &amp;pending);</div>
+<div class="line"><span class="lineno">  105</span>        <span class="keywordflow">if</span> (r == 1)</div>
+<div class="line"><span class="lineno">  106</span>            advanceSpace(pending);</div>
+<div class="line"><span class="lineno">  107</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  108</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
+<div class="line"><span class="lineno">  109</span>    }</div>
+<div class="line"><span class="lineno">  110</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -291,13 +291,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   95</span>{</div>
-<div class="line"><span class="lineno">   96</span>    <span class="keyword">static_cast&lt;</span>BufferOutput&amp;<span class="keyword">&gt;</span>(*this) = <span class="keyword">static_cast&lt;</span>BufferOutput&amp;&amp;<span class="keyword">&gt;</span>(other);</div>
-<div class="line"><span class="lineno">   97</span>    std::swap(mSSL, other.mSSL);</div>
-<div class="line"><span class="lineno">   98</span>    std::swap(mOutBio, other.mOutBio);</div>
-<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">  100</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00092">92</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   93</span>{</div>
+<div class="line"><span class="lineno">   94</span>    swap(*<span class="keyword">this</span>, other);</div>
+<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">   96</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -316,26 +314,25 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  145</span>{</div>
-<div class="line"><span class="lineno">  146</span>    <span class="keywordtype">int</span> r = SSL_shutdown(mSSL);</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">if</span> (r == 1)</div>
-<div class="line"><span class="lineno">  149</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  150</span> </div>
-<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">if</span> (r == 0) {</div>
-<div class="line"><span class="lineno">  152</span>        sendData();</div>
-<div class="line"><span class="lineno">  153</span>        flush();</div>
-<div class="line"><span class="lineno">  154</span>        <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">  155</span>            wantRecvData();</div>
-<div class="line"><span class="lineno">  156</span>        } <span class="keywordflow">catch</span> (Input::Exception&amp; exc) {</div>
-<div class="line"><span class="lineno">  157</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  158</span>        }</div>
-<div class="line"><span class="lineno">  159</span>        <span class="keywordflow">return</span> shutdown();</div>
-<div class="line"><span class="lineno">  160</span>    }</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
-<div class="line"><span class="lineno">  163</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  141</span>{</div>
+<div class="line"><span class="lineno">  142</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordtype">int</span> r = SSL_shutdown(mSSL);</div>
+<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">if</span> (r == 1)</div>
+<div class="line"><span class="lineno">  145</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  146</span> </div>
+<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">if</span> (r == 0) {</div>
+<div class="line"><span class="lineno">  148</span>            sendData();</div>
+<div class="line"><span class="lineno">  149</span>            TransformOutput::flush();</div>
+<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">  151</span>                wantRecvData();</div>
+<div class="line"><span class="lineno">  152</span>            } <span class="keywordflow">catch</span> (Input::Exception&amp; exc) {</div>
+<div class="line"><span class="lineno">  153</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  154</span>            }</div>
+<div class="line"><span class="lineno">  155</span>        } <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  156</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
+<div class="line"><span class="lineno">  157</span>    }</div>
+<div class="line"><span class="lineno">  158</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -374,12 +371,12 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00086">86</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   87</span>{</div>
-<div class="line"><span class="lineno">   88</span>    swap(<span class="keyword">static_cast&lt;</span>BufferOutput&amp;<span class="keyword">&gt;</span>(a), <span class="keyword">static_cast&lt;</span>BufferOutput&amp;<span class="keyword">&gt;</span>(b));</div>
-<div class="line"><span class="lineno">   89</span>    std::swap(a.mSSL, b.mSSL);</div>
-<div class="line"><span class="lineno">   90</span>    std::swap(a.mOutBio, b.mOutBio);</div>
-<div class="line"><span class="lineno">   91</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00084">84</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   85</span>{</div>
+<div class="line"><span class="lineno">   86</span>    swap(<span class="keyword">static_cast&lt;</span>TransformOutput&amp;<span class="keyword">&gt;</span>(a), <span class="keyword">static_cast&lt;</span>TransformOutput&amp;<span class="keyword">&gt;</span>(b));</div>
+<div class="line"><span class="lineno">   87</span>    std::swap(a.mSSL, b.mSSL);</div>
+<div class="line"><span class="lineno">   88</span>    std::swap(a.mOutBio, b.mOutBio);</div>
+<div class="line"><span class="lineno">   89</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -104,7 +104,7 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >PKCS8 private key. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d8/dd7/Key_8hpp_source.html#l00125">125</a> of file <a class="el" href="../../d8/dd7/Key_8hpp_source.html">Key.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d8/dd7/Key_8hpp_source.html#l00149">149</a> of file <a class="el" href="../../d8/dd7/Key_8hpp_source.html">Key.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aff5814caf29ab63110f664ee18b29e3b" name="aff5814caf29ab63110f664ee18b29e3b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff5814caf29ab63110f664ee18b29e3b">&#9670;&nbsp;</a></span>PrivateKey() <span class="overload">[1/2]</span></h2>
@@ -162,17 +162,16 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00149">149</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  150</span>{</div>
-<div class="line"><span class="lineno">  151</span>    std::unique_ptr&lt;DerInfo, CleanDeleter&gt; i(<span class="keyword">new</span> DerInfo(input), <span class="keyword">sizeof</span>(DerInfo));</div>
-<div class="line"><span class="lineno">  152</span> </div>
-<div class="line"><span class="lineno">  153</span>    <span class="keywordtype">long</span> privKeyLength = i-&gt;tlLength + i-&gt;vLength;</div>
-<div class="line"><span class="lineno">  154</span>    SecureMemory privKey(<span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>[privKeyLength], privKeyLength);</div>
-<div class="line"><span class="lineno">  155</span>    std::memcpy(privKey.get(), i-&gt;tl, i-&gt;tlLength);</div>
-<div class="line"><span class="lineno">  156</span>    input.read(privKey.get() + i-&gt;tlLength, i-&gt;vLength);</div>
-<div class="line"><span class="lineno">  157</span> </div>
-<div class="line"><span class="lineno">  158</span>    <span class="keyword">auto</span> <span class="keyword">const</span>* in = privKey.get();</div>
-<div class="line"><span class="lineno">  159</span>    mVal.reset(d2i_PKCS8_PRIV_KEY_INFO(<span class="keyword">nullptr</span>, &amp;in, privKeyLength));</div>
-<div class="line"><span class="lineno">  160</span>    ExpectInitialized(mVal);</div>
-<div class="line"><span class="lineno">  161</span>}</div>
+<div class="line"><span class="lineno">  151</span>    <a class="code hl_class" href="../../dd/d7e/classSecret.html">Secret&lt;DerInfo&gt;</a> i{input};</div>
+<div class="line"><span class="lineno">  152</span>    <a class="code hl_class" href="../../dd/d7e/classSecret.html">Secret&lt;&gt;</a> privKey(i-&gt;tlLength + i-&gt;vLength);</div>
+<div class="line"><span class="lineno">  153</span>    std::memcpy(privKey.get(), i-&gt;tl, i-&gt;tlLength);</div>
+<div class="line"><span class="lineno">  154</span>    input.read(privKey.get() + i-&gt;tlLength, i-&gt;vLength);</div>
+<div class="line"><span class="lineno">  155</span> </div>
+<div class="line"><span class="lineno">  156</span>    <span class="keyword">auto</span> <span class="keyword">const</span>* in = privKey.get();</div>
+<div class="line"><span class="lineno">  157</span>    mVal.reset(d2i_PKCS8_PRIV_KEY_INFO(<span class="keyword">nullptr</span>, &amp;in, <span class="keyword">static_cast&lt;</span><span class="keywordtype">long</span><span class="keyword">&gt;</span>(privKey.size())));</div>
+<div class="line"><span class="lineno">  158</span>    ExpectInitialized(mVal);</div>
+<div class="line"><span class="lineno">  159</span>}</div>
+<div class="ttc" id="aclassSecret_html"><div class="ttname"><a href="../../dd/d7e/classSecret.html">Secret</a></div><div class="ttdoc">Secure memory buffer.</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -200,8 +199,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00163">163</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  164</span>{ <span class="keywordflow">return</span> mVal.get(); }</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00161">161</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  162</span>{ <span class="keywordflow">return</span> mVal.get(); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -240,17 +239,17 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00166">166</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  168</span>{</div>
-<div class="line"><span class="lineno">  169</span>    <span class="keywordtype">int</span> length = i2d_PKCS8_PRIV_KEY_INFO(<span class="keyword">static_cast&lt;</span>PKCS8_PRIV_KEY_INFO*<span class="keyword">&gt;</span>(privateKey), <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  170</span>    ExpectPos(length);</div>
-<div class="line"><span class="lineno">  171</span>    SecureMemory privKey(<span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>[length], length);</div>
-<div class="line"><span class="lineno">  172</span> </div>
-<div class="line"><span class="lineno">  173</span>    <span class="keyword">auto</span>* p = privKey.get();</div>
-<div class="line"><span class="lineno">  174</span>    length = i2d_PKCS8_PRIV_KEY_INFO(<span class="keyword">static_cast&lt;</span>PKCS8_PRIV_KEY_INFO*<span class="keyword">&gt;</span>(privateKey), &amp;p);</div>
-<div class="line"><span class="lineno">  175</span>    ExpectPos(length);</div>
-<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">return</span> output.write(privKey.get(), length);</div>
-<div class="line"><span class="lineno">  177</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../d1/dab/Key_8cpp_source.html#l00164">164</a> of file <a class="el" href="../../d1/dab/Key_8cpp_source.html">Key.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  166</span>{</div>
+<div class="line"><span class="lineno">  167</span>    <span class="keywordtype">int</span> length = i2d_PKCS8_PRIV_KEY_INFO(<span class="keyword">static_cast&lt;</span>PKCS8_PRIV_KEY_INFO*<span class="keyword">&gt;</span>(privateKey), <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  168</span>    ExpectPos(length);</div>
+<div class="line"><span class="lineno">  169</span>    <a class="code hl_class" href="../../dd/d7e/classSecret.html">Secret&lt;&gt;</a> privKey(length);</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>    <span class="keyword">auto</span>* p = privKey.get();</div>
+<div class="line"><span class="lineno">  172</span>    length = i2d_PKCS8_PRIV_KEY_INFO(<span class="keyword">static_cast&lt;</span>PKCS8_PRIV_KEY_INFO*<span class="keyword">&gt;</span>(privateKey), &amp;p);</div>
+<div class="line"><span class="lineno">  173</span>    ExpectPos(length);</div>
+<div class="line"><span class="lineno">  174</span>    <span class="keywordflow">return</span> output.write(privKey.get(), length);</div>
+<div class="line"><span class="lineno">  175</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

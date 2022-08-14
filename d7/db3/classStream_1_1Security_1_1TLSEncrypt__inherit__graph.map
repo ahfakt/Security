@@ -1,7 +1,6 @@
 <map id="Stream::Security::TLSEncrypt" name="Stream::Security::TLSEncrypt">
-<area shape="rect" id="node1" title="Stream::Output TLS encryptor." alt="" coords="5,381,435,532"/>
-<area shape="rect" id="node5" href="$d3/dd3/classStream_1_1Security_1_1TLS.html" title="Stream::Input / Stream::Output TLS decryptor and encryptor." alt="" coords="85,580,355,701"/>
-<area shape="rect" id="node2" href="/home/null/doc/.doxy/Stream.xml$da/d65/classStream_1_1BufferOutput" title=" " alt="" coords="147,256,293,333"/>
-<area shape="rect" id="node3" href="/home/null/doc/.doxy/Stream.xml$d0/d57/classStream_1_1OutputFilter" title=" " alt="" coords="150,131,290,208"/>
-<area shape="rect" id="node4" href="/home/null/doc/.doxy/Stream.xml$df/dc2/classStream_1_1Output" title=" " alt="" coords="165,5,275,83"/>
+<area shape="rect" id="node1" title="Stream::Output TLS encryptor." alt="" coords="5,256,435,407"/>
+<area shape="rect" id="node4" href="$d3/dd3/classStream_1_1Security_1_1TLS.html" title="Stream::Input / Stream::Output TLS decryptor and encryptor." alt="" coords="85,455,355,576"/>
+<area shape="rect" id="node2" href="/home/null/doc/.doxy/Stream.xml$d1/dff/classStream_1_1TransformOutput" title=" " alt="" coords="135,131,305,208"/>
+<area shape="rect" id="node3" href="/home/null/doc/.doxy/Stream.xml$df/dc2/classStream_1_1Output" title=" " alt="" coords="165,5,275,83"/>
 </map>

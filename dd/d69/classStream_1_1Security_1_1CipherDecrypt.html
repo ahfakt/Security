@@ -86,11 +86,10 @@ Inheritance diagram for Stream::Security::CipherDecrypt:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../db/df3/classStream_1_1Security_1_1CipherDecrypt__inherit__graph.png" border="0" usemap="#aStream_1_1Security_1_1CipherDecrypt_inherit__map" alt="Inheritance graph"/></div>
 <map name="aStream_1_1Security_1_1CipherDecrypt_inherit__map" id="aStream_1_1Security_1_1CipherDecrypt_inherit__map">
-<area shape="rect" title="Stream::Input Cipher decryptor." alt="" coords="5,381,852,532"/>
-<area shape="rect" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html" title="Stream::Input / Stream::Output Cipher decryptor and encryptor." alt="" coords="27,580,830,907"/>
-<area shape="rect" target="_parent" href="../../../Stream/d2/dc2/classStream_1_1BufferInput" title=" " alt="" coords="361,256,496,333"/>
-<area shape="rect" target="_parent" href="../../../Stream/d3/d2f/classStream_1_1InputFilter" title=" " alt="" coords="363,131,494,208"/>
-<area shape="rect" target="_parent" href="../../../Stream/d7/d83/classStream_1_1Input" title=" " alt="" coords="378,5,479,83"/>
+<area shape="rect" title="Stream::Input Cipher decryptor." alt="" coords="79,256,617,392"/>
+<area shape="rect" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html" title="Stream::Input / Stream::Output Cipher decryptor and encryptor." alt="" coords="5,440,691,547"/>
+<area shape="rect" target="_parent" href="../../../Stream/db/d03/classStream_1_1TransformInput" title=" " alt="" coords="268,131,428,208"/>
+<area shape="rect" target="_parent" href="../../../Stream/d7/d83/classStream_1_1Input" title=" " alt="" coords="297,5,399,83"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -101,10 +100,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a03d9468b51e57f4eb00ee68624d3ff86"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html#a03d9468b51e57f4eb00ee68624d3ff86">CipherDecrypt</a> (EVP_CIPHER const *cipher, SecureMemory const &amp;key, std::byte const *iv, std::size_t buffInitialSize=0)</td></tr>
-<tr class="separator:a03d9468b51e57f4eb00ee68624d3ff86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a292d23e32681af18dd6d8cd82e52ba10"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html#a292d23e32681af18dd6d8cd82e52ba10">CipherDecrypt</a> (EVP_CIPHER const *cipher, SecureMemory const &amp;key, std::byte const *iv, void const *sourceBuff, std::size_t sourceSize)</td></tr>
-<tr class="separator:a292d23e32681af18dd6d8cd82e52ba10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77283c851e3e25b0c22d167fa761f2bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html#a77283c851e3e25b0c22d167fa761f2bb">CipherDecrypt</a> (EVP_CIPHER const *cipher, <a class="el" href="../../d3/d28/structStream_1_1Security_1_1SecretImpl.html">Secret</a>&lt;&gt; const &amp;key, std::byte const *iv)</td></tr>
+<tr class="separator:a77283c851e3e25b0c22d167fa761f2bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99f67f37930b08c1aaf01545a52344f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html#a99f67f37930b08c1aaf01545a52344f0">CipherDecrypt</a> (<a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html">CipherDecrypt</a> &amp;&amp;other) noexcept</td></tr>
 <tr class="separator:a99f67f37930b08c1aaf01545a52344f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62d4ec3fff27c31ab2d6a90560758b41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html">CipherDecrypt</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html#a62d4ec3fff27c31ab2d6a90560758b41">operator=</a> (<a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html">CipherDecrypt</a> &amp;&amp;other) noexcept</td></tr>
@@ -124,8 +121,8 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="../../d0/dbd/Cipher_8hpp_source.html#l00013">13</a> of file <a class="el" href="../../d0/dbd/Cipher_8hpp_source.html">Cipher.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a03d9468b51e57f4eb00ee68624d3ff86" name="a03d9468b51e57f4eb00ee68624d3ff86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03d9468b51e57f4eb00ee68624d3ff86">&#9670;&nbsp;</a></span>CipherDecrypt() <span class="overload">[1/3]</span></h2>
+<a id="a77283c851e3e25b0c22d167fa761f2bb" name="a77283c851e3e25b0c22d167fa761f2bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77283c851e3e25b0c22d167fa761f2bb">&#9670;&nbsp;</a></span>CipherDecrypt() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,20 +136,14 @@ Friends</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d3/d28/structStream_1_1Security_1_1SecretImpl.html">Secret</a>&lt;&gt; const &amp;&#160;</td>
           <td class="paramname"><em>key</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>buffInitialSize</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>iv</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -162,9 +153,8 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00011">11</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   12</span>        : BufferInput(buffInitialSize)</div>
-<div class="line"><span class="lineno">   13</span>        , mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00012">12</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   13</span>        : mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)</div>
 <div class="line"><span class="lineno">   14</span>{</div>
 <div class="line"><span class="lineno">   15</span>    ExpectAllocated(mCtx);</div>
 <div class="line"><span class="lineno">   16</span>    init(cipher, key, iv);</div>
@@ -172,62 +162,8 @@ Friends</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a292d23e32681af18dd6d8cd82e52ba10" name="a292d23e32681af18dd6d8cd82e52ba10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a292d23e32681af18dd6d8cd82e52ba10">&#9670;&nbsp;</a></span>CipherDecrypt() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::CipherDecrypt::CipherDecrypt </td>
-          <td>(</td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>cipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>sourceBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sourceSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00019">19</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>        : BufferInput(sourceBuff, sourceSize)</div>
-<div class="line"><span class="lineno">   21</span>        , mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)</div>
-<div class="line"><span class="lineno">   22</span>{</div>
-<div class="line"><span class="lineno">   23</span>    ExpectAllocated(mCtx);</div>
-<div class="line"><span class="lineno">   24</span>    init(cipher, key, iv);</div>
-<div class="line"><span class="lineno">   25</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="a99f67f37930b08c1aaf01545a52344f0" name="a99f67f37930b08c1aaf01545a52344f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99f67f37930b08c1aaf01545a52344f0">&#9670;&nbsp;</a></span>CipherDecrypt() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a99f67f37930b08c1aaf01545a52344f0">&#9670;&nbsp;</a></span>CipherDecrypt() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,8 +186,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00027">27</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>{ swap(*<span class="keyword">this</span>, other); }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00019">19</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>{ swap(*<span class="keyword">this</span>, other); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -280,16 +216,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00042">42</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   43</span>{</div>
-<div class="line"><span class="lineno">   44</span>    <span class="keyword">static_cast&lt;</span>BufferInput&amp;<span class="keyword">&gt;</span>(*this) = <span class="keyword">static_cast&lt;</span>BufferInput&amp;&amp;<span class="keyword">&gt;</span>(other);</div>
-<div class="line"><span class="lineno">   45</span>    std::swap(mCtx, other.mCtx);</div>
-<div class="line"><span class="lineno">   46</span>    std::swap(mTempBeg, other.mTempBeg);</div>
-<div class="line"><span class="lineno">   47</span>    std::swap(mTempCurr, other.mTempCurr);</div>
-<div class="line"><span class="lineno">   48</span>    std::swap(mTempEnd, other.mTempEnd);</div>
-<div class="line"><span class="lineno">   49</span>    std::swap(mFinalizeWhenNoData, other.mFinalizeWhenNoData);</div>
-<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">   51</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00034">34</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>{</div>
+<div class="line"><span class="lineno">   36</span>    swap(*<span class="keyword">this</span>, other);</div>
+<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">   38</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -308,17 +239,17 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  119</span>{</div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
-<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
-<div class="line"><span class="lineno">  122</span>            <span class="keywordtype">int</span> outl;</div>
-<div class="line"><span class="lineno">  123</span>            Expect1(EVP_DecryptFinal_ex(mCtx.get(), mTempBeg.get(), &amp;outl));</div>
-<div class="line"><span class="lineno">  124</span>            mTempEnd = (mTempCurr = mTempBeg.get()) + outl;</div>
-<div class="line"><span class="lineno">  125</span>        }</div>
-<div class="line"><span class="lineno">  126</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
-<div class="line"><span class="lineno">  127</span>    }</div>
-<div class="line"><span class="lineno">  128</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00105">105</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
+<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
+<div class="line"><span class="lineno">  109</span>            <span class="keywordtype">int</span> outl;</div>
+<div class="line"><span class="lineno">  110</span>            Expect1(EVP_DecryptFinal_ex(mCtx.get(), mTempBeg.get(), &amp;outl));</div>
+<div class="line"><span class="lineno">  111</span>            mTempEnd = (mTempCurr = mTempBeg.get()) + outl;</div>
+<div class="line"><span class="lineno">  112</span>        }</div>
+<div class="line"><span class="lineno">  113</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
+<div class="line"><span class="lineno">  114</span>    }</div>
+<div class="line"><span class="lineno">  115</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -338,8 +269,8 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  132</span>{ mFinalizeWhenNoData = on; }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>{ mFinalizeWhenNoData = on; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -378,15 +309,15 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00031">31</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>{</div>
-<div class="line"><span class="lineno">   33</span>    swap(<span class="keyword">static_cast&lt;</span>BufferInput&amp;<span class="keyword">&gt;</span>(a), <span class="keyword">static_cast&lt;</span>BufferInput&amp;<span class="keyword">&gt;</span>(b));</div>
-<div class="line"><span class="lineno">   34</span>    std::swap(a.mCtx, b.mCtx);</div>
-<div class="line"><span class="lineno">   35</span>    std::swap(a.mTempBeg, b.mTempBeg);</div>
-<div class="line"><span class="lineno">   36</span>    std::swap(a.mTempCurr, b.mTempCurr);</div>
-<div class="line"><span class="lineno">   37</span>    std::swap(a.mTempEnd, b.mTempEnd);</div>
-<div class="line"><span class="lineno">   38</span>    std::swap(a.mFinalizeWhenNoData, b.mFinalizeWhenNoData);</div>
-<div class="line"><span class="lineno">   39</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00023">23</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>{</div>
+<div class="line"><span class="lineno">   25</span>    swap(<span class="keyword">static_cast&lt;</span>TransformInput&amp;<span class="keyword">&gt;</span>(a), <span class="keyword">static_cast&lt;</span>TransformInput&amp;<span class="keyword">&gt;</span>(b));</div>
+<div class="line"><span class="lineno">   26</span>    std::swap(a.mCtx, b.mCtx);</div>
+<div class="line"><span class="lineno">   27</span>    std::swap(a.mTempBeg, b.mTempBeg);</div>
+<div class="line"><span class="lineno">   28</span>    std::swap(a.mTempCurr, b.mTempCurr);</div>
+<div class="line"><span class="lineno">   29</span>    std::swap(a.mTempEnd, b.mTempEnd);</div>
+<div class="line"><span class="lineno">   30</span>    std::swap(a.mFinalizeWhenNoData, b.mFinalizeWhenNoData);</div>
+<div class="line"><span class="lineno">   31</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

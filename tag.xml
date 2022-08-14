@@ -15,18 +15,14 @@
   <compound kind="class">
     <name>Stream::Security::CipherDecrypt</name>
     <filename>dd/d69/classStream_1_1Security_1_1CipherDecrypt.html</filename>
-    <base>Stream::BufferInput</base>
+    <base>Stream::TransformInput</base>
     <class kind="struct">Stream::Security::CipherDecrypt::Exception</class>
   </compound>
   <compound kind="class">
     <name>Stream::Security::CipherEncrypt</name>
     <filename>db/dcd/classStream_1_1Security_1_1CipherEncrypt.html</filename>
-    <base>Stream::BufferOutput</base>
+    <base>Stream::TransformOutput</base>
     <class kind="struct">Stream::Security::CipherEncrypt::Exception</class>
-  </compound>
-  <compound kind="class">
-    <name>Stream::Security::CleanDeleter</name>
-    <filename>df/dd2/classStream_1_1Security_1_1CleanDeleter.html</filename>
   </compound>
   <compound kind="class">
     <name>Stream::Security::TLS::Context</name>
@@ -47,13 +43,13 @@
   <compound kind="class">
     <name>Stream::Security::DigestInput</name>
     <filename>de/dbf/classStream_1_1Security_1_1DigestInput.html</filename>
-    <base>Stream::InputFilter</base>
+    <base>Stream::TransparentInput</base>
     <class kind="struct">Stream::Security::DigestInput::Exception</class>
   </compound>
   <compound kind="class">
     <name>Stream::Security::DigestOutput</name>
     <filename>d8/d44/classStream_1_1Security_1_1DigestOutput.html</filename>
-    <base>Stream::OutputFilter</base>
+    <base>Stream::TransparentOutput</base>
     <class kind="struct">Stream::Security::DigestOutput::Exception</class>
   </compound>
   <compound kind="struct">
@@ -227,6 +223,19 @@
     <class kind="struct">Stream::Security::PublicKey::Exception</class>
   </compound>
   <compound kind="class">
+    <name>Secret</name>
+    <filename>dd/d7e/classSecret.html</filename>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::SecretImpl</name>
+    <filename>d3/d28/structStream_1_1Security_1_1SecretImpl.html</filename>
+    <templarg>typename T</templarg>
+  </compound>
+  <compound kind="struct">
+    <name>Stream::Security::SecretImpl&lt; unsigned char[]&gt;</name>
+    <filename>db/d3d/structStream_1_1Security_1_1SecretImpl_3_01unsigned_01char_0f_0e_4.html</filename>
+  </compound>
+  <compound kind="class">
     <name>Stream::Security::Signature</name>
     <filename>dc/de4/classStream_1_1Security_1_1Signature.html</filename>
     <base>Stream::Security::SignatureInput</base>
@@ -236,13 +245,13 @@
   <compound kind="class">
     <name>Stream::Security::SignatureInput</name>
     <filename>dd/d4b/classStream_1_1Security_1_1SignatureInput.html</filename>
-    <base>Stream::InputFilter</base>
+    <base>Stream::TransparentInput</base>
     <class kind="struct">Stream::Security::SignatureInput::Exception</class>
   </compound>
   <compound kind="class">
     <name>Stream::Security::SignatureOutput</name>
     <filename>d2/d61/classStream_1_1Security_1_1SignatureOutput.html</filename>
-    <base>Stream::OutputFilter</base>
+    <base>Stream::TransparentOutput</base>
     <class kind="struct">Stream::Security::SignatureOutput::Exception</class>
   </compound>
   <compound kind="class">
@@ -256,17 +265,13 @@
   <compound kind="class">
     <name>Stream::Security::TLSDecrypt</name>
     <filename>d0/d3a/classStream_1_1Security_1_1TLSDecrypt.html</filename>
-    <base>Stream::BufferInput</base>
+    <base>Stream::TransformInput</base>
     <class kind="struct">Stream::Security::TLSDecrypt::Exception</class>
   </compound>
   <compound kind="class">
     <name>Stream::Security::TLSEncrypt</name>
     <filename>dd/d0b/classStream_1_1Security_1_1TLSEncrypt.html</filename>
-    <base>Stream::BufferOutput</base>
+    <base>Stream::TransformOutput</base>
     <class kind="struct">Stream::Security::TLSEncrypt::Exception</class>
-  </compound>
-  <compound kind="class">
-    <name>true_type</name>
-    <filename>d6/ddf/classtrue__type.html</filename>
   </compound>
 </tagfile>

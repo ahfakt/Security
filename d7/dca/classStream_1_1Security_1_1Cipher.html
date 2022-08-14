@@ -85,15 +85,13 @@ Inheritance diagram for Stream::Security::Cipher:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../df/d5c/classStream_1_1Security_1_1Cipher__inherit__graph.png" border="0" usemap="#aStream_1_1Security_1_1Cipher_inherit__map" alt="Inheritance graph"/></div>
 <map name="aStream_1_1Security_1_1Cipher_inherit__map" id="aStream_1_1Security_1_1Cipher_inherit__map">
-<area shape="rect" title="Stream::Input / Stream::Output Cipher decryptor and encryptor." alt="" coords="446,580,1249,907"/>
-<area shape="rect" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html" title="Stream::Input Cipher decryptor." alt="" coords="5,381,852,532"/>
-<area shape="rect" target="_parent" href="../../../Stream/d2/dc2/classStream_1_1BufferInput" title=" " alt="" coords="361,256,496,333"/>
-<area shape="rect" target="_parent" href="../../../Stream/d3/d2f/classStream_1_1InputFilter" title=" " alt="" coords="363,131,494,208"/>
-<area shape="rect" target="_parent" href="../../../Stream/d7/d83/classStream_1_1Input" title=" " alt="" coords="378,5,479,83"/>
-<area shape="rect" href="../../db/dcd/classStream_1_1Security_1_1CipherEncrypt.html" title="Stream::Output Cipher encryptor." alt="" coords="876,381,1656,532"/>
-<area shape="rect" target="_parent" href="../../../Stream/da/d65/classStream_1_1BufferOutput" title=" " alt="" coords="1193,256,1339,333"/>
-<area shape="rect" target="_parent" href="../../../Stream/d0/d57/classStream_1_1OutputFilter" title=" " alt="" coords="1196,131,1336,208"/>
-<area shape="rect" target="_parent" href="../../../Stream/df/dc2/classStream_1_1Output" title=" " alt="" coords="1211,5,1321,83"/>
+<area shape="rect" title="Stream::Input / Stream::Output Cipher decryptor and encryptor." alt="" coords="211,440,897,547"/>
+<area shape="rect" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html" title="Stream::Input Cipher decryptor." alt="" coords="5,256,543,392"/>
+<area shape="rect" target="_parent" href="../../../Stream/db/d03/classStream_1_1TransformInput" title=" " alt="" coords="194,131,354,208"/>
+<area shape="rect" target="_parent" href="../../../Stream/d7/d83/classStream_1_1Input" title=" " alt="" coords="223,5,325,83"/>
+<area shape="rect" href="../../db/dcd/classStream_1_1Security_1_1CipherEncrypt.html" title="Stream::Output Cipher encryptor." alt="" coords="567,256,1103,392"/>
+<area shape="rect" target="_parent" href="../../../Stream/d1/dff/classStream_1_1TransformOutput" title=" " alt="" coords="750,131,921,208"/>
+<area shape="rect" target="_parent" href="../../../Stream/df/dc2/classStream_1_1Output" title=" " alt="" coords="780,5,891,83"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -104,22 +102,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a41e8b92df8f2708c80834fe950cf6cbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#a41e8b92df8f2708c80834fe950cf6cbc">Cipher</a> (EVP_CIPHER const *decCipher, SecureMemory const &amp;decKey, std::byte const *decIv, EVP_CIPHER const *encCipher, SecureMemory const &amp;encKey, std::byte const *encIv, std::size_t decBuffInitialSize=0, std::size_t encBuffInitialSize=0)</td></tr>
-<tr class="separator:a41e8b92df8f2708c80834fe950cf6cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac323fbf1edf6f1d2ea18bb62ba58aea9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#ac323fbf1edf6f1d2ea18bb62ba58aea9">Cipher</a> (EVP_CIPHER const *decCipher, SecureMemory const &amp;decKey, std::byte const *decIv, EVP_CIPHER const *encCipher, SecureMemory const &amp;encKey, std::byte const *encIv, std::size_t decBuffInitialSize, void *sinkBuff, std::size_t sinkSize)</td></tr>
-<tr class="separator:ac323fbf1edf6f1d2ea18bb62ba58aea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62b001bd181b9c1341843d349fc46320"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#a62b001bd181b9c1341843d349fc46320">Cipher</a> (EVP_CIPHER const *decCipher, SecureMemory const &amp;decKey, std::byte const *decIv, EVP_CIPHER const *encCipher, SecureMemory const &amp;encKey, std::byte const *encIv, void const *sourceBuff, std::size_t sourceSize, std::size_t encBuffInitialSize=0)</td></tr>
-<tr class="separator:a62b001bd181b9c1341843d349fc46320"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c5c076b14a226c11c7eb46e2f0d03fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#a9c5c076b14a226c11c7eb46e2f0d03fe">Cipher</a> (EVP_CIPHER const *decCipher, SecureMemory const &amp;decKey, std::byte const *decIv, EVP_CIPHER const *encCipher, SecureMemory const &amp;encKey, std::byte const *encIv, void const *sourceBuff, std::size_t sourceSize, void *sinkBuff, std::size_t sinkSize)</td></tr>
-<tr class="separator:a9c5c076b14a226c11c7eb46e2f0d03fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacaf78de9cd784e9654e7011f6e3bd9d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#aacaf78de9cd784e9654e7011f6e3bd9d">Cipher</a> (EVP_CIPHER const *cipher, SecureMemory const &amp;key, std::byte const *iv, std::size_t decBuffInitialSize=0, std::size_t encBuffInitialSize=0)</td></tr>
-<tr class="separator:aacaf78de9cd784e9654e7011f6e3bd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec63af7aabfc5a6659aa63069886f8b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#aec63af7aabfc5a6659aa63069886f8b2">Cipher</a> (EVP_CIPHER const *cipher, SecureMemory const &amp;key, std::byte const *iv, std::size_t decBuffInitialSize, void *sinkBuff, std::size_t sinkSize)</td></tr>
-<tr class="separator:aec63af7aabfc5a6659aa63069886f8b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52061a91f96cedc0f33327c4cea3cb5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#a52061a91f96cedc0f33327c4cea3cb5c">Cipher</a> (EVP_CIPHER const *cipher, SecureMemory const &amp;key, std::byte const *iv, void const *sourceBuff, std::size_t sourceSize, std::size_t encBuffInitialSize=0)</td></tr>
-<tr class="separator:a52061a91f96cedc0f33327c4cea3cb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bce49841129376a9ddfe57193e8c641"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#a9bce49841129376a9ddfe57193e8c641">Cipher</a> (EVP_CIPHER const *cipher, SecureMemory const &amp;key, std::byte const *iv, void const *sourceBuff, std::size_t sourceSize, void *sinkBuff, std::size_t sinkSize)</td></tr>
-<tr class="separator:a9bce49841129376a9ddfe57193e8c641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bd6adb2060b9d6c80bb3bfd8e86c0d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#a5bd6adb2060b9d6c80bb3bfd8e86c0d1">Cipher</a> (EVP_CIPHER const *cipher, <a class="el" href="../../d3/d28/structStream_1_1Security_1_1SecretImpl.html">Secret</a>&lt;&gt; const &amp;key, std::byte const *iv)</td></tr>
+<tr class="separator:a5bd6adb2060b9d6c80bb3bfd8e86c0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35e1b0129c511396dff1d20a3770b427"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dca/classStream_1_1Security_1_1Cipher.html#a35e1b0129c511396dff1d20a3770b427">Cipher</a> (EVP_CIPHER const *decCipher, <a class="el" href="../../d3/d28/structStream_1_1Security_1_1SecretImpl.html">Secret</a>&lt;&gt; const &amp;decKey, std::byte const *decIv, EVP_CIPHER const *encCipher, <a class="el" href="../../d3/d28/structStream_1_1Security_1_1SecretImpl.html">Secret</a>&lt;&gt; const &amp;encKey, std::byte const *encIv)</td></tr>
+<tr class="separator:a35e1b0129c511396dff1d20a3770b427"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a5000f634c64c562191db397b1e1879"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html#a8a5000f634c64c562191db397b1e1879">finalizeDecryption</a> ()</td></tr>
 <tr class="separator:a8a5000f634c64c562191db397b1e1879"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe649a363aabb90f8c6a57680f241a91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d69/classStream_1_1Security_1_1CipherDecrypt.html#afe649a363aabb90f8c6a57680f241a91">finalizeDecryptionWhenNoData</a> (bool on=true)</td></tr>
@@ -130,10 +116,48 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="elRef" href="../../../Stream/d7/d83/classStream_1_1Input.html">Stream::Input</a> / <a class="elRef" href="../../../Stream/df/dc2/classStream_1_1Output.html">Stream::Output</a> Cipher decryptor and encryptor. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/dbd/Cipher_8hpp_source.html#l00089">89</a> of file <a class="el" href="../../d0/dbd/Cipher_8hpp_source.html">Cipher.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/dbd/Cipher_8hpp_source.html#l00085">85</a> of file <a class="el" href="../../d0/dbd/Cipher_8hpp_source.html">Cipher.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a41e8b92df8f2708c80834fe950cf6cbc" name="a41e8b92df8f2708c80834fe950cf6cbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41e8b92df8f2708c80834fe950cf6cbc">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[1/8]</span></h2>
+<a id="a5bd6adb2060b9d6c80bb3bfd8e86c0d1" name="a5bd6adb2060b9d6c80bb3bfd8e86c0d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bd6adb2060b9d6c80bb3bfd8e86c0d1">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Stream::Security::Cipher::Cipher </td>
+          <td>(</td>
+          <td class="paramtype">EVP_CIPHER const *&#160;</td>
+          <td class="paramname"><em>cipher</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d3/d28/structStream_1_1Security_1_1SecretImpl.html">Secret</a>&lt;&gt; const &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::byte const *&#160;</td>
+          <td class="paramname"><em>iv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00199">199</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  200</span>        : Cipher(cipher, key, iv, cipher, key, iv)</div>
+<div class="line"><span class="lineno">  201</span>{}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a35e1b0129c511396dff1d20a3770b427" name="a35e1b0129c511396dff1d20a3770b427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35e1b0129c511396dff1d20a3770b427">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -147,7 +171,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d3/d28/structStream_1_1Security_1_1SecretImpl.html">Secret</a>&lt;&gt; const &amp;&#160;</td>
           <td class="paramname"><em>decKey</em>, </td>
         </tr>
         <tr>
@@ -165,26 +189,14 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d3/d28/structStream_1_1Security_1_1SecretImpl.html">Secret</a>&lt;&gt; const &amp;&#160;</td>
           <td class="paramname"><em>encKey</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>encIv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>decBuffInitialSize</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>encBuffInitialSize</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>encIv</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -194,465 +206,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00223">223</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  226</span>        : CipherDecrypt(decCipher, decKey, decIv, decBuffInitialSize)</div>
-<div class="line"><span class="lineno">  227</span>        , CipherEncrypt(encCipher, encKey, encIv, encBuffInitialSize)</div>
-<div class="line"><span class="lineno">  228</span>{}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ac323fbf1edf6f1d2ea18bb62ba58aea9" name="ac323fbf1edf6f1d2ea18bb62ba58aea9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac323fbf1edf6f1d2ea18bb62ba58aea9">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[2/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::Cipher::Cipher </td>
-          <td>(</td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>decCipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>decKey</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>decIv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>encCipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>encKey</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>encIv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>decBuffInitialSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>sinkBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sinkSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00230">230</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  233</span>        : CipherDecrypt(decCipher, decKey, decIv, decBuffInitialSize)</div>
-<div class="line"><span class="lineno">  234</span>        , CipherEncrypt(encCipher, encKey, encIv, sinkBuff, sinkSize)</div>
-<div class="line"><span class="lineno">  235</span>{}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a62b001bd181b9c1341843d349fc46320" name="a62b001bd181b9c1341843d349fc46320"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62b001bd181b9c1341843d349fc46320">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[3/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::Cipher::Cipher </td>
-          <td>(</td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>decCipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>decKey</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>decIv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>encCipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>encKey</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>encIv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>sourceBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sourceSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>encBuffInitialSize</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00237">237</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  240</span>        : CipherDecrypt(decCipher, decKey, decIv, sourceBuff, sourceSize)</div>
-<div class="line"><span class="lineno">  241</span>        , CipherEncrypt(encCipher, encKey, encIv, encBuffInitialSize)</div>
-<div class="line"><span class="lineno">  242</span>{}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a9c5c076b14a226c11c7eb46e2f0d03fe" name="a9c5c076b14a226c11c7eb46e2f0d03fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c5c076b14a226c11c7eb46e2f0d03fe">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[4/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::Cipher::Cipher </td>
-          <td>(</td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>decCipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>decKey</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>decIv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>encCipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>encKey</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>encIv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>sourceBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sourceSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>sinkBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sinkSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00244">244</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  247</span>        : CipherDecrypt(decCipher, decKey, decIv, sourceBuff, sourceSize)</div>
-<div class="line"><span class="lineno">  248</span>        , CipherEncrypt(encCipher, encKey, encIv, sinkBuff, sinkSize)</div>
-<div class="line"><span class="lineno">  249</span>{}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="aacaf78de9cd784e9654e7011f6e3bd9d" name="aacaf78de9cd784e9654e7011f6e3bd9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacaf78de9cd784e9654e7011f6e3bd9d">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[5/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::Cipher::Cipher </td>
-          <td>(</td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>cipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>decBuffInitialSize</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>encBuffInitialSize</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00251">251</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  253</span>        : Cipher(cipher, key, iv, cipher, key, iv, decBuffInitialSize, encBuffInitialSize)</div>
-<div class="line"><span class="lineno">  254</span>{}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="aec63af7aabfc5a6659aa63069886f8b2" name="aec63af7aabfc5a6659aa63069886f8b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec63af7aabfc5a6659aa63069886f8b2">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[6/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::Cipher::Cipher </td>
-          <td>(</td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>cipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>decBuffInitialSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>sinkBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sinkSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00256">256</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  258</span>        : Cipher(cipher, key, iv, cipher, key, iv, decBuffInitialSize, sinkBuff, sinkSize)</div>
-<div class="line"><span class="lineno">  259</span>{}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a52061a91f96cedc0f33327c4cea3cb5c" name="a52061a91f96cedc0f33327c4cea3cb5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52061a91f96cedc0f33327c4cea3cb5c">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[7/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::Cipher::Cipher </td>
-          <td>(</td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>cipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>sourceBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sourceSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>encBuffInitialSize</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  263</span>        : Cipher(cipher, key, iv, cipher, key, iv, sourceBuff, sourceSize, encBuffInitialSize)</div>
-<div class="line"><span class="lineno">  264</span>{}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a9bce49841129376a9ddfe57193e8c641" name="a9bce49841129376a9ddfe57193e8c641"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bce49841129376a9ddfe57193e8c641">&#9670;&nbsp;</a></span>Cipher() <span class="overload">[8/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Stream::Security::Cipher::Cipher </td>
-          <td>(</td>
-          <td class="paramtype">EVP_CIPHER const *&#160;</td>
-          <td class="paramname"><em>cipher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SecureMemory const &amp;&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::byte const *&#160;</td>
-          <td class="paramname"><em>iv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>sourceBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sourceSize</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>sinkBuff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>sinkSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00266">266</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  268</span>        : Cipher(cipher, key, iv, cipher, key, iv, sourceBuff, sourceSize, sinkBuff, sinkSize)</div>
-<div class="line"><span class="lineno">  269</span>{}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00203">203</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  205</span>        : CipherDecrypt(decCipher, decKey, decIv)</div>
+<div class="line"><span class="lineno">  206</span>        , CipherEncrypt(encCipher, encKey, encIv)</div>
+<div class="line"><span class="lineno">  207</span>{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -680,17 +237,17 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  119</span>{</div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
-<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
-<div class="line"><span class="lineno">  122</span>            <span class="keywordtype">int</span> outl;</div>
-<div class="line"><span class="lineno">  123</span>            Expect1(EVP_DecryptFinal_ex(mCtx.get(), mTempBeg.get(), &amp;outl));</div>
-<div class="line"><span class="lineno">  124</span>            mTempEnd = (mTempCurr = mTempBeg.get()) + outl;</div>
-<div class="line"><span class="lineno">  125</span>        }</div>
-<div class="line"><span class="lineno">  126</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
-<div class="line"><span class="lineno">  127</span>    }</div>
-<div class="line"><span class="lineno">  128</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00105">105</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
+<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
+<div class="line"><span class="lineno">  109</span>            <span class="keywordtype">int</span> outl;</div>
+<div class="line"><span class="lineno">  110</span>            Expect1(EVP_DecryptFinal_ex(mCtx.get(), mTempBeg.get(), &amp;outl));</div>
+<div class="line"><span class="lineno">  111</span>            mTempEnd = (mTempCurr = mTempBeg.get()) + outl;</div>
+<div class="line"><span class="lineno">  112</span>        }</div>
+<div class="line"><span class="lineno">  113</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
+<div class="line"><span class="lineno">  114</span>    }</div>
+<div class="line"><span class="lineno">  115</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -718,8 +275,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  132</span>{ mFinalizeWhenNoData = on; }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>{ mFinalizeWhenNoData = on; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -746,19 +303,19 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00200">200</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  201</span>{</div>
-<div class="line"><span class="lineno">  202</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
-<div class="line"><span class="lineno">  203</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
-<div class="line"><span class="lineno">  204</span>            provideSpace(EVP_CIPHER_CTX_block_size(mCtx.get()));</div>
-<div class="line"><span class="lineno">  205</span>            <span class="keywordtype">int</span> outl;</div>
-<div class="line"><span class="lineno">  206</span>            Expect1(EVP_EncryptFinal_ex(mCtx.get(), <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(mPut), &amp;outl));</div>
-<div class="line"><span class="lineno">  207</span>            mPut += outl;</div>
-<div class="line"><span class="lineno">  208</span>            mExtSize = 0;</div>
-<div class="line"><span class="lineno">  209</span>        }</div>
-<div class="line"><span class="lineno">  210</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
-<div class="line"><span class="lineno">  211</span>    }</div>
-<div class="line"><span class="lineno">  212</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00176">176</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  177</span>{</div>
+<div class="line"><span class="lineno">  178</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
+<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
+<div class="line"><span class="lineno">  180</span>            provideSpace(EVP_CIPHER_CTX_block_size(mCtx.get()));</div>
+<div class="line"><span class="lineno">  181</span>            <span class="keywordtype">int</span> outl;</div>
+<div class="line"><span class="lineno">  182</span>            Expect1(EVP_EncryptFinal_ex(mCtx.get(), <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(getSpace()), &amp;outl));</div>
+<div class="line"><span class="lineno">  183</span>            advanceSpace(outl);</div>
+<div class="line"><span class="lineno">  184</span>            mExtSize = 0;</div>
+<div class="line"><span class="lineno">  185</span>        }</div>
+<div class="line"><span class="lineno">  186</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
+<div class="line"><span class="lineno">  187</span>    }</div>
+<div class="line"><span class="lineno">  188</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

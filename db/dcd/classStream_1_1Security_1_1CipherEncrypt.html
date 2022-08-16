@@ -151,12 +151,12 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00121">121</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  122</span>        : mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)</div>
-<div class="line"><span class="lineno">  123</span>{</div>
-<div class="line"><span class="lineno">  124</span>    ExpectAllocated(mCtx);</div>
-<div class="line"><span class="lineno">  125</span>    init(cipher, key, iv);</div>
-<div class="line"><span class="lineno">  126</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  121</span>        : mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)</div>
+<div class="line"><span class="lineno">  122</span>{</div>
+<div class="line"><span class="lineno">  123</span>    ExpectAllocated(mCtx);</div>
+<div class="line"><span class="lineno">  124</span>    init(cipher, key, iv);</div>
+<div class="line"><span class="lineno">  125</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -184,8 +184,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00128">128</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  129</span>{ swap(*<span class="keyword">this</span>, other); }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00127">127</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  128</span>{ swap(*<span class="keyword">this</span>, other); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -204,14 +204,14 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00190">190</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  191</span>{</div>
-<div class="line"><span class="lineno">  192</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">  193</span>        finalizeEncryption();</div>
-<div class="line"><span class="lineno">  194</span>    } <span class="keywordflow">catch</span> (Output::Exception&amp; exc) {</div>
-<div class="line"><span class="lineno">  195</span>        ::write(STDERR_FILENO, exc.what(), std::strlen(exc.what()));</div>
-<div class="line"><span class="lineno">  196</span>    }</div>
-<div class="line"><span class="lineno">  197</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00189">189</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  190</span>{</div>
+<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">  192</span>        finalizeEncryption();</div>
+<div class="line"><span class="lineno">  193</span>    } <span class="keywordflow">catch</span> (Output::Exception&amp; exc) {</div>
+<div class="line"><span class="lineno">  194</span>        ::write(STDERR_FILENO, exc.what(), std::strlen(exc.what()));</div>
+<div class="line"><span class="lineno">  195</span>    }</div>
+<div class="line"><span class="lineno">  196</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -240,11 +240,11 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  141</span>{</div>
-<div class="line"><span class="lineno">  142</span>    swap(*<span class="keyword">this</span>, other);</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><span class="lineno">  144</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00139">139</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  140</span>{</div>
+<div class="line"><span class="lineno">  141</span>    swap(*<span class="keyword">this</span>, other);</div>
+<div class="line"><span class="lineno">  142</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><span class="lineno">  143</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -263,19 +263,19 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00176">176</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  177</span>{</div>
-<div class="line"><span class="lineno">  178</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
-<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
-<div class="line"><span class="lineno">  180</span>            provideSpace(EVP_CIPHER_CTX_block_size(mCtx.get()));</div>
-<div class="line"><span class="lineno">  181</span>            <span class="keywordtype">int</span> outl;</div>
-<div class="line"><span class="lineno">  182</span>            Expect1(EVP_EncryptFinal_ex(mCtx.get(), <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(getSpace()), &amp;outl));</div>
-<div class="line"><span class="lineno">  183</span>            advanceSpace(outl);</div>
-<div class="line"><span class="lineno">  184</span>            mExtSize = 0;</div>
-<div class="line"><span class="lineno">  185</span>        }</div>
-<div class="line"><span class="lineno">  186</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
-<div class="line"><span class="lineno">  187</span>    }</div>
-<div class="line"><span class="lineno">  188</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00175">175</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  176</span>{</div>
+<div class="line"><span class="lineno">  177</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
+<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
+<div class="line"><span class="lineno">  179</span>            provideSpace(EVP_CIPHER_CTX_block_size(mCtx.get()));</div>
+<div class="line"><span class="lineno">  180</span>            <span class="keywordtype">int</span> outl;</div>
+<div class="line"><span class="lineno">  181</span>            Expect1(EVP_EncryptFinal_ex(mCtx.get(), <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(getSpace()), &amp;outl));</div>
+<div class="line"><span class="lineno">  182</span>            advanceSpace(outl);</div>
+<div class="line"><span class="lineno">  183</span>            mExtSize = 0;</div>
+<div class="line"><span class="lineno">  184</span>        }</div>
+<div class="line"><span class="lineno">  185</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
+<div class="line"><span class="lineno">  186</span>    }</div>
+<div class="line"><span class="lineno">  187</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -314,12 +314,12 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00132">132</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  133</span>{</div>
-<div class="line"><span class="lineno">  134</span>    swap(<span class="keyword">static_cast&lt;</span>TransformOutput&amp;<span class="keyword">&gt;</span>(a), <span class="keyword">static_cast&lt;</span>TransformOutput&amp;<span class="keyword">&gt;</span>(b));</div>
-<div class="line"><span class="lineno">  135</span>    std::swap(a.mCtx, b.mCtx);</div>
-<div class="line"><span class="lineno">  136</span>    std::swap(a.mExtSize, b.mExtSize);</div>
-<div class="line"><span class="lineno">  137</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  132</span>{</div>
+<div class="line"><span class="lineno">  133</span>    swap(<span class="keyword">static_cast&lt;</span>TransformOutput&amp;<span class="keyword">&gt;</span>(a), <span class="keyword">static_cast&lt;</span>TransformOutput&amp;<span class="keyword">&gt;</span>(b));</div>
+<div class="line"><span class="lineno">  134</span>    std::swap(a.mCtx, b.mCtx);</div>
+<div class="line"><span class="lineno">  135</span>    std::swap(a.mExtSize, b.mExtSize);</div>
+<div class="line"><span class="lineno">  136</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -239,17 +239,17 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00105">105</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
-<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
-<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
-<div class="line"><span class="lineno">  109</span>            <span class="keywordtype">int</span> outl;</div>
-<div class="line"><span class="lineno">  110</span>            Expect1(EVP_DecryptFinal_ex(mCtx.get(), mTempBeg.get(), &amp;outl));</div>
-<div class="line"><span class="lineno">  111</span>            mTempEnd = (mTempCurr = mTempBeg.get()) + outl;</div>
-<div class="line"><span class="lineno">  112</span>        }</div>
-<div class="line"><span class="lineno">  113</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
-<div class="line"><span class="lineno">  114</span>    }</div>
-<div class="line"><span class="lineno">  115</span>}</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00104">104</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  105</span>{</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">if</span> (EVP_CIPHER_CTX_cipher(mCtx.get())) {</div>
+<div class="line"><span class="lineno">  107</span>        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_block_size(mCtx.get()) &gt; 1) {</div>
+<div class="line"><span class="lineno">  108</span>            <span class="keywordtype">int</span> outl;</div>
+<div class="line"><span class="lineno">  109</span>            Expect1(EVP_DecryptFinal_ex(mCtx.get(), mTempBeg.get(), &amp;outl));</div>
+<div class="line"><span class="lineno">  110</span>            mTempEnd = (mTempCurr = mTempBeg.get()) + outl;</div>
+<div class="line"><span class="lineno">  111</span>        }</div>
+<div class="line"><span class="lineno">  112</span>        Expect1(EVP_CIPHER_CTX_reset(mCtx.get()));</div>
+<div class="line"><span class="lineno">  113</span>    }</div>
+<div class="line"><span class="lineno">  114</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -269,8 +269,8 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  119</span>{ mFinalizeWhenNoData = on; }</div>
+<p class="definition">Definition at line <a class="el" href="../../de/ddc/Cipher_8cpp_source.html#l00117">117</a> of file <a class="el" href="../../de/ddc/Cipher_8cpp_source.html">Cipher.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  118</span>{ mFinalizeWhenNoData = on; }</div>
 </div><!-- fragment -->
 </div>
 </div>

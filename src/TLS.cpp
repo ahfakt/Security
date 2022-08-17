@@ -140,20 +140,19 @@ bool
 TLSEncrypt::shutdown()
 {
 	while (true) {
-		int r = SSL_shutdown(mSSL);
-		if (r == 1)
-			return true;
-
-		if (r == 0) {
+		if (int r = SSL_shutdown(mSSL)) {
+			if (r == 1)
+				return true;
+			throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()));
+		} else {
 			sendData();
 			TransformOutput::flush();
 			try {
 				wantRecvData();
-			} catch (Input::Exception& exc) {
+			} catch (Input::Exception const& exc) {
 				return false;
 			}
-		} else
-			throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()));
+		}
 	}
 }
 

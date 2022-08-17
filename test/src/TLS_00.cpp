@@ -12,7 +12,7 @@ testTLSClient()
 {
 	auto ctx = Stream::Security::TLS::Context(TLS_client_method());
 
-	Stream::Socket server(Stream::Socket::Inet("api.binance.com", 443));
+	Stream::Socket server(Stream::Socket::Address::Inet("api.binance.com", 443));
 	Stream::Buffer buffer(server.getMSS());
 	Stream::Security::TLS tls(ctx);
 	server <=> buffer <=> tls;
@@ -60,7 +60,7 @@ testTLSServer()
 			GetPrivateKey("server.key.der"));
 	//SSL_CTX_set_verify(ctx.get(), SSL_VERIFY_NONE, nullptr);
 
-	Stream::Socket server(Stream::Socket::Inet("application.loc", 8443), 4096);
+	Stream::Socket server(Stream::Socket::Address::Inet("application.loc", 8443), 4096);
 
 	for (int i = 0, m = 1000000; i < m; ++i)
 		std::thread([](Stream::Socket client, Stream::Security::TLS::Context const& ctx, int clientNumber) {

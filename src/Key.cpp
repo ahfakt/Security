@@ -114,7 +114,7 @@ DerInfo::DerInfo(Input& input)
 {
 	try {
 		input.read(tl, 2);
-	} catch (Input::Exception& exc) {
+	} catch (Input::Exception const& exc) {
 		tlLength = 2 - exc.getUnreadSize();
 		throw;
 	}
@@ -130,7 +130,7 @@ DerInfo::DerInfo(Input& input)
 			vLength = 0;
 			try {
 				input.read(tl + 2, ll);
-			} catch (Input::Exception& exc) {
+			} catch (Input::Exception const& exc) {
 				tlLength = 2 + ll - exc.getUnreadSize();
 				throw;
 			}

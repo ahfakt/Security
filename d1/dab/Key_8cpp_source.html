@@ -187,7 +187,7 @@ $(function() {
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>{</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordflow">try</span> {</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        input.read(tl, 2);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    } <span class="keywordflow">catch</span> (Input::Exception&amp; exc) {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    } <span class="keywordflow">catch</span> (Input::Exception <span class="keyword">const</span>&amp; exc) {</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        tlLength = 2 - exc.getUnreadSize();</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">throw</span>;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
@@ -203,7 +203,7 @@ $(function() {
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            vLength = 0;</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            <span class="keywordflow">try</span> {</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                input.read(tl + 2, ll);</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            } <span class="keywordflow">catch</span> (Input::Exception&amp; exc) {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            } <span class="keywordflow">catch</span> (Input::Exception <span class="keyword">const</span>&amp; exc) {</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                tlLength = 2 + ll - exc.getUnreadSize();</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                <span class="keywordflow">throw</span>;</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            }</div>

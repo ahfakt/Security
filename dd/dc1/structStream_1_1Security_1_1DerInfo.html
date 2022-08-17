@@ -134,7 +134,7 @@ Public Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">  114</span>{</div>
 <div class="line"><span class="lineno">  115</span>    <span class="keywordflow">try</span> {</div>
 <div class="line"><span class="lineno">  116</span>        input.read(tl, 2);</div>
-<div class="line"><span class="lineno">  117</span>    } <span class="keywordflow">catch</span> (Input::Exception&amp; exc) {</div>
+<div class="line"><span class="lineno">  117</span>    } <span class="keywordflow">catch</span> (Input::Exception <span class="keyword">const</span>&amp; exc) {</div>
 <div class="line"><span class="lineno">  118</span>        tlLength = 2 - exc.getUnreadSize();</div>
 <div class="line"><span class="lineno">  119</span>        <span class="keywordflow">throw</span>;</div>
 <div class="line"><span class="lineno">  120</span>    }</div>
@@ -150,7 +150,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  130</span>            vLength = 0;</div>
 <div class="line"><span class="lineno">  131</span>            <span class="keywordflow">try</span> {</div>
 <div class="line"><span class="lineno">  132</span>                input.read(tl + 2, ll);</div>
-<div class="line"><span class="lineno">  133</span>            } <span class="keywordflow">catch</span> (Input::Exception&amp; exc) {</div>
+<div class="line"><span class="lineno">  133</span>            } <span class="keywordflow">catch</span> (Input::Exception <span class="keyword">const</span>&amp; exc) {</div>
 <div class="line"><span class="lineno">  134</span>                tlLength = 2 + ll - exc.getUnreadSize();</div>
 <div class="line"><span class="lineno">  135</span>                <span class="keywordflow">throw</span>;</div>
 <div class="line"><span class="lineno">  136</span>            }</div>

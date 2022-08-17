@@ -317,22 +317,21 @@ Friends</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="../../d7/d30/TLS_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../d7/d30/TLS_8cpp_source.html">TLS.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  141</span>{</div>
 <div class="line"><span class="lineno">  142</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordtype">int</span> r = SSL_shutdown(mSSL);</div>
-<div class="line"><span class="lineno">  144</span>        <span class="keywordflow">if</span> (r == 1)</div>
-<div class="line"><span class="lineno">  145</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  146</span> </div>
-<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">if</span> (r == 0) {</div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">if</span> (<span class="keywordtype">int</span> r = SSL_shutdown(mSSL)) {</div>
+<div class="line"><span class="lineno">  144</span>            <span class="keywordflow">if</span> (r == 1)</div>
+<div class="line"><span class="lineno">  145</span>                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  146</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
+<div class="line"><span class="lineno">  147</span>        } <span class="keywordflow">else</span> {</div>
 <div class="line"><span class="lineno">  148</span>            sendData();</div>
 <div class="line"><span class="lineno">  149</span>            TransformOutput::flush();</div>
 <div class="line"><span class="lineno">  150</span>            <span class="keywordflow">try</span> {</div>
 <div class="line"><span class="lineno">  151</span>                wantRecvData();</div>
-<div class="line"><span class="lineno">  152</span>            } <span class="keywordflow">catch</span> (Input::Exception&amp; exc) {</div>
+<div class="line"><span class="lineno">  152</span>            } <span class="keywordflow">catch</span> (Input::Exception <span class="keyword">const</span>&amp; exc) {</div>
 <div class="line"><span class="lineno">  153</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  154</span>            }</div>
-<div class="line"><span class="lineno">  155</span>        } <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  156</span>            <span class="keywordflow">throw</span> Exception(<span class="keyword">static_cast&lt;</span>TLS::Exception::Code<span class="keyword">&gt;</span>(ERR_peek_last_error()));</div>
-<div class="line"><span class="lineno">  157</span>    }</div>
-<div class="line"><span class="lineno">  158</span>}</div>
+<div class="line"><span class="lineno">  155</span>        }</div>
+<div class="line"><span class="lineno">  156</span>    }</div>
+<div class="line"><span class="lineno">  157</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

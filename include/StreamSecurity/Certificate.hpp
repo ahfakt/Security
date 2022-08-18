@@ -13,6 +13,7 @@ class Certificate {
 	std::unique_ptr<X509, decltype(&X509_free)> mVal {nullptr, X509_free};
 
 	explicit Certificate(X509* val);
+
 public:
 	struct Exception : std::system_error {
 		using std::system_error::system_error;

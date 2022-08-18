@@ -92,6 +92,7 @@ class Digest : public DigestInput, public DigestOutput {
 
 	static std::vector<std::byte>
 	Value(EVP_MD_CTX* ctx);
+
 public:
 	static std::vector<std::byte>
 	Compute(void const* data, std::size_t count, EVP_MD const* md);
@@ -119,6 +120,9 @@ public:
 
 	Digest(EVP_MD const* mdIn, Key const& inKey, EVP_MD const* mdOut, Key const& outKey);
 };//class Stream::Security::Digest
+
+void
+swap(Digest& a, Digest& b) noexcept;
 
 std::error_code
 make_error_code(Digest::Exception::Code e) noexcept;

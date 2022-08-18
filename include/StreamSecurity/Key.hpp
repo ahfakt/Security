@@ -44,6 +44,7 @@ struct SecretImpl<unsigned char[]> : std::unique_ptr<unsigned char[]> {
 	[[nodiscard]] std::size_t
 	size() const noexcept
 	{ return mSize; }
+
 private:
 	std::size_t mSize = 0;
 };//class Stream::Security::SecretImpl<>
@@ -65,6 +66,7 @@ class PublicKey;
 class Key {
 	friend class PrivateKey;
 	friend class PublicKey;
+
 protected:
 	std::unique_ptr<EVP_PKEY, decltype(&EVP_PKEY_free)> mVal {nullptr, EVP_PKEY_free};
 

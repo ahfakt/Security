@@ -82,6 +82,7 @@ class Signature : public SignatureInput, public SignatureOutput {
 
 	static bool
 	Verify(EVP_MD_CTX* ctx, std::vector<std::byte> const& signature);
+
 public:
 	static std::vector<std::byte>
 	Sign(void const* data, std::size_t count, EVP_MD const* md, Key const& signKey);
@@ -99,6 +100,9 @@ public:
 	Signature(EVP_MD const* mdIn, Key const& verifyKey, EVP_MD const* mdOut, Key const& signKey);
 };
 //class Stream::Security::Signature
+
+void
+swap(Signature& a, Signature& b) noexcept;
 
 std::error_code
 make_error_code(Signature::Exception::Code e) noexcept;

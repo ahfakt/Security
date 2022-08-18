@@ -56,14 +56,14 @@ void
 testTLSServer()
 {
 	auto ctx = Stream::Security::TLS::Context(TLS_server_method(),
-			GetCertificate("server.crt.der"),
-			GetPrivateKey("server.key.der"));
+			GetCertificate("application.crt.der"),
+			GetPrivateKey("application.key.der"));
 	//SSL_CTX_set_verify(ctx.get(), SSL_VERIFY_NONE, nullptr);
 
 	Stream::Socket server(Stream::Socket::Address::Inet("application.loc", 8443), 4096);
 
 	for (int i = 0, m = 1000000; i < m; ++i)
-		std::thread([](Stream::Socket client, Stream::Security::TLS::Context const& ctx, int clientNumber) {
+		std::thread([](Stream::Socket client, Stream::Security::TLS::Context const& ctx, int reqNumber) {
 			std::string response(
 				"HTTP/1.1 200 OK\r\n"
 				"Content-Length: 140\r\n"
@@ -90,7 +90,7 @@ testTLSServer()
 				request.resize(tls.readSome(request.data(), request.size()));
 				std::cout << request << std::endl;
 
-				std::string c = std::to_string(clientNumber);
+				std::string c = std::to_string(reqNumber);
 				c.insert(c.begin(), 6 - c.size(), ' ');
 				std::memcpy(response.data() + 200, c.data(), 6);
 
@@ -118,102 +118,104 @@ openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256
 openssl genpkey -aes256 -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out private-key.pem
 
 
-echo 'Generating private key: rootCA.key.pem' && \
+echo 'Generating private key: authority.key.pem' && \
 openssl ecparam \
 		-name prime256v1 -genkey \
-		-out rootCA.key.pem && \
-echo 'Check private key: rootCA.key.pem' && \
+		-out authority.key.pem && \
+echo 'Check private key: authority.key.pem' && \
 openssl ec \
-		-in rootCA.key.pem \
+		-in authority.key.pem \
 		-check -noout && \
-echo 'Convert private key to DER PKCS8 format: rootCA.key.der' && \
+echo 'Convert private key to DER PKCS8 format: authority.key.der' && \
 openssl pkcs8 \
 		-topk8 -nocrypt \
-		-in rootCA.key.pem \
-		-out rootCA.key.der -outform der && \
-echo 'Extract public key from private key: rootCA.pub.pem' && \
+		-in authority.key.pem \
+		-out authority.key.der -outform der && \
+echo 'Extract public key from private key: authority.pub.pem' && \
 openssl pkey \
-		-in rootCA.key.pem -pubout \
-		-out rootCA.pub.pem && \
-echo 'Generate self-signed certificate with private key and temporary certificate signing request: rootCA.crt.der' && \
+		-in authority.key.pem -pubout \
+		-out authority.pub.pem && \
+echo 'Generate self-signed certificate with private key and temporary certificate signing request: authority.crt.der' && \
 openssl req -sha256 \
-		-key rootCA.key.pem \
+		-key authority.key.pem \
 		-new -x509 -days 3650 \
 		-subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=Authority" \
 		-addext "subjectAltName=DNS:authority.loc,DNS:*.authority.loc" \
-		-out rootCA.crt.der -outform der && \
-echo 'View certificate: rootCA.crt.der' && \
+		-out authority.crt.der -outform der && \
+echo 'View certificate: authority.crt.der' && \
 openssl x509 \
-		-in rootCA.crt.der -inform der \
+		-in authority.crt.der -inform der \
 		-text -noout && \
-echo 'Convert certificate to PEM certificate: rootCA.crt.pem' && \
+echo 'Convert certificate to PEM certificate: authority.crt.pem' && \
 openssl x509 \
-		-in rootCA.crt.der -inform der \
-		-out rootCA.crt.pem -outform pem && \
-echo 'Add authority to system (requires root permission): rootCA.crt.pem' && \
-sudo cp -r rootCA.crt.pem /etc/ssl/certs
+		-in authority.crt.der -inform der \
+		-out authority.crt.pem -outform pem && \
+echo '=> Add authority to system (requires root permission): authority.crt.pem'
+sudo cp -r authority.crt.pem /etc/ssl/certs
 
 
-echo 'Generating private key: server.key.pem' && \
+echo 'Generating private key: application.key.pem' && \
 openssl ecparam \
 		-name prime256v1 -genkey \
-		-out server.key.pem && \
-echo 'Check private key: server.key.pem' && \
+		-out application.key.pem && \
+echo 'Check private key: application.key.pem' && \
 openssl ec \
-		-in server.key.pem \
+		-in application.key.pem \
 		-check -noout && \
-echo 'Convert private key to DER PKCS8 format: server.key.der' && \
+echo 'Convert private key to DER PKCS8 format: application.key.der' && \
 openssl pkcs8 \
 		-topk8 -nocrypt \
-		-in server.key.pem \
-		-out server.key.der -outform der && \
-echo 'Extract public key from private key: server.pub.pem' && \
+		-in application.key.pem \
+		-out application.key.der -outform der && \
+echo 'Extract public key from private key: application.pub.pem' && \
 openssl pkey \
-		-in server.key.pem -pubout \
-		-out server.pub.pem && \
-echo 'Generate certificate signing request with private key: server.csr.pem' && \
+		-in application.key.pem -pubout \
+		-out application.pub.pem && \
+echo 'Generate certificate signing request with private key: application.csr.pem' && \
 openssl req -sha256 \
-		-key server.key.pem \
+		-key application.key.pem \
 		-subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=Application" \
 		-addext "subjectAltName=DNS:application.loc,DNS:*.application.loc" \
-		-new -out server.csr.pem && \
-echo 'Verify certificate signing request: server.csr.pem' && \
+		-new -out application.csr.pem && \
+echo 'Verify certificate signing request: application.csr.pem' && \
 openssl req \
 		-text -noout -verify \
-		-in server.csr.pem && \
-echo 'Sign with an authority: server.crt.der' && \
+		-in application.csr.pem && \
+echo 'Sign with an authority: application.crt.der' && \
 openssl x509 \
 		-req -extfile <(printf "subjectAltName=DNS:application.loc,DNS:*.application.loc") -days 365 -sha256 \
-		-in server.csr.pem \
-		-CA rootCA.crt.pem -CAkey rootCA.key.pem -CAcreateserial \
-		-out server.crt.der -outform der && \
-echo 'View certificate: server.crt.der' && \
+		-in application.csr.pem \
+		-CA authority.crt.pem -CAkey authority.key.pem -CAcreateserial \
+		-out application.crt.der -outform der && \
+echo 'View certificate: application.crt.der' && \
 openssl x509 \
-		-in server.crt.der -inform der \
-		-text -noout
-
-
-echo 'Generate certificate signing request with existing certificate and private key: server.csr.pem' && \
-openssl x509 \
-		-in server.crt.der -inform der \
-		-signkey server.key.der -keyform der \
-		-x509toreq -out server.csr.pem && \
-echo 'Verify certificate signing request: server.csr.pem' && \
-openssl req \
-		-text -noout -verify \
-		-in server.csr.pem && \
-echo 'Sign with an authority: server.crt.der' && \
-openssl x509 \
-		-req -extfile <(printf "subjectAltName=DNS:application.loc,DNS:*.application.loc") -days 365 -sha256 \
-		-in server.csr.pem \
-		-CA rootCA.crt.pem -CAkey rootCA.key.pem -CAcreateserial \
-		-out server.crt.der -outform der && \
-echo 'View certificate: server.crt.der' && \
-openssl x509 \
-		-in server.crt.der -inform der \
+		-in application.crt.der -inform der \
 		-text -noout && \
-echo 'Add domain name to /etc/hosts (requires root permission)' && \
-sudo echo '127.0.0.1 application.loc' >> /etc/hosts
+echo '=> Add application to /etc/hosts (requires root permission)'
+sudo echo '127.0.0.1 application.loc application' >> /etc/hosts
+
+
+echo 'Generate certificate signing request with existing certificate and private key: application.csr.pem' && \
+openssl x509 \
+		-in application.crt.der -inform der \
+		-signkey application.key.der -keyform der \
+		-x509toreq -out application.csr.pem && \
+echo 'Verify certificate signing request: application.csr.pem' && \
+openssl req \
+		-text -noout -verify \
+		-in application.csr.pem && \
+echo 'Sign with an authority: application.crt.der' && \
+openssl x509 \
+		-req -extfile <(printf "subjectAltName=DNS:application.loc,DNS:*.application.loc") -days 365 -sha256 \
+		-in application.csr.pem \
+		-CA authority.crt.pem -CAkey authority.key.pem -CAcreateserial \
+		-out application.crt.der -outform der && \
+echo 'View certificate: application.crt.der' && \
+openssl x509 \
+		-in application.crt.der -inform der \
+		-text -noout && \
+echo '=> Add application to /etc/hosts (requires root permission)'
+sudo echo '127.0.0.1 application.loc application' >> /etc/hosts
 
 */
 

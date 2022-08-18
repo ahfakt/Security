@@ -16,7 +16,6 @@ INSTALL_PREFIX=/home/user
 # cmake --help to see available generators
 GENERATOR="Unix Makefiles"
 
-git clone https://github.com/ahfakt/IO.git
 git clone https://github.com/ahfakt/Stream.git
 git clone https://github.com/ahfakt/StreamSecurity.git
 
@@ -35,8 +34,6 @@ cmake \
 # Stream | StreamOBJ | StreamDoc
 # StreamSecurity | StreamSecurityOBJ | StreamSecurityDoc
 # Test targets are avaiable only when BUILD_TYPE=Debug
-# StreamSecurityTest_Cipher_00 | StreamSecurityTest_Digest_00 |
-# StreamSecurityTest_Signature_00 | StreamSecurityTest_TLS_00
 cmake \
     --build ../build/StreamSecurity/${SYSTEM_PROCESSOR}/${BUILD_TYPE} \
     --target StreamSecurity \

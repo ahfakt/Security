@@ -187,6 +187,10 @@ openssl x509 \
 		-in application.csr.pem \
 		-CA authority.crt.pem -CAkey authority.key.pem -CAcreateserial \
 		-out application.crt.der -outform der && \
+echo 'Convert application.crt.der to application.crt.pem' && \
+openssl x509 \
+		-in application.crt.der \
+		-out application.crt.pem && \
 echo 'View certificate: application.crt.der' && \
 openssl x509 \
 		-in application.crt.der -inform der \

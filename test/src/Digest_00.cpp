@@ -4,7 +4,7 @@
 #include <cassert>
 #include <openssl/rand.h>
 #include <openssl/err.h>
-#include "Util.hpp"
+#include <Util.hpp>
 
 #define Expect1(x) if (1 != x) throw std::runtime_error(ERR_error_string(ERR_peek_last_error(), nullptr))
 

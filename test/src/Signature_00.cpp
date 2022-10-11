@@ -3,7 +3,7 @@
 #include <Stream/Buffer.hpp>
 #include <StreamSecurity/Signature.hpp>
 #include <Stream/Pipe.hpp>
-#include "Util.hpp"
+#include <Util.hpp>
 
 std::vector<std::byte>
 testOutput(std::string const& fileName, EVP_MD const* md, Stream::Security::Key const& signKey, int length, int maxChunkLength)

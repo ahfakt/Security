@@ -3,7 +3,7 @@
 #include <openssl/err.h>
 #include "StreamSecurity/Cipher.hpp"
 #include "Stream/File.hpp"
-#include "Util.hpp"
+#include <Util.hpp>
 
 #define Expect1(x) if (1 != x) throw std::runtime_error(ERR_error_string(ERR_peek_last_error(), nullptr))
 
@@ -78,8 +78,8 @@ void
 test(std::string const& fileName, EVP_CIPHER const* cipher, int length, int maxChunkLength)
 {
 	writeNewSecretKey(fileName, cipher);
-	auto encrypt = testEncrypt(fileName, cipher,  length, maxChunkLength);
-	auto decrypt = testDecrypt(fileName, cipher,  length, maxChunkLength);
+	auto encrypt = testEncrypt(fileName, cipher, length, maxChunkLength);
+	auto decrypt = testDecrypt(fileName, cipher, length, maxChunkLength);
 	assert(encrypt == decrypt);
 }
 

@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.14.0)
 project(StreamSecurity VERSION 0.7 DESCRIPTION "Security related operations on streams")
 
+
 set(DEPENDENCIES Stream)
 set(INC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/inc)
 set(SRC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/src)

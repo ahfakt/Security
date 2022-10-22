@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+#openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256
+#openssl genpkey -aes256 -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out private-key.pem
+echo -e "\e[1;34mCreating private key\e[33m"
+openssl ecparam -name prime256v1 -genkey -out ${APP,,}.${ORG,,}.key.pem
+
+echo -e "\e[1;34mVerifying private key\e[33m"
+openssl ec -in ${APP,,}.${ORG,,}.key.pem -check -noout
+
+echo -e "\e[1;34mConverting private key to DER PKCS8 format\e[33m"
+openssl pkcs8 -topk8 -nocrypt -in ${APP,,}.${ORG,,}.key.pem -outform der -out ${APP,,}.${ORG,,}.key.der
+
+echo -e "\e[1;34mExtracting public key from private key\e[33m"
+openssl pkey -in ${APP,,}.${ORG,,}.key.pem -pubout -out ${APP,,}.${ORG,,}.pub.pem
+
+echo -e "\e[0m"

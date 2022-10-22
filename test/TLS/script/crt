@@ -1,0 +1,22 @@
+#!/bin/bash -e
+
+#echo -e "\e[1;34mSigning CSR with an authority\e[33m"
+#openssl x509 \
+#		-req -extfile <(printf "subjectAltName=DNS:${APP,,}.${ORG,,},DNS:*.${APP,,}.${ORG,,}") -days 365 -sha256 \
+#		-in ${APP,,}.${ORG,,}.csr.pem \
+#		-CA authority.local.crt.pem -CAkey authority.lokey.pem -CAcreateserial \
+#		-out ${APP,,}.${ORG,,}.crt.der -outform der
+echo -e "\e[1;34mSigning CSR with root CA\e[33m"
+sudo cp ${APP,,}.${ORG,,}.csr.pem $CA_DIR/requests/
+sudo su -c "openssl ca -in $CA_DIR/requests/${APP,,}.${ORG,,}.csr.pem -days 365 -extfile <(printf \"subjectAltName=DNS:${APP,,}.${ORG,,},DNS:*.${APP,,}.${ORG,,}\") -out $CA_DIR/newcerts/${APP,,}.${ORG,,}.crt.pem"
+sudo cp $CA_DIR/newcerts/${APP,,}.${ORG,,}.crt.pem ./
+sudo chown $USER:$USER ${APP,,}.${ORG,,}.crt.pem
+#echo '=> Add authority to system'
+
+echo -e "\e[1;34mViewing CRT\e[33m"
+openssl x509 -in ${APP,,}.${ORG,,}.crt.pem -text -noout
+
+echo -e "\e[1;34mConverting PEM CRT to DER\e[33m"
+openssl x509 -in ${APP,,}.${ORG,,}.crt.pem -outform der -out ${APP,,}.${ORG,,}.crt.der
+
+echo -e "\e[0m"

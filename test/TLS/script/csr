@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+#echo 'Create CSR with existing CRT and private key: ${APP,,}.${ORG,,}.csr.pem' && \
+#openssl x509 \
+#		-in ${APP,,}.${ORG,,}.crt.der -inform der \
+#		-signkey ${APP,,}.${ORG,,}.key.der -keyform der \
+#		-x509toreq -out ${APP,,}.${ORG,,}.csr.pem
+echo -e "\e[1;34mCreating CSR\e[33m"
+openssl req -sha256 -key ${APP,,}.${ORG,,}.key.pem -new \
+	-subj "/C=US/ST=State/L=City/O=${ORG}/OU=${APP}/CN=${APP,,}.${ORG,,}" \
+	-addext "subjectAltName=DNS:${APP,,}.${ORG,,},DNS:*.${APP,,}.${ORG,,}" \
+	-out ${APP,,}.${ORG,,}.csr.pem
+
+echo -e "\e[1;34mVerifying CSR\e[33m"
+openssl req -text -noout -verify -in ${APP,,}.${ORG,,}.csr.pem
+
+echo -e "\e[0m"

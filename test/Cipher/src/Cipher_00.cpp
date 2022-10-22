@@ -1,16 +1,16 @@
+#include <StreamSecurity/Cipher.hpp>
+#include <Stream/File.hpp>
+#include <StreamTest/Util.hpp>
 #include <openssl/rand.h>
 #include <cassert>
 #include <openssl/err.h>
-#include "StreamSecurity/Cipher.hpp"
-#include "Stream/File.hpp"
-#include <Util.hpp>
 
 #define Expect1(x) if (1 != x) throw std::runtime_error(ERR_error_string(ERR_peek_last_error(), nullptr))
 
 void
 writeNewSecretKey(std::string const& fileName, EVP_CIPHER const* cipher)
 {
-	Stream::Security::Secret<> secretKey(EVP_CIPHER_key_length(cipher));
+	Stream::Security::Secret<> secretKey{static_cast<std::size_t>(EVP_CIPHER_key_length(cipher))};
 	Expect1(RAND_priv_bytes(secretKey.get(), secretKey.size()));
 	Stream::File{fileName + ".sec", Stream::File::Mode::W}.write(secretKey.get(), secretKey.size());
 }
@@ -18,8 +18,8 @@ writeNewSecretKey(std::string const& fileName, EVP_CIPHER const* cipher)
 Stream::Security::Secret<>
 readSecretKey(std::string const& fileName)
 {
-	Stream::File file(fileName + ".sec", Stream::File::Mode::R);
-	Stream::Security::Secret<> secretKey(file.getFileSize());
+	Stream::File file{fileName + ".sec", Stream::File::Mode::R};
+	Stream::Security::Secret<> secretKey{static_cast<std::size_t>(file.getFileSize())};
 	file.read(secretKey.get(), secretKey.size());
 	return secretKey;
 }
@@ -31,8 +31,8 @@ testEncrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 	std::unique_ptr<std::byte[]> iv;
 	std::vector<std::byte> toEncrypt = StreamTest::Util::GetRandomBytes<std::chrono::minutes>(length);
 
-	Stream::File file(fileName, Stream::File::Mode::W);
-	Stream::BufferOutput buffer(file.getBlockSize());
+	Stream::File file{fileName, Stream::File::Mode::W};
+	Stream::BufferOutput buffer{static_cast<std::size_t>(file.getBlockSize())};
 	file < buffer;
 
 	if (int ivLength = EVP_CIPHER_iv_length(cipher)) {
@@ -41,7 +41,7 @@ testEncrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 		buffer.write(iv.get(), ivLength);
 	}
 
-	Stream::Security::CipherEncrypt encryptor(cipher, secretKey, iv.get());
+	Stream::Security::CipherEncrypt encryptor{cipher, secretKey, iv.get()};
 	buffer < encryptor;
 
 	StreamTest::Util::WriteRandomChunks(encryptor, toEncrypt,
@@ -57,8 +57,8 @@ testDecrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 	std::vector<std::byte> decrypted;
 	decrypted.resize(length);
 
-	Stream::File file(fileName, Stream::File::Mode::R);
-	Stream::BufferInput buffer(file.getBlockSize());
+	Stream::File file{fileName, Stream::File::Mode::R};
+	Stream::BufferInput buffer{static_cast<std::size_t>(file.getBlockSize())};
 	file > buffer;
 
 	if (int ivLength = EVP_CIPHER_iv_length(cipher)) {
@@ -66,7 +66,7 @@ testDecrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 		buffer.read(iv.get(), ivLength);
 	}
 
-	Stream::Security::CipherDecrypt decryptor(cipher, secretKey, iv.get());
+	Stream::Security::CipherDecrypt decryptor{cipher, secretKey, iv.get()};
 	buffer > decryptor;
 
 	StreamTest::Util::ReadRandomChunks(decryptor, decrypted,

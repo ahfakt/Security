@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+APP=App
+ORG=Local
+CA_DIR=/etc/ssl
+. ./key
+. ./csr
+. ./crt
+
+echo -e "\e[1;34mAdding domain to /etc/hosts\e[0m"
+sudo sh -c "echo '127.0.0.1 ${APP,,}.${ORG,,} ${APP,,}' >> /etc/hosts"

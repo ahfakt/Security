@@ -1,0 +1,45 @@
+#!/bin/bash -e
+echo -e "\e[1;34mCreating rootCA\e[33m"
+
+CA_DIR=/etc/ssl
+
+sudo mkdir -p $CA_DIR/
+sudo mkdir -p $CA_DIR/certs/
+sudo mkdir -p $CA_DIR/crl/
+sudo mkdir -p $CA_DIR/newcerts/
+sudo mkdir -p $CA_DIR/private/
+sudo mkdir -p $CA_DIR/requests/
+sudo touch $CA_DIR/index.txt
+sudo sh -c "echo '1000' > $CA_DIR/serial"
+
+echo -e "\e[1;34mCreating private key\e[33m"
+sudo openssl ecparam -name prime256v1 -genkey -out $CA_DIR/private/cakey.pem
+
+echo -e "\e[1;34mVerifying private key\e[33m"
+sudo openssl ec -in $CA_DIR/private/cakey.pem -check -noout
+
+echo -e "\e[1;34mCreating a temporary CSR and self-signing\e[33m"
+sudo openssl req -sha256 -key $CA_DIR/private/cakey.pem -new \
+	-x509 -days 3650 \
+	-subj "/C=US/ST=State/L=City/O=Local/OU=Authority/CN=authority.local" \
+	-addext "subjectAltName=DNS:authority.local,DNS:*.authority.local" \
+	-out $CA_DIR/cacert.pem
+
+echo -e "\e[1;34mAdding rootCA to /etc/ssl/certs\e[33m"
+sudo ln -s $CA_DIR/cacert.pem /etc/ssl/certs/authority.local.crt.pem
+
+# Possible locations of OpenSSL configuration file depending on your linux distribution
+if test -f /usr/lib/ssl/openssl.cnf; then
+	CONF_FILE=/usr/lib/ssl/openssl.cnf
+elif test -f /usr/local/ssl/openssl.cnf; then
+	CONF_FILE=/usr/local/ssl/openssl.cnf
+elif test -f /etc/ssl/openssl.cnf; then
+	CONF_FILE=/etc/ssl/openssl.cnf
+else
+	echo -e "\e[1;31mCan not find 'openssl.cnf'. Edit manually.\e[0m"
+	exit
+fi
+
+sudo sed -i "s|^.*# Where everything is kept\$|dir 		= $CA_DIR		# Where everything is kept|g" $CONF_FILE
+
+echo -e "\e[1;32mrootCA has been created\e[0m"

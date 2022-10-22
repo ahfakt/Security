@@ -1,0 +1,20 @@
+#!/bin/bash -e
+echo -e "\e[1;34mCreating CA\e[33m"
+
+echo -e "\e[1;34mCreating private key\e[33m"
+openssl ecparam -name prime256v1 -genkey -out authority.local.key.pem
+
+echo -e "\e[1;34mVerifying private key\e[33m"
+openssl ec -in authority.local.key.pem -check -noout
+
+echo -e "\e[1;34mCreating a temporary CSR and self-signing\e[33m"
+openssl req -sha256 -key authority.local.key.pem -new \
+	-x509 -days 3650 \
+	-subj "/C=US/ST=State/L=City/O=Local/OU=Authority/CN=authority.local" \
+	-addext "subjectAltName=DNS:authority.local,DNS:*.authority.local" \
+	-out authority.local.crt.pem
+
+echo -e "\e[1;34mAdding ca to /etc/ssl/certs\e[33m"
+sudo ln -s authority.local.key.pem /etc/ssl/certs/authority.local.crt.pem
+
+echo -e "\e[1;32mCA has been created\e[0m"

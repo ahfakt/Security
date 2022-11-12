@@ -41,6 +41,7 @@ elseif (CMAKE_BUILD_TYPE MATCHES Release)
 	if (DOXYGEN_FOUND)
 		configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doxygen.cfg ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg @ONLY)
 		add_custom_target(${PROJECT_NAME}Doc
+			WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/doc/${PROJECT_NAME}
 			COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doxygen.cfg
 			COMMENT "Generating ${PROJECT_NAME} documentation with Doxygen"
 			VERBATIM)

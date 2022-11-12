@@ -1,6 +1,0 @@
-<map id="Stream::Security::TLSDecrypt" name="Stream::Security::TLSDecrypt">
-<area shape="rect" id="node1" title="Stream::Input TLS decryptor." alt="" coords="5,256,403,392"/>
-<area shape="rect" id="node4" href="$d3/dd3/classStream_1_1Security_1_1TLS.html" title="Stream::Input / Stream::Output TLS decryptor and encryptor." alt="" coords="69,440,339,561"/>
-<area shape="rect" id="node2" href="/home/null/doc/.doxy/Stream.xml$db/d03/classStream_1_1TransformInput" title=" " alt="" coords="124,131,284,208"/>
-<area shape="rect" id="node3" href="/home/null/doc/.doxy/Stream.xml$d7/d83/classStream_1_1Input" title=" " alt="" coords="153,5,255,83"/>
-</map>

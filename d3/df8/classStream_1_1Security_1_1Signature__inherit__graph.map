@@ -1,9 +1,0 @@
-<map id="Stream::Security::Signature" name="Stream::Security::Signature">
-<area shape="rect" id="node1" title="Stream::Input / Stream::Output Signature observer." alt="" coords="21,440,867,561"/>
-<area shape="rect" id="node2" href="$dd/d4b/classStream_1_1Security_1_1SignatureInput.html" title="Stream::Input Signature observer." alt="" coords="5,263,437,385"/>
-<area shape="rect" id="node3" href="/home/null/doc/.doxy/Stream.xml$d1/dcd/classStream_1_1TransparentInput" title=" " alt="" coords="136,131,307,208"/>
-<area shape="rect" id="node4" href="/home/null/doc/.doxy/Stream.xml$d7/d83/classStream_1_1Input" title=" " alt="" coords="171,5,272,83"/>
-<area shape="rect" id="node5" href="$d2/d61/classStream_1_1Security_1_1SignatureOutput.html" title="Stream::Output Signature observer." alt="" coords="461,256,872,392"/>
-<area shape="rect" id="node6" href="/home/null/doc/.doxy/Stream.xml$d1/d52/classStream_1_1TransparentOutput" title=" " alt="" coords="577,131,757,208"/>
-<area shape="rect" id="node7" href="/home/null/doc/.doxy/Stream.xml$df/dc2/classStream_1_1Output" title=" " alt="" coords="611,5,722,83"/>
-</map>

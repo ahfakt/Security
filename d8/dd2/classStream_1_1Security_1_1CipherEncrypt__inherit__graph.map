@@ -1,6 +1,0 @@
-<map id="Stream::Security::CipherEncrypt" name="Stream::Security::CipherEncrypt">
-<area shape="rect" id="node1" title="Stream::Output Cipher encryptor." alt="" coords="80,256,616,392"/>
-<area shape="rect" id="node4" href="$d7/dca/classStream_1_1Security_1_1Cipher.html" title="Stream::Input / Stream::Output Cipher decryptor and encryptor." alt="" coords="5,440,691,547"/>
-<area shape="rect" id="node2" href="/home/null/doc/.doxy/Stream.xml$d1/dff/classStream_1_1TransformOutput" title=" " alt="" coords="263,131,433,208"/>
-<area shape="rect" id="node3" href="/home/null/doc/.doxy/Stream.xml$df/dc2/classStream_1_1Output" title=" " alt="" coords="293,5,403,83"/>
-</map>

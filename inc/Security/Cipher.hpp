@@ -1,16 +1,16 @@
-#ifndef STREAM_SECURITY_CIPHER_HPP
-#define STREAM_SECURITY_CIPHER_HPP
+#ifndef SECURITY_CIPHER_HPP
+#define SECURITY_CIPHER_HPP
 
 #include "Key.hpp"
 #include <Stream/Transform.hpp>
 
-namespace Stream::Security {
+namespace Security {
 
 /**
  * @brief	Stream::Input %Cipher decryptor
- * @class	CipherDecrypt Cipher.hpp "StreamSecurity/Cipher.hpp"
+ * @class	CipherDecrypt Cipher.hpp "Security/Cipher.hpp"
  */
-class CipherDecrypt : public TransformInput {
+class CipherDecrypt : public Stream::TransformInput {
 	std::unique_ptr<EVP_CIPHER_CTX, decltype(&EVP_CIPHER_CTX_free)> mCtx{nullptr, EVP_CIPHER_CTX_free};
 	std::unique_ptr<unsigned char> mTempBeg;
 	unsigned char* mTempCurr = nullptr;
@@ -24,8 +24,8 @@ class CipherDecrypt : public TransformInput {
 	init(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 
 public:
-	struct Exception : Input::Exception
-	{ using Input::Exception::Exception; };
+	struct Exception : Stream::Input::Exception
+	{ using Stream::Input::Exception::Exception; };
 
 	CipherDecrypt(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 	
@@ -42,13 +42,13 @@ public:
 
 	void
 	finalizeDecryptionWhenNoData(bool on = true);
-};//class Stream::Security::CipherDecrypt
+};//class Security::CipherDecrypt
 
 /**
  * @brief	Stream::Output %Cipher encryptor
- * @class	CipherEncrypt Cipher.hpp "StreamSecurity/Cipher.hpp"
+ * @class	CipherEncrypt Cipher.hpp "Security/Cipher.hpp"
  */
-class CipherEncrypt : public TransformOutput {
+class CipherEncrypt : public Stream::TransformOutput {
 	std::unique_ptr<EVP_CIPHER_CTX, decltype(&EVP_CIPHER_CTX_free)> mCtx{nullptr, EVP_CIPHER_CTX_free};
 	int mExtSize = 0;
 
@@ -59,8 +59,8 @@ class CipherEncrypt : public TransformOutput {
 	init(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 
 public:
-	struct Exception : Output::Exception
-	{ using Output::Exception::Exception; };
+	struct Exception : Stream::Output::Exception
+	{ using Stream::Output::Exception::Exception; };
 
 	CipherEncrypt(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 
@@ -76,23 +76,23 @@ public:
 
 	void
 	finalizeEncryption();
-};//class Stream::Security::CipherEncrypt
+};//class Security::CipherEncrypt
 
 /**
  * @brief Stream::Input / Stream::Output %Cipher decryptor and encryptor
- * @class Cipher Cipher.hpp "StreamSecurity/Cipher.hpp"
+ * @class Cipher Cipher.hpp "Security/Cipher.hpp"
  */
 class Cipher : public CipherDecrypt, public CipherEncrypt {
 public:
 	struct Exception {
 		enum class Code : int {};
-	};//struct Stream::Security::Cipher::Exception
+	};//struct Security::Cipher::Exception
 
 	Cipher(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv);
 
 	Cipher(EVP_CIPHER const* decCipher, Secret<> const& decKey, std::byte const* decIv,
 			EVP_CIPHER const* encCipher, Secret<> const& encKey, std::byte const* encIv);
-};//class Stream::Security::Cipher
+};//class Security::Cipher
 
 void
 swap(Cipher& a, Cipher& b) noexcept;
@@ -100,13 +100,13 @@ swap(Cipher& a, Cipher& b) noexcept;
 std::error_code
 make_error_code(Cipher::Exception::Code e) noexcept;
 
-}//namespace Stream::Security
+}//namespace Security
 
 namespace std {
 
 template <>
-struct is_error_code_enum<Stream::Security::Cipher::Exception::Code> : true_type {};
+struct is_error_code_enum<Security::Cipher::Exception::Code> : true_type {};
 
 }//namespace std
 
-#endif //STREAM_SECURITY_CIPHER_HPP
+#endif //SECURITY_CIPHER_HPP

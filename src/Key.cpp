@@ -1,4 +1,4 @@
-#include "StreamSecurity/Key.hpp"
+#include "Security/Key.hpp"
 #include <openssl/err.h>
 #include <cstring>
 
@@ -6,7 +6,7 @@
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Exception::Code>(ERR_peek_last_error()))
 #define ExpectPos(x) if (0 >= x) throw Key::Exception(static_cast<Key::Exception::Code>(ERR_peek_last_error()))
 
-namespace Stream::Security {
+namespace Security {
 
 Key::Key(EVP_PKEY* val)
 		: mVal(val, EVP_PKEY_free)
@@ -110,11 +110,11 @@ Key::Key(Secret<> const& cmacKey, EVP_CIPHER const* cipher)
 Key::operator EVP_PKEY*() const noexcept
 { return mVal.get(); }
 
-DerInfo::DerInfo(Input& input)
+DerInfo::DerInfo(Stream::Input& input)
 {
 	try {
 		input.read(tl, 2);
-	} catch (Input::Exception const& exc) {
+	} catch (Stream::Input::Exception const& exc) {
 		tlLength = 2 - exc.getUnreadSize();
 		throw;
 	}
@@ -130,7 +130,7 @@ DerInfo::DerInfo(Input& input)
 			vLength = 0;
 			try {
 				input.read(tl + 2, ll);
-			} catch (Input::Exception const& exc) {
+			} catch (Stream::Input::Exception const& exc) {
 				tlLength = 2 + ll - exc.getUnreadSize();
 				throw;
 			}
@@ -146,7 +146,7 @@ PrivateKey::PrivateKey(Key const& key)
 		: mVal(EVP_PKEY2PKCS8(static_cast<EVP_PKEY*>(key)), PKCS8_PRIV_KEY_INFO_free)
 { ExpectInitialized(mVal); }
 
-PrivateKey::PrivateKey(Input& input)
+PrivateKey::PrivateKey(Stream::Input& input)
 {
 	Secret<DerInfo> i{input};
 	Secret<> privKey(i->tlLength + i->vLength);
@@ -161,8 +161,8 @@ PrivateKey::PrivateKey(Input& input)
 PrivateKey::operator PKCS8_PRIV_KEY_INFO*() const noexcept
 { return mVal.get(); }
 
-Output&
-operator<<(Output& output, PrivateKey const& privateKey)
+Stream::Output&
+operator<<(Stream::Output& output, PrivateKey const& privateKey)
 {
 	int length = i2d_PKCS8_PRIV_KEY_INFO(static_cast<PKCS8_PRIV_KEY_INFO*>(privateKey), nullptr);
 	ExpectPos(length);
@@ -181,7 +181,7 @@ PublicKey::PublicKey(Key const& key)
 	mVal.reset(p);
 }
 
-PublicKey::PublicKey(Input& input)
+PublicKey::PublicKey(Stream::Input& input)
 {
 	DerInfo i(input);
 
@@ -197,8 +197,8 @@ PublicKey::PublicKey(Input& input)
 PublicKey::operator X509_PUBKEY*() const noexcept
 { return mVal.get(); }
 
-Output&
-operator<<(Output& output, PublicKey const& publicKey)
+Stream::Output&
+operator<<(Stream::Output& output, PublicKey const& publicKey)
 {
 	int length = i2d_X509_PUBKEY(static_cast<X509_PUBKEY*>(publicKey), nullptr);
 	ExpectPos(length);
@@ -216,7 +216,7 @@ make_error_code(Key::Exception::Code e) noexcept
 	static struct : std::error_category {
 		[[nodiscard]] char const*
 		name() const noexcept override
-		{ return "Stream::Security::Key"; }
+		{ return "Security::Key"; }
 
 		[[nodiscard]] std::string
 		message(int ev) const noexcept override
@@ -225,4 +225,4 @@ make_error_code(Key::Exception::Code e) noexcept
 	return {static_cast<int>(e), instance};
 }
 
-}//namespace Stream::Security
+}//namespace Security

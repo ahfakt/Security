@@ -1,11 +1,11 @@
-#include "StreamSecurity/Digest.hpp"
+#include "Security/Digest.hpp"
 #include <new>
 #include <openssl/err.h>
 
 #define ExpectAllocated(x) if (!x) throw std::bad_alloc()
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Digest::Exception::Code>(ERR_peek_last_error()))
 
-namespace Stream::Security {
+namespace Security {
 
 DigestInput::DigestInput(EVP_MD const* md, EVP_PKEY* key)
 		: mCtx(EVP_MD_CTX_new(), EVP_MD_CTX_free)
@@ -32,7 +32,7 @@ DigestInput::DigestInput(DigestInput&& other) noexcept
 void
 swap(DigestInput& a, DigestInput& b) noexcept
 {
-	swap(static_cast<TransparentInput&>(a), static_cast<TransparentInput&>(b));
+	swap(static_cast<Stream::TransparentInput&>(a), static_cast<Stream::TransparentInput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 }
 
@@ -89,7 +89,7 @@ DigestOutput::DigestOutput(DigestOutput&& other) noexcept
 void
 swap(DigestOutput& a, DigestOutput& b) noexcept
 {
-	swap(static_cast<TransparentOutput&>(a), static_cast<TransparentOutput&>(b));
+	swap(static_cast<Stream::TransparentOutput&>(a), static_cast<Stream::TransparentOutput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 }
 
@@ -226,7 +226,7 @@ make_error_code(Digest::Exception::Code e) noexcept
 	static struct : std::error_category {
 		[[nodiscard]] char const*
 		name() const noexcept override
-		{ return "Stream::Security::Digest"; }
+		{ return "Security::Digest"; }
 
 		[[nodiscard]] std::string
 		message(int ev) const noexcept override
@@ -235,4 +235,4 @@ make_error_code(Digest::Exception::Code e) noexcept
 	return {static_cast<int>(e), instance};
 }
 
-}//namespace Stream::Security
+}//namespace Security

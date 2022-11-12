@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14.0)
-project(StreamSecurity VERSION 0.7 DESCRIPTION "Security related operations on streams")
+project(Security VERSION 0.7 DESCRIPTION "Security related operations on streams")
 
 
 set(DEPENDENCIES Stream)

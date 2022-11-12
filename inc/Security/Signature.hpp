@@ -1,25 +1,25 @@
-#ifndef STREAM_SECURITY_SIGNATURE_HPP
-#define STREAM_SECURITY_SIGNATURE_HPP
+#ifndef SECURITY_SIGNATURE_HPP
+#define SECURITY_SIGNATURE_HPP
 
 #include "Key.hpp"
 #include <Stream/Transparent.hpp>
 #include <vector>
 
-namespace Stream::Security {
+namespace Security {
 
 /**
  * @brief	Stream::Input %Signature observer
- * @class	SignatureInput Signature.hpp "StreamSecurity/Signature.hpp"
+ * @class	SignatureInput Signature.hpp "Security/Signature.hpp"
  */
-class SignatureInput : public TransparentInput {
+class SignatureInput : public Stream::TransparentInput {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
 
 	std::size_t
 	readBytes(std::byte* dest, std::size_t size) override;
 
 public:
-	struct Exception : Input::Exception
-	{ using Input::Exception::Exception; };
+	struct Exception : Stream::Input::Exception
+	{ using Stream::Input::Exception::Exception; };
 
 	SignatureInput(EVP_MD const* md, Key const& verifyKey);
 
@@ -33,21 +33,21 @@ public:
 
 	[[nodiscard]] bool
 	verifySignature(std::vector<std::byte> const& signature) const;
-};//class Stream::Security::SignatureInput
+};//class Security::SignatureInput
 
 /**
  * @brief	Stream::Output %Signature observer
- * @class	SignatureOutput Signature.hpp "StreamSecurity/Signature.hpp"
+ * @class	SignatureOutput Signature.hpp "Security/Signature.hpp"
  */
-class SignatureOutput : public TransparentOutput {
+class SignatureOutput : public Stream::TransparentOutput {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
 
 	std::size_t
 	writeBytes(std::byte const* src, std::size_t size) override;
 
 public:
-	struct Exception : Output::Exception
-	{ using Output::Exception::Exception; };
+	struct Exception : Stream::Output::Exception
+	{ using Stream::Output::Exception::Exception; };
 
 	SignatureOutput(EVP_MD const* md, Key const& signKey);
 
@@ -64,11 +64,11 @@ public:
 
 	[[nodiscard]] std::vector<std::byte>
 	getSignature() const;
-};//class Stream::Security::SignatureOutput
+};//class Security::SignatureOutput
 
 /**
  * @brief Stream::Input / Stream::Output %Signature observer
- * @class Signature Signature.hpp "StreamSecurity/Signature.hpp"
+ * @class Signature Signature.hpp "Security/Signature.hpp"
  */
 class Signature : public SignatureInput, public SignatureOutput {
 	friend class SignatureInput;
@@ -93,13 +93,13 @@ public:
 	struct Exception : std::system_error {
 		using std::system_error::system_error;
 		enum class Code : int {};
-	};//struct Stream::Security::Signature::Exception
+	};//struct Security::Signature::Exception
 
 	Signature(EVP_MD const* md, Key const& key);
 
 	Signature(EVP_MD const* mdIn, Key const& verifyKey, EVP_MD const* mdOut, Key const& signKey);
 };
-//class Stream::Security::Signature
+//class Security::Signature
 
 void
 swap(Signature& a, Signature& b) noexcept;
@@ -107,13 +107,13 @@ swap(Signature& a, Signature& b) noexcept;
 std::error_code
 make_error_code(Signature::Exception::Code e) noexcept;
 
-}//namespace Stream::Security
+}//namespace Security
 
 namespace std {
 
 template <>
-struct is_error_code_enum<Stream::Security::Signature::Exception::Code> : true_type {};
+struct is_error_code_enum<Security::Signature::Exception::Code> : true_type {};
 
 }//namespace std
 
-#endif //STREAM_SECURITY_SIGNATURE_HPP
+#endif //SECURITY_SIGNATURE_HPP

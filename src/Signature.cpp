@@ -1,11 +1,11 @@
-#include "StreamSecurity/Signature.hpp"
+#include "Security/Signature.hpp"
 #include <new>
 #include <openssl/err.h>
 
 #define ExpectAllocated(x) if (!x) throw std::bad_alloc()
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Signature::Exception::Code>(ERR_peek_last_error()))
 
-namespace Stream::Security {
+namespace Security {
 
 SignatureInput::SignatureInput(EVP_MD const* md, Key const& verifyKey)
 		: mCtx(EVP_MD_CTX_new(), EVP_MD_CTX_free)
@@ -20,7 +20,7 @@ SignatureInput::SignatureInput(SignatureInput&& other) noexcept
 void
 swap(SignatureInput& a, SignatureInput& b) noexcept
 {
-	swap(static_cast<TransparentInput&>(a), static_cast<TransparentInput&>(b));
+	swap(static_cast<Stream::TransparentInput&>(a), static_cast<Stream::TransparentInput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 }
 
@@ -57,7 +57,7 @@ SignatureOutput::SignatureOutput(SignatureOutput&& other) noexcept
 void
 swap(SignatureOutput& a, SignatureOutput& b) noexcept
 {
-	swap(static_cast<TransparentOutput&>(a), static_cast<TransparentOutput&>(b));
+	swap(static_cast<Stream::TransparentOutput&>(a), static_cast<Stream::TransparentOutput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 }
 
@@ -157,7 +157,7 @@ make_error_code(Signature::Exception::Code e) noexcept
 	static struct : std::error_category {
 		[[nodiscard]] char const*
 		name() const noexcept override
-		{ return "Stream::Security::Signature"; }
+		{ return "Security::Signature"; }
 
 		[[nodiscard]] std::string
 		message(int ev) const noexcept override
@@ -166,4 +166,4 @@ make_error_code(Signature::Exception::Code e) noexcept
 	return {static_cast<int>(e), instance};
 }
 
-}//namespace Stream::Security
+}//namespace Security

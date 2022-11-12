@@ -1,5 +1,5 @@
 #include <Stream/Socket.hpp>
-#include <StreamSecurity/TLS.hpp>
+#include <Security/TLS.hpp>
 #include <cstring>
 #include <iostream>
 #include <Stream/File.hpp>
@@ -12,30 +12,30 @@
 
 #define MAX_HTTP_BUFFER_SIZE 64*1024
 
-Stream::Security::Certificate
+Security::Certificate
 GetCertificate(char const* fileName)
 {
 	Stream::File certFile{fileName, Stream::File::Mode::R};
 	Stream::BufferInput bufferInput{static_cast<std::size_t>(certFile.getFileSize())};
 	certFile > bufferInput;
-	return Stream::Security::Certificate{bufferInput};
+	return Security::Certificate{bufferInput};
 }
 
-Stream::Security::PrivateKey
+Security::PrivateKey
 GetPrivateKey(char const* fileName)
 {
 	Stream::File keyFile{fileName, Stream::File::Mode::R};
 
-	Stream::Security::Secret<> secret{static_cast<std::size_t>(keyFile.getFileSize())};
+	Security::Secret<> secret{static_cast<std::size_t>(keyFile.getFileSize())};
 	keyFile.read(secret.get(), secret.size());
 
 	Stream::BufferInput bufferInput{secret.get(), secret.size()};
-	return Stream::Security::PrivateKey{bufferInput};
+	return Security::PrivateKey{bufferInput};
 }
 
 
 int main() {
-	auto ctx = Stream::Security::TLS::Context{TLS_server_method(),
+	auto ctx = Security::TLS::Context{TLS_server_method(),
 			GetCertificate("app.local.crt.der"),
 			GetPrivateKey("app.local.key.der")};
 	//SSL_CTX_set_verify(ctx.get(), SSL_VERIFY_NONE, nullptr);
@@ -43,7 +43,7 @@ int main() {
 	Stream::Socket server{Stream::Socket::Address::Inet{"app.local", 8443}, 4096};
 
 	for (int i = 0, m = 1000000; i < m; ++i) {
-		std::thread([](Stream::Socket client, Stream::Security::TLS::Context const& ctx, int reqNumber) {
+		std::thread([](Stream::Socket client, Security::TLS::Context const& ctx, int reqNumber) {
 			std::string response{
 				"HTTP/1.1 200 OK\r\n"
 				"Content-Length: 140\r\n"
@@ -62,7 +62,7 @@ int main() {
 
 			try {
 				Stream::Buffer buffer{static_cast<std::size_t>(client.getMSS())};
-				Stream::Security::TLS tls{ctx};
+				Security::TLS tls{ctx};
 				client <=> buffer <=> tls;
 
 				std::string request;

@@ -1,4 +1,4 @@
-#include <StreamSecurity/Cipher.hpp>
+#include <Security/Cipher.hpp>
 #include <Stream/File.hpp>
 #include <StreamTest/Util.hpp>
 #include <openssl/rand.h>
@@ -10,16 +10,16 @@
 void
 writeNewSecretKey(std::string const& fileName, EVP_CIPHER const* cipher)
 {
-	Stream::Security::Secret<> secretKey{static_cast<std::size_t>(EVP_CIPHER_key_length(cipher))};
+	Security::Secret<> secretKey{static_cast<std::size_t>(EVP_CIPHER_key_length(cipher))};
 	Expect1(RAND_priv_bytes(secretKey.get(), secretKey.size()));
 	Stream::File{fileName + ".sec", Stream::File::Mode::W}.write(secretKey.get(), secretKey.size());
 }
 
-Stream::Security::Secret<>
+Security::Secret<>
 readSecretKey(std::string const& fileName)
 {
 	Stream::File file{fileName + ".sec", Stream::File::Mode::R};
-	Stream::Security::Secret<> secretKey{static_cast<std::size_t>(file.getFileSize())};
+	Security::Secret<> secretKey{static_cast<std::size_t>(file.getFileSize())};
 	file.read(secretKey.get(), secretKey.size());
 	return secretKey;
 }
@@ -41,7 +41,7 @@ testEncrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 		buffer.write(iv.get(), ivLength);
 	}
 
-	Stream::Security::CipherEncrypt encryptor{cipher, secretKey, iv.get()};
+	Security::CipherEncrypt encryptor{cipher, secretKey, iv.get()};
 	buffer < encryptor;
 
 	StreamTest::Util::WriteRandomChunks(encryptor, toEncrypt,
@@ -66,7 +66,7 @@ testDecrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 		buffer.read(iv.get(), ivLength);
 	}
 
-	Stream::Security::CipherDecrypt decryptor{cipher, secretKey, iv.get()};
+	Security::CipherDecrypt decryptor{cipher, secretKey, iv.get()};
 	buffer > decryptor;
 
 	StreamTest::Util::ReadRandomChunks(decryptor, decrypted,

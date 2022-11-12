@@ -1,17 +1,17 @@
-#ifndef STREAM_SECURITY_DIGEST_HPP
-#define STREAM_SECURITY_DIGEST_HPP
+#ifndef SECURITY_DIGEST_HPP
+#define SECURITY_DIGEST_HPP
 
 #include "Key.hpp"
 #include <Stream/Transparent.hpp>
 #include <vector>
 
-namespace Stream::Security {
+namespace Security {
 
 /**
  * @brief	Stream::Input %Digest observer
- * @class	DigestInput Digest.hpp "StreamSecurity/Digest.hpp"
+ * @class	DigestInput Digest.hpp "Security/Digest.hpp"
  */
-class DigestInput : public TransparentInput {
+class DigestInput : public Stream::TransparentInput {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
 
 	std::size_t
@@ -21,8 +21,8 @@ protected:
 	DigestInput(EVP_MD const* md, EVP_PKEY* key);
 
 public:
-	struct Exception : Input::Exception
-	{ using Input::Exception::Exception; };
+	struct Exception : Stream::Input::Exception
+	{ using Stream::Input::Exception::Exception; };
 
 	explicit DigestInput(EVP_MD const* md);
 
@@ -41,13 +41,13 @@ public:
 
 	[[nodiscard]] std::vector<std::byte>
 	getInputDigest() const;
-};//class Stream::Security::DigestInput
+};//class Security::DigestInput
 
 /**
  * @brief	Stream::Output %Digest observer
- * @class	DigestOutput Digest.hpp "StreamSecurity/Digest.hpp"
+ * @class	DigestOutput Digest.hpp "Security/Digest.hpp"
  */
-class DigestOutput : public TransparentOutput {
+class DigestOutput : public Stream::TransparentOutput {
 	std::unique_ptr<EVP_MD_CTX, decltype(&EVP_MD_CTX_free)> mCtx{nullptr, EVP_MD_CTX_free};
 
 	std::size_t
@@ -57,8 +57,8 @@ protected:
 	DigestOutput(EVP_MD const* md, EVP_PKEY* key);
 
 public:
-	struct Exception : Output::Exception
-	{ using Output::Exception::Exception; };
+	struct Exception : Stream::Output::Exception
+	{ using Stream::Output::Exception::Exception; };
 
 	explicit DigestOutput(EVP_MD const* md);
 
@@ -77,11 +77,11 @@ public:
 
 	[[nodiscard]] std::vector<std::byte>
 	getOutputDigest() const;
-};//class Stream::Security::DigestOutput
+};//class Security::DigestOutput
 
 /**
  * @brief Stream::Input / Stream::Output %Digest observer
- * @class Digest Digest.hpp "StreamSecurity/Digest.hpp"
+ * @class Digest Digest.hpp "Security/Digest.hpp"
  */
 class Digest : public DigestInput, public DigestOutput {
 	friend class DigestInput;
@@ -106,7 +106,7 @@ public:
 	struct Exception : std::system_error {
 		using std::system_error::system_error;
 		enum class Code : int {};
-	};//struct Stream::Security::Digest::Exception
+	};//struct Security::Digest::Exception
 
 	explicit Digest(EVP_MD const* md);
 
@@ -119,7 +119,7 @@ public:
 	Digest(EVP_MD const* mdIn, Key const& inKey, EVP_MD const* mdOut);
 
 	Digest(EVP_MD const* mdIn, Key const& inKey, EVP_MD const* mdOut, Key const& outKey);
-};//class Stream::Security::Digest
+};//class Security::Digest
 
 void
 swap(Digest& a, Digest& b) noexcept;
@@ -127,13 +127,13 @@ swap(Digest& a, Digest& b) noexcept;
 std::error_code
 make_error_code(Digest::Exception::Code e) noexcept;
 
-}//namespace Stream::Security
+}//namespace Security
 
 namespace std {
 
 template <>
-struct is_error_code_enum<Stream::Security::Digest::Exception::Code> : true_type {};
+struct is_error_code_enum<Security::Digest::Exception::Code> : true_type {};
 
 }//namespace std
 
-#endif //STREAM_SECURITY_DIGEST_HPP
+#endif //SECURITY_DIGEST_HPP

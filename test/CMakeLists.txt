@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14.0)
-project(StreamSecurityTest VERSION 0.1 DESCRIPTION "")
+project(SecurityTest VERSION 0.1 DESCRIPTION "")
 
 
 set(StreamTest ${CMAKE_CURRENT_SOURCE_DIR}/../../Stream/test)

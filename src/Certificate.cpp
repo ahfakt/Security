@@ -1,4 +1,4 @@
-#include "StreamSecurity/Certificate.hpp"
+#include "Security/Certificate.hpp"
 #include <openssl/err.h>
 #include <cstring>
 
@@ -6,7 +6,7 @@
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Exception::Code>(ERR_peek_last_error()))
 #define ExpectPos(x) if (0 >= x) throw Certificate::Exception(static_cast<Certificate::Exception::Code>(ERR_peek_last_error()))
 
-namespace Stream::Security {
+namespace Security {
 
 Certificate::Certificate(X509* val)
 		: mVal(val, X509_free)
@@ -19,7 +19,7 @@ Certificate::Certificate(Certificate const& other)
 Certificate::operator X509*() const noexcept
 { return mVal.get(); }
 
-Certificate::Certificate(Input& input)
+Certificate::Certificate(Stream::Input& input)
 {
 	DerInfo i(input);
 
@@ -32,8 +32,8 @@ Certificate::Certificate(Input& input)
 	ExpectInitialized(mVal);
 }
 
-Output&
-operator<<(Output& output, Certificate const& certificate)
+Stream::Output&
+operator<<(Stream::Output& output, Certificate const& certificate)
 {
 	int length = i2d_X509(static_cast<X509*>(certificate), nullptr);
 	ExpectPos(length);
@@ -51,7 +51,7 @@ make_error_code(Certificate::Exception::Code e) noexcept
 	static struct : std::error_category {
 		[[nodiscard]] char const*
 		name() const noexcept override
-		{ return "Stream::Security::Certificate"; }
+		{ return "Security::Certificate"; }
 
 		[[nodiscard]] std::string
 		message(int ev) const noexcept override
@@ -60,4 +60,4 @@ make_error_code(Certificate::Exception::Code e) noexcept
 	return {static_cast<int>(e), instance};
 }
 
-}//namespace Stream::Security
+}//namespace Security

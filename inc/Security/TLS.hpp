@@ -1,18 +1,18 @@
-#ifndef STREAM_SECURITY_TLS_HPP
-#define STREAM_SECURITY_TLS_HPP
+#ifndef SECURITY_TLS_HPP
+#define SECURITY_TLS_HPP
 
 #include "Certificate.hpp"
 #include <Stream/Transform.hpp>
 #include <openssl/ssl.h>
 #include <memory>
 
-namespace Stream::Security {
+namespace Security {
 
 /**
  * @brief	Stream::Input %TLS decryptor
- * @class	TLSDecrypt TLS.hpp "StreamSecurity/TLS.hpp"
+ * @class	TLSDecrypt TLS.hpp "Security/TLS.hpp"
  */
-class TLSDecrypt : public TransformInput {
+class TLSDecrypt : public Stream::TransformInput {
 	SSL* mSSL;
 	BIO* mInBio;
 
@@ -29,21 +29,21 @@ protected:
 	recvData();
 
 public:
-	struct Exception : Input::Exception
-	{ using Input::Exception::Exception; };
+	struct Exception : Stream::Input::Exception
+	{ using Stream::Input::Exception::Exception; };
 
 	friend void
 	swap(TLSDecrypt& a, TLSDecrypt& b) noexcept;
 
 	TLSDecrypt&
 	operator=(TLSDecrypt&& other) noexcept;
-};//class Stream::Security::TLSDecrypt
+};//class Security::TLSDecrypt
 
 /**
  * @brief	Stream::Output %TLS encryptor
- * @class	TLSEncrypt TLS.hpp "StreamSecurity/TLS.hpp"
+ * @class	TLSEncrypt TLS.hpp "Security/TLS.hpp"
  */
-class TLSEncrypt : public TransformOutput {
+class TLSEncrypt : public Stream::TransformOutput {
 	SSL* mSSL;
 	BIO* mOutBio;
 
@@ -60,8 +60,8 @@ protected:
 	sendData();
 
 public:
-	struct Exception : Output::Exception
-	{ using Output::Exception::Exception; };
+	struct Exception : Stream::Output::Exception
+	{ using Stream::Output::Exception::Exception; };
 
 	friend void
 	swap(TLSEncrypt& a, TLSEncrypt& b) noexcept;
@@ -71,11 +71,11 @@ public:
 
 	bool
 	shutdown();
-};//class Stream::Security::TLSEncrypt
+};//class Security::TLSEncrypt
 
 /**
  * @brief Stream::Input / Stream::Output %TLS decryptor and encryptor
- * @class TLS TLS.hpp "StreamSecurity/TLS.hpp"
+ * @class TLS TLS.hpp "Security/TLS.hpp"
  */
 class TLS : public TLSDecrypt, public TLSEncrypt {
 	std::unique_ptr<SSL, decltype(&SSL_free)> mSSL {nullptr, SSL_free};
@@ -93,11 +93,11 @@ public:
 	struct Exception : std::system_error {
 		using std::system_error::system_error;
 		enum class Code : int {};
-	};//struct Stream::Security::TLS::Exception
+	};//struct Security::TLS::Exception
 
 	/**
 	 * @brief	%TLS %Context
-	 * @class	Context TLS.hppStreamSecurity/TLS.hpp"
+	 * @class	Context TLS.hppSecurity/TLS.hpp"
 	 */
 	class Context {
 		friend class TLS;
@@ -109,7 +109,7 @@ public:
 
 		void
 		addToStore(Certificate const& caCertificate);
-	};//class Stream::Security::TLS::Context
+	};//class Security::TLS::Context
 
 	explicit TLS(Context const& ctx);
 
@@ -118,18 +118,18 @@ public:
 
 	TLS&
 	operator=(TLS&& other) noexcept;
-};//class Stream::Security::TLS
+};//class Security::TLS
 
 std::error_code
 make_error_code(TLS::Exception::Code e) noexcept;
 
-}//namespace Stream::Security
+}//namespace Security
 
 namespace std {
 
 template <>
-struct is_error_code_enum<Stream::Security::TLS::Exception::Code> : true_type {};
+struct is_error_code_enum<Security::TLS::Exception::Code> : true_type {};
 
 }//namespace std
 
-#endif //STREAM_SECURITY_TLS_HPP
+#endif //SECURITY_TLS_HPP

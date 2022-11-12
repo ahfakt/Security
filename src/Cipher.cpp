@@ -1,4 +1,4 @@
-#include "StreamSecurity/Cipher.hpp"
+#include "Security/Cipher.hpp"
 #include <cstring>
 #include <new>
 #include <openssl/err.h>
@@ -7,7 +7,7 @@
 #define ExpectAllocated(x) if (!x) throw std::bad_alloc()
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Cipher::Exception::Code>(ERR_peek_last_error()))
 
-namespace Stream::Security {
+namespace Security {
 
 CipherDecrypt::CipherDecrypt(EVP_CIPHER const* cipher, Secret<> const& key, std::byte const* iv)
 		: mCtx(EVP_CIPHER_CTX_new(), EVP_CIPHER_CTX_free)
@@ -22,7 +22,7 @@ CipherDecrypt::CipherDecrypt(CipherDecrypt&& other) noexcept
 void
 swap(CipherDecrypt& a, CipherDecrypt& b) noexcept
 {
-	swap(static_cast<TransformInput&>(a), static_cast<TransformInput&>(b));
+	swap(static_cast<Stream::TransformInput&>(a), static_cast<Stream::TransformInput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 	std::swap(a.mTempBeg, b.mTempBeg);
 	std::swap(a.mTempCurr, b.mTempCurr);
@@ -63,7 +63,7 @@ CipherDecrypt::readBytes(std::byte* dest, std::size_t size)
 	}
 
 	if (!EVP_CIPHER_CTX_cipher(mCtx.get()))
-		throw Exception(Input::Exception::Code::Uninitialized);
+		throw Exception(Stream::Input::Exception::Code::Uninitialized);
 
 	if (EVP_CIPHER_CTX_block_size(mCtx.get()) > 1) {
 		if (size >= 2 * EVP_CIPHER_CTX_block_size(mCtx.get())) {
@@ -79,7 +79,7 @@ CipherDecrypt::readBytes(std::byte* dest, std::size_t size)
 	if (mFinalizeWhenNoData) {
 		try {
 			size = provideSomeData(size);
-		} catch (Input::Exception const& exc) {
+		} catch (Stream::Input::Exception const& exc) {
 			if (exc.code() != std::make_error_code(std::errc::no_message_available))
 				throw;
 			finalizeDecryption();
@@ -130,7 +130,7 @@ CipherEncrypt::CipherEncrypt(CipherEncrypt&& other) noexcept
 void
 swap(CipherEncrypt& a, CipherEncrypt& b) noexcept
 {
-	swap(static_cast<TransformOutput&>(a), static_cast<TransformOutput&>(b));
+	swap(static_cast<Stream::TransformOutput&>(a), static_cast<Stream::TransformOutput&>(b));
 	std::swap(a.mCtx, b.mCtx);
 	std::swap(a.mExtSize, b.mExtSize);
 }
@@ -160,7 +160,7 @@ std::size_t
 CipherEncrypt::writeBytes(std::byte const* src, std::size_t size)
 {
 	if (!EVP_CIPHER_CTX_cipher(mCtx.get()))
-		throw Exception(Output::Exception::Code::Uninitialized);
+		throw Exception(Stream::Output::Exception::Code::Uninitialized);
 
 	provideSpace(size + mExtSize);
 
@@ -190,7 +190,7 @@ CipherEncrypt::~CipherEncrypt()
 {
 	try {
 		finalizeEncryption();
-	} catch (Output::Exception const& exc) {
+	} catch (Stream::Output::Exception const& exc) {
 		::write(STDERR_FILENO, exc.what(), std::strlen(exc.what()));
 	}
 }
@@ -218,7 +218,7 @@ make_error_code(Cipher::Exception::Code e) noexcept
 	static struct : std::error_category {
 		[[nodiscard]] char const*
 		name() const noexcept override
-		{ return "Stream::Security::Cipher"; }
+		{ return "Security::Cipher"; }
 
 		[[nodiscard]] std::string
 		message(int ev) const noexcept override
@@ -227,4 +227,4 @@ make_error_code(Cipher::Exception::Code e) noexcept
 	return {static_cast<int>(e), instance};
 }
 
-}//namespace Stream::Security
+}//namespace Security

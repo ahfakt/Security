@@ -1,11 +1,11 @@
-#include "StreamSecurity/TLS.hpp"
+#include "Security/TLS.hpp"
 #include <openssl/err.h>
 
 #define ExpectInitialized(x) if (!x) throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()))
 #define Expect1(x) if (1 != x) throw Exception(static_cast<Exception::Code>(ERR_peek_last_error()))
 #define MAX_TLS_RECORD_SIZE 16*1024
 
-namespace Stream::Security {
+namespace Security {
 
 TLSDecrypt::TLSDecrypt(SSL* ssl)
 		: mSSL(ssl)
@@ -22,7 +22,7 @@ TLSDecrypt::TLSDecrypt(SSL* ssl)
 void
 swap(TLSDecrypt& a, TLSDecrypt& b) noexcept
 {
-	swap(static_cast<TransformInput&>(a), static_cast<TransformInput&>(b));
+	swap(static_cast<Stream::TransformInput&>(a), static_cast<Stream::TransformInput&>(b));
 	std::swap(a.mSSL, b.mSSL);
 	std::swap(a.mInBio, b.mInBio);
 }
@@ -83,7 +83,7 @@ TLSEncrypt::TLSEncrypt(SSL* ssl)
 void
 swap(TLSEncrypt& a, TLSEncrypt& b) noexcept
 {
-	swap(static_cast<TransformOutput&>(a), static_cast<TransformOutput&>(b));
+	swap(static_cast<Stream::TransformOutput&>(a), static_cast<Stream::TransformOutput&>(b));
 	std::swap(a.mSSL, b.mSSL);
 	std::swap(a.mOutBio, b.mOutBio);
 }
@@ -127,7 +127,7 @@ TLSEncrypt::writeBytes(std::byte const* src, std::size_t size)
 	switch (r) {
 		case SSL_ERROR_WANT_READ: {
 			sendData();
-			TransformOutput::flush();
+			Stream::TransformOutput::flush();
 			wantRecvData();
 			return 0;
 		}
@@ -146,10 +146,10 @@ TLSEncrypt::shutdown()
 			throw Exception(static_cast<TLS::Exception::Code>(ERR_peek_last_error()));
 		} else {
 			sendData();
-			TransformOutput::flush();
+			Stream::TransformOutput::flush();
 			try {
 				wantRecvData();
-			} catch (Input::Exception const& exc) {
+			} catch (Stream::Input::Exception const& exc) {
 				return false;
 			}
 		}
@@ -190,7 +190,7 @@ void
 TLS::wantSendData()
 {
 	sendData();
-	TransformOutput::flush();
+	Stream::TransformOutput::flush();
 }
 
 void
@@ -204,7 +204,7 @@ TLS::Context::Context(SSL_METHOD const* method)
 TLS::Context::Context(SSL_METHOD const* method, Certificate const& certificate, PrivateKey const& privateKey)
 		: Context(method)
 {
-	Expect1(SSL_CTX_use_PrivateKey(mCtx.get(), static_cast<EVP_PKEY*>(Stream::Security::Key(privateKey))));
+	Expect1(SSL_CTX_use_PrivateKey(mCtx.get(), static_cast<EVP_PKEY*>(Security::Key(privateKey))));
 	Expect1(SSL_CTX_use_certificate(mCtx.get(), static_cast<X509*>(certificate)));
 	Expect1(SSL_CTX_check_private_key(mCtx.get()));
 }
@@ -219,7 +219,7 @@ make_error_code(TLS::Exception::Code e) noexcept
 	static struct : std::error_category {
 		[[nodiscard]] char const*
 		name() const noexcept override
-		{ return "Stream::Security::TLS"; }
+		{ return "Security::TLS"; }
 
 		[[nodiscard]] std::string
 		message(int ev) const noexcept override
@@ -228,4 +228,4 @@ make_error_code(TLS::Exception::Code e) noexcept
 	return {static_cast<int>(e), instance};
 }
 
-}//namespace Stream::Security
+}//namespace Security

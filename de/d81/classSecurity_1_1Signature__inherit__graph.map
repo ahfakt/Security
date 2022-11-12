@@ -1,0 +1,9 @@
+<map id="Security::Signature" name="Security::Signature">
+<area shape="rect" id="node1" title="Stream::Input / Stream::Output Signature observer." alt="" coords="21,343,867,441"/>
+<area shape="rect" id="node2" href="$d6/d4d/classSecurity_1_1SignatureInput.html" title="Stream::Input Signature observer." alt="" coords="5,189,437,287"/>
+<area shape="rect" id="node3" href="/tmp/build/x64/Release/Stream/tag.xml$d1/dcd/classStream_1_1TransparentInput.html" title=" " alt="" coords="134,93,309,133"/>
+<area shape="rect" id="node4" href="/tmp/build/x64/Release/Stream/tag.xml$d7/d83/classStream_1_1Input.html" title=" " alt="" coords="169,5,274,45"/>
+<area shape="rect" id="node5" href="$d7/d5e/classSecurity_1_1SignatureOutput.html" title="Stream::Output Signature observer." alt="" coords="461,181,872,295"/>
+<area shape="rect" id="node6" href="/tmp/build/x64/Release/Stream/tag.xml$d1/d52/classStream_1_1TransparentOutput.html" title=" " alt="" coords="575,93,759,133"/>
+<area shape="rect" id="node7" href="/tmp/build/x64/Release/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="609,5,724,45"/>
+</map>

@@ -1,11 +1,19 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,129,129,155"/>
-<area shape="rect" id="node2" href="$d1/d59/structSecurity_1_1Certificate_1_1Exception.html" title=" " alt="" coords="177,5,381,31"/>
-<area shape="rect" id="node3" href="$d6/d10/structSecurity_1_1DerInfo_1_1Exception.html" title=" " alt="" coords="186,55,373,80"/>
-<area shape="rect" id="node4" href="$da/d03/structSecurity_1_1Digest_1_1Exception.html" title=" " alt="" coords="188,104,371,129"/>
-<area shape="rect" id="node5" href="$d8/d82/structSecurity_1_1Key_1_1Exception.html" title=" " alt="" coords="196,153,363,179"/>
-<area shape="rect" id="node8" href="$d4/d33/structSecurity_1_1Signature_1_1Exception.html" title=" " alt="" coords="180,203,379,228"/>
-<area shape="rect" id="node9" href="$d6/dc6/structSecurity_1_1TLS_1_1Exception.html" title=" " alt="" coords="195,252,363,277"/>
-<area shape="rect" id="node6" href="$d8/d3c/structSecurity_1_1PrivateKey_1_1Exception.html" title=" " alt="" coords="429,129,637,155"/>
-<area shape="rect" id="node7" href="$d5/d1c/structSecurity_1_1PublicKey_1_1Exception.html" title=" " alt="" coords="432,179,635,204"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,132,129,159"/>
+<area shape="rect" id="Node000001" href="$d1/d59/structSecurity_1_1Certificate_1_1Exception.html" title=" " alt="" coords="177,5,380,32"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="86,119,125,79,149,59,175,42,203,30,205,35,178,46,152,63,128,83,90,122"/>
+<area shape="rect" id="Node000002" href="$d6/d10/structSecurity_1_1DerInfo_1_1Exception.html" title=" " alt="" coords="185,56,372,83"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="106,123,176,92,214,81,215,86,178,97,108,128"/>
+<area shape="rect" id="Node000003" href="$da/d03/structSecurity_1_1Digest_1_1Exception.html" title=" " alt="" coords="188,107,369,133"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="143,134,187,128,188,134,144,139"/>
+<area shape="rect" id="Node000004" href="$d8/d82/structSecurity_1_1Key_1_1Exception.html" title=" " alt="" coords="195,157,362,184"/>
+<area shape="poly" id="edge4_Node000000_Node000004" title=" " alt="" coords="144,152,195,158,194,163,143,157"/>
+<area shape="rect" id="Node000007" href="$d4/d33/structSecurity_1_1Signature_1_1Exception.html" title=" " alt="" coords="179,208,378,235"/>
+<area shape="poly" id="edge7_Node000000_Node000007" title=" " alt="" coords="108,163,178,193,215,205,214,210,176,199,106,168"/>
+<area shape="rect" id="Node000008" href="$d6/dc6/structSecurity_1_1TLS_1_1Exception.html" title=" " alt="" coords="195,259,362,285"/>
+<area shape="poly" id="edge8_Node000000_Node000008" title=" " alt="" coords="90,168,128,208,152,228,178,244,205,256,203,261,175,249,149,232,125,212,86,172"/>
+<area shape="rect" id="Node000005" href="$d8/d3c/structSecurity_1_1PrivateKey_1_1Exception.html" title=" " alt="" coords="428,132,635,159"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="376,158,427,153,428,158,377,164"/>
+<area shape="rect" id="Node000006" href="$d5/d1c/structSecurity_1_1PublicKey_1_1Exception.html" title=" " alt="" coords="431,183,633,209"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="377,178,430,183,430,189,376,183"/>
 </map>

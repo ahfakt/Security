@@ -1,5 +1,7 @@
 <map id="Security::PrivateKey::Exception" name="Security::PrivateKey::Exception">
-<area shape="rect" id="node1" title=" " alt="" coords="5,181,217,221"/>
-<area shape="rect" id="node2" href="$d8/d82/structSecurity_1_1Key_1_1Exception.html" title=" " alt="" coords="26,93,197,133"/>
-<area shape="rect" id="node3" title=" " alt="" coords="47,5,175,45"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,240,204,309"/>
+<area shape="rect" id="Node000002" href="$d8/d82/structSecurity_1_1Key_1_1Exception.html" title=" " alt="" coords="26,123,183,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,206,107,240,102,240,102,206"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="47,5,162,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,89,107,123,102,123,102,89"/>
 </map>

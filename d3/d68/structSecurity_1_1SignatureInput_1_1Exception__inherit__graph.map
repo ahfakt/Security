@@ -1,4 +1,5 @@
 <map id="Security::SignatureInput::Exception" name="Security::SignatureInput::Exception">
-<area shape="rect" id="node1" title=" " alt="" coords="5,93,237,133"/>
-<area shape="rect" id="node2" href="/tmp/build/x64/Release/Stream/tag.xml$d2/d85/structStream_1_1Input_1_1Exception.html" title=" " alt="" coords="36,5,207,45"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,123,224,192"/>
+<area shape="rect" id="Node000002" href="/tmp/build/x64/Release/Stream/tag.xml$d2/d85/structStream_1_1Input_1_1Exception.html" title=" " alt="" coords="36,5,193,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,89,117,123,112,123,112,89"/>
 </map>

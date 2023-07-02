@@ -1,7 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/tmp/build/x64/Release/Stream/tag.xml$d5/d2d/structStream_1_1Output_1_1Exception.html" title=" " alt="" coords="5,80,183,105"/>
-<area shape="rect" id="node2" href="$d8/d2c/structSecurity_1_1CipherEncrypt_1_1Exception.html" title=" " alt="" coords="237,5,463,31"/>
-<area shape="rect" id="node3" href="$d6/d10/structSecurity_1_1DigestOutput_1_1Exception.html" title=" " alt="" coords="239,55,461,80"/>
-<area shape="rect" id="node4" href="$d9/dc0/structSecurity_1_1SignatureOutput_1_1Exception.html" title=" " alt="" coords="231,104,469,129"/>
-<area shape="rect" id="node5" href="$d7/d35/structSecurity_1_1TLSEncrypt_1_1Exception.html" title=" " alt="" coords="243,153,457,179"/>
+<area shape="rect" id="Node000000" href="/tmp/build/x64/Release/Stream/tag.xml$d5/d2d/structStream_1_1Output_1_1Exception.html" title=" " alt="" coords="5,81,182,108"/>
+<area shape="rect" id="Node000001" href="$d8/d2c/structSecurity_1_1CipherEncrypt_1_1Exception.html" title=" " alt="" coords="235,5,462,32"/>
+<area shape="poly" id="edge35_Node000000_Node000001" title=" " alt="" coords="140,73,229,41,274,30,275,35,230,47,142,78"/>
+<area shape="rect" id="Node000002" href="$d6/d10/structSecurity_1_1DigestOutput_1_1Exception.html" title=" " alt="" coords="238,56,459,83"/>
+<area shape="poly" id="edge36_Node000000_Node000002" title=" " alt="" coords="197,82,238,78,238,83,197,87"/>
+<area shape="rect" id="Node000003" href="$d9/dc0/structSecurity_1_1SignatureOutput_1_1Exception.html" title=" " alt="" coords="230,107,467,133"/>
+<area shape="poly" id="edge37_Node000000_Node000003" title=" " alt="" coords="197,102,229,105,229,111,196,108"/>
+<area shape="rect" id="Node000004" href="$d7/d35/structSecurity_1_1TLSEncrypt_1_1Exception.html" title=" " alt="" coords="242,157,455,184"/>
+<area shape="poly" id="edge38_Node000000_Node000004" title=" " alt="" coords="142,111,230,143,275,154,274,159,229,148,140,117"/>
 </map>

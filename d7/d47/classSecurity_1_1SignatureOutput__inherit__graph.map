@@ -1,6 +1,9 @@
 <map id="Security::SignatureOutput" name="Security::SignatureOutput">
-<area shape="rect" id="node1" title="Stream::Output Signature observer." alt="" coords="223,181,633,295"/>
-<area shape="rect" id="node4" href="$d0/d3a/classSecurity_1_1Signature.html" title="Stream::Input / Stream::Output Signature observer." alt="" coords="5,343,851,441"/>
-<area shape="rect" id="node2" href="/tmp/build/x64/Release/Stream/tag.xml$d1/d52/classStream_1_1TransparentOutput.html" title=" " alt="" coords="336,93,520,133"/>
-<area shape="rect" id="node3" href="/tmp/build/x64/Release/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="371,5,485,45"/>
+<area shape="rect" id="Node000001" title="Stream::Output Signature observer." alt="" coords="223,240,623,395"/>
+<area shape="rect" id="Node000004" href="$d0/d3a/classSecurity_1_1Signature.html" title="Stream::Input / Stream::Output Signature observer." alt="" coords="5,443,840,576"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="425,409,425,443,420,443,420,409"/>
+<area shape="rect" id="Node000002" href="/tmp/build/x64/Release/Stream/tag.xml$d1/d52/classStream_1_1TransparentOutput.html" title=" " alt="" coords="337,123,508,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="425,206,425,240,420,240,420,206"/>
+<area shape="rect" id="Node000003" href="/tmp/build/x64/Release/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="372,5,473,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="425,89,425,123,420,123,420,89"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="Security::Key::Exception" name="Security::Key::Exception">
-<area shape="rect" id="node1" title=" " alt="" coords="142,93,313,133"/>
-<area shape="rect" id="node3" href="$d8/d3c/structSecurity_1_1PrivateKey_1_1Exception.html" title=" " alt="" coords="5,181,217,221"/>
-<area shape="rect" id="node4" href="$d5/d1c/structSecurity_1_1PublicKey_1_1Exception.html" title=" " alt="" coords="241,181,448,221"/>
-<area shape="rect" id="node2" title=" " alt="" coords="163,5,291,45"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="135,123,293,192"/>
+<area shape="rect" id="Node000003" href="$d8/d3c/structSecurity_1_1PrivateKey_1_1Exception.html" title=" " alt="" coords="5,240,204,309"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,204,138,242,134,238,171,200"/>
+<area shape="rect" id="Node000004" href="$d5/d1c/structSecurity_1_1PublicKey_1_1Exception.html" title=" " alt="" coords="228,240,421,309"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,200,295,238,291,242,254,204"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="157,5,271,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,89,217,123,211,123,211,89"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="Security::Digest::Exception" name="Security::Digest::Exception">
-<area shape="rect" id="node1" title=" " alt="" coords="5,93,192,133"/>
-<area shape="rect" id="node2" title=" " alt="" coords="35,5,163,45"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,123,179,192"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="35,5,149,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,89,95,123,89,123,89,89"/>
 </map>

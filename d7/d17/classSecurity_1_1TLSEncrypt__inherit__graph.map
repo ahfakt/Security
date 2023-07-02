@@ -1,6 +1,9 @@
 <map id="Security::TLSEncrypt" name="Security::TLSEncrypt">
-<area shape="rect" id="node1" title="Stream::Output TLS encryptor." alt="" coords="5,181,435,309"/>
-<area shape="rect" id="node4" href="$d8/d26/classSecurity_1_1TLS.html" title="Stream::Input / Stream::Output TLS decryptor and encryptor." alt="" coords="85,357,355,456"/>
-<area shape="rect" id="node2" href="/tmp/build/x64/Release/Stream/tag.xml$d1/dff/classStream_1_1TransformOutput.html" title=" " alt="" coords="133,93,307,133"/>
-<area shape="rect" id="node3" href="/tmp/build/x64/Release/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="163,5,277,45"/>
+<area shape="rect" id="Node000001" title="Stream::Output TLS encryptor." alt="" coords="5,240,425,416"/>
+<area shape="rect" id="Node000004" href="$d8/d26/classSecurity_1_1TLS.html" title="Stream::Input / Stream::Output TLS decryptor and encryptor." alt="" coords="85,464,345,597"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="218,430,218,464,213,464,213,430"/>
+<area shape="rect" id="Node000002" href="/tmp/build/x64/Release/Stream/tag.xml$d1/dff/classStream_1_1TransformOutput.html" title=" " alt="" coords="135,123,296,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,206,218,240,213,240,213,206"/>
+<area shape="rect" id="Node000003" href="/tmp/build/x64/Release/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="165,5,266,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="218,89,218,123,213,123,213,89"/>
 </map>

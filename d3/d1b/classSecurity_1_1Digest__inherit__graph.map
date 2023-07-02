@@ -1,9 +1,15 @@
 <map id="Security::Digest" name="Security::Digest">
-<area shape="rect" id="node1" title="Stream::Input / Stream::Output Digest observer." alt="" coords="29,372,727,544"/>
-<area shape="rect" id="node2" href="$d0/d94/classSecurity_1_1DigestInput.html" title="Stream::Input Digest observer." alt="" coords="5,181,361,324"/>
-<area shape="rect" id="node3" href="/tmp/build/x64/Release/Stream/tag.xml$d1/dcd/classStream_1_1TransparentInput.html" title=" " alt="" coords="96,93,271,133"/>
-<area shape="rect" id="node4" href="/tmp/build/x64/Release/Stream/tag.xml$d7/d83/classStream_1_1Input.html" title=" " alt="" coords="131,5,236,45"/>
-<area shape="rect" id="node5" href="$da/df2/classSecurity_1_1DigestOutput.html" title="Stream::Output Digest observer." alt="" coords="386,181,762,324"/>
-<area shape="rect" id="node6" href="/tmp/build/x64/Release/Stream/tag.xml$d1/d52/classStream_1_1TransparentOutput.html" title=" " alt="" coords="482,93,666,133"/>
-<area shape="rect" id="node7" href="/tmp/build/x64/Release/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="517,5,631,45"/>
+<area shape="rect" id="Node000001" title="Stream::Input / Stream::Output Digest observer." alt="" coords="23,485,711,725"/>
+<area shape="rect" id="Node000002" href="$d0/d94/classSecurity_1_1DigestInput.html" title="Stream::Input Digest observer." alt="" coords="5,240,351,437"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,448,285,484,280,487,254,451"/>
+<area shape="rect" id="Node000003" href="/tmp/build/x64/Release/Stream/tag.xml$d1/dcd/classStream_1_1TransparentInput.html" title=" " alt="" coords="97,123,259,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="181,206,181,240,175,240,175,206"/>
+<area shape="rect" id="Node000004" href="/tmp/build/x64/Release/Stream/tag.xml$d7/d83/classStream_1_1Input.html" title=" " alt="" coords="132,5,224,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="181,89,181,123,175,123,175,89"/>
+<area shape="rect" id="Node000005" href="$da/df2/classSecurity_1_1DigestOutput.html" title="Stream::Output Digest observer." alt="" coords="375,240,741,437"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="482,450,455,487,451,484,477,447"/>
+<area shape="rect" id="Node000006" href="/tmp/build/x64/Release/Stream/tag.xml$d1/d52/classStream_1_1TransparentOutput.html" title=" " alt="" coords="473,123,643,192"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="561,206,561,240,555,240,555,206"/>
+<area shape="rect" id="Node000007" href="/tmp/build/x64/Release/Stream/tag.xml$df/dc2/classStream_1_1Output.html" title=" " alt="" coords="507,5,609,75"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="561,89,561,123,555,123,555,89"/>
 </map>

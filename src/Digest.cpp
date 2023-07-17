@@ -129,7 +129,7 @@ Digest::Size(EVP_MD_CTX* ctx)
 		Expect1(EVP_DigestSignFinal(ctx, nullptr, &size));
 		return size;
 	}
-	return EVP_MD_size(EVP_MD_CTX_md(ctx));
+	return EVP_MD_size(EVP_MD_CTX_get0_md(ctx));
 }
 
 std::vector<std::byte>

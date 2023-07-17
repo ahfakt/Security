@@ -11,14 +11,14 @@
 std::vector<std::byte>
 testOutputHash(std::string const& fileName, EVP_MD const* md, int length, int maxChunkLength)
 {
-	std::vector<std::byte> outputData = StreamTest::Util::GetRandomBytes<std::chrono::minutes>(length);
+	std::vector<std::byte> outputData = StreamTest::GetRandomBytes<std::chrono::minutes>(length);
 
 	Stream::File file(fileName, Stream::File::Mode::W);
 	Stream::BufferOutput buffer(file.getBlockSize());
 	Security::DigestOutput digestOutput(md);
 	file < buffer < digestOutput;
 
-	StreamTest::Util::WriteRandomChunks(digestOutput, outputData,
+	StreamTest::WriteRandomChunks(digestOutput, outputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 
 	auto outputDigest = digestOutput.getOutputDigest();
@@ -30,14 +30,14 @@ testOutputHash(std::string const& fileName, EVP_MD const* md, int length, int ma
 std::vector<std::byte>
 testOutputHMAC(std::string const& fileName, EVP_MD const* md, Security::Key const& key, int length, int maxChunkLength)
 {
-	std::vector<std::byte> outputData = StreamTest::Util::GetRandomBytes<std::chrono::minutes>(length);
+	std::vector<std::byte> outputData = StreamTest::GetRandomBytes<std::chrono::minutes>(length);
 
 	Stream::File file(fileName, Stream::File::Mode::W);
 	Stream::BufferOutput buffer(file.getBlockSize());
 	Security::DigestOutput digestOutput(md, key);
 	file < buffer < digestOutput;
 
-	StreamTest::Util::WriteRandomChunks(digestOutput, outputData,
+	StreamTest::WriteRandomChunks(digestOutput, outputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 
 	auto outputDigest = digestOutput.getOutputDigest();
@@ -57,7 +57,7 @@ testInputHash(std::string const& fileName, EVP_MD const* md, int length, int max
 	Security::DigestInput digestInput(md);
 	file > buffer > digestInput;
 
-	StreamTest::Util::ReadRandomChunks(digestInput, inputData,
+	StreamTest::ReadRandomChunks(digestInput, inputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 
 	auto inputDigest = digestInput.getInputDigest();
@@ -77,7 +77,7 @@ testInputHMAC(std::string const& fileName, EVP_MD const* md, Security::Key const
 	Security::DigestInput digestInput(md, key);
 	file > buffer > digestInput;
 
-	StreamTest::Util::ReadRandomChunks(digestInput, inputData,
+	StreamTest::ReadRandomChunks(digestInput, inputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 
 	auto inputDigest = digestInput.getInputDigest();

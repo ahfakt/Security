@@ -8,14 +8,14 @@
 std::vector<std::byte>
 testOutput(std::string const& fileName, EVP_MD const* md, Security::Key const& signKey, int length, int maxChunkLength)
 {
-	std::vector<std::byte> outputData = StreamTest::Util::GetRandomBytes<std::chrono::hours>(length);
+	std::vector<std::byte> outputData = StreamTest::GetRandomBytes<std::chrono::hours>(length);
 
 	Stream::File file(fileName, Stream::File::Mode::W);
 	Stream::BufferOutput buffer(file.getBlockSize());
 	Security::SignatureOutput signatureOutput(md, signKey);
 	file < buffer < signatureOutput;
 
-	StreamTest::Util::WriteRandomChunks(signatureOutput, outputData,
+	StreamTest::WriteRandomChunks(signatureOutput, outputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 
 	return signatureOutput.getSignature();
@@ -32,7 +32,7 @@ testInput(std::string const& fileName, EVP_MD const* md, Security::Key const& ve
 	Security::SignatureInput signatureInput(md, verifyKey);
 	file > buffer > signatureInput;
 
-	StreamTest::Util::ReadRandomChunks(signatureInput, inputData,
+	StreamTest::ReadRandomChunks(signatureInput, inputData,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 
 	assert(signatureInput.verifySignature(signature));
@@ -51,7 +51,7 @@ test(std::string const& fileName, EVP_MD const* md, Security::Key const& key, in
 
 	auto signature = testOutput(fileName, md, privKey, length, maxChunkLength);
 
-	std::vector<std::byte> outputData = StreamTest::Util::GetRandomBytes<std::chrono::hours>(length);
+	std::vector<std::byte> outputData = StreamTest::GetRandomBytes<std::chrono::hours>(length);
 	auto signature2 = Security::Signature::Sign(outputData.data(), outputData.size(), md, privKey);
 
 

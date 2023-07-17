@@ -223,8 +223,8 @@ make_error_code(Cipher::Exception::Code e) noexcept
 		[[nodiscard]] std::string
 		message(int ev) const noexcept override
 		{ return ERR_error_string(ev, nullptr); }
-	} instance;
-	return {static_cast<int>(e), instance};
+	} const cat;
+	return {static_cast<int>(e), cat};
 }
 
 }//namespace Security

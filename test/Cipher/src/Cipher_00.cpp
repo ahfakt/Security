@@ -29,7 +29,7 @@ testEncrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 {
 	auto secretKey = readSecretKey(fileName);
 	std::unique_ptr<std::byte[]> iv;
-	std::vector<std::byte> toEncrypt = StreamTest::Util::GetRandomBytes<std::chrono::minutes>(length);
+	std::vector<std::byte> toEncrypt = StreamTest::GetRandomBytes<std::chrono::minutes>(length);
 
 	Stream::File file{fileName, Stream::File::Mode::W};
 	Stream::BufferOutput buffer{static_cast<std::size_t>(file.getBlockSize())};
@@ -44,7 +44,7 @@ testEncrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 	Security::CipherEncrypt encryptor{cipher, secretKey, iv.get()};
 	buffer < encryptor;
 
-	StreamTest::Util::WriteRandomChunks(encryptor, toEncrypt,
+	StreamTest::WriteRandomChunks(encryptor, toEncrypt,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 	return toEncrypt;
 }
@@ -69,7 +69,7 @@ testDecrypt(std::string const& fileName, EVP_CIPHER const* cipher, int length, i
 	Security::CipherDecrypt decryptor{cipher, secretKey, iv.get()};
 	buffer > decryptor;
 
-	StreamTest::Util::ReadRandomChunks(decryptor, decrypted,
+	StreamTest::ReadRandomChunks(decryptor, decrypted,
 			std::uniform_int_distribution<int> {1, maxChunkLength});
 	return decrypted;
 }

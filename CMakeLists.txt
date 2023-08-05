@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14.0)
+cmake_minimum_required(VERSION 3.20.0)
 project(Security VERSION 0.7 DESCRIPTION "Security related operations on streams")
 
 
